@@ -15,5 +15,17 @@
         android:name="com.brains404.scheduler.ui.tasks.TaskFragment"
         android:label="@string/menu_task"
         tools:layout="@layout/task_tabs" />
+    <!-- //TODO Change Fragment Layout (Settings Fragment instead of TaskFragment)-->
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="com.brains404.scheduler.ui.tasks.TaskFragment"
+        android:label="@string/menu_settings"
+        tools:layout="@layout/task_tabs" />
+    <!-- //TODO Change Fragment Layout (Feedback Fragment instead of TaskFragment)-->
+    <fragment
+        android:id="@+id/nav_feedback"
+        android:name="com.brains404.scheduler.ui.tasks.TaskFragment"
+        android:label="@string/menu_feedback"
+        tools:layout="@layout/task_tabs" />
     <!-- //TODO Add Fragments here -->
 </navigation>

@@ -10,9 +10,20 @@
             android:title="@string/menu_time_table" />
         <item
             android:id="@+id/nav_tasks"
-            android:icon="@drawable/ic_insert_invitation"
+            android:icon="@drawable/ic_task"
             android:title="@string/menu_task" />
         <!-- //TODO Add Navigation Drawer Item Here-->
     </group>
-
+    <item android:title="@string/menu_more">
+        <menu>
+            <item
+                android:id="@+id/nav_settings"
+                android:icon="@drawable/ic_settings"
+                android:title="@string/menu_settings" />
+            <item
+                android:id="@+id/nav_feedback"
+                android:icon="@drawable/ic_feedback"
+                android:title="@string/menu_feedback" />
+        </menu>
+    </item>
 </menu>
