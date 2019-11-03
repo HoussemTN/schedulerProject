@@ -33,8 +33,8 @@ public class TaskTabs extends Fragment {
         sessionsList.add(session);
         sessionsList.add(session);
         ListView lv = (ListView)root.findViewById(R.id.lv_sessions);
-
         SessionListViewAdapter customListViewAdapter;
+        //TODO Create new task_item layout (instead of session_item)
         customListViewAdapter = new SessionListViewAdapter(getActivity(),R.layout.session_item,sessionsList);
         lv.setAdapter(customListViewAdapter );
 

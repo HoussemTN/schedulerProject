@@ -26,4 +26,12 @@
     <string name="hello_blank_fragment">Hello blank Activity</string>
     <!--Activities Titles -->
     <string name="activity_addSession_title">Add Session</string>
+    <!-- Forms -->
+    <string name="hint_name">Name</string>
+    <string name="hint_place">Place</string>
+    <string name="hint_day">Day</string>
+    <string name="hint_startTime">Start Time</string>
+    <string name="hint_endTime">End Time</string>
+
+    <string name="btn_addSession">Add Session</string>
 </resources>

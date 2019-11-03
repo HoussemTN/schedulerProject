@@ -36,7 +36,6 @@ public class TimeTableTabs extends Fragment {
         SessionListViewAdapter customListViewAdapter;
         customListViewAdapter = new SessionListViewAdapter(getActivity(),R.layout.session_item,sessionsList);
         lv.setAdapter(customListViewAdapter );
-
             return root;
     }
 

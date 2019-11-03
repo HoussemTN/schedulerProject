@@ -4,7 +4,7 @@ package com.brains404.scheduler.Entities;
 
 public class Session {
     private int idSession ;
-    private  String name ;
+    private String name ;
     private String place ;
     private String startTime;
     private String endTime;

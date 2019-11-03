@@ -1,13 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--TODO Create Add Session Form Layout -->
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--TODO Create Add Session Form Layout (2 Edit Texts(Name,Place),Combo Box Days , Time Picker (Start Time , End Time)) -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.time_table.addSession">
-<TextView
+<EditText
+    android:id="@+id/et_name"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-android:text="@string/hello_blank_fragment"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+    android:layout_height="wrap_content"
+    android:inputType="text"
+    android:hint="@string/hint_name"
+    android:layout_alignParentTop="true"
+    android:layout_margin="@dimen/form_margin"
+    android:importantForAutofill="no" />
+    <TableRow
+        android:id="@+id/tr_place_spinnerDays"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2"
+        android:layout_below="@id/et_name">
+    <EditText
+        android:id="@+id/et_place"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:hint="@string/hint_place"
+        android:layout_margin="@dimen/form_margin"
+        android:importantForAutofill="no"
+        />
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/spinnerDays"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/form_margin"/>
+    </TableRow>
+    <EditText
+        android:id="@+id/t_startTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="6"
+        android:inputType="time"
+        android:hint="@string/hint_startTime"
+        android:layout_below="@id/tr_place_spinnerDays"
+        android:layout_margin="@dimen/form_margin"
+        android:importantForAutofill="no"/>
+
+    <EditText
+        android:id="@+id/t_endTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="6"
+        android:inputType="time"
+        android:layout_margin="@dimen/form_margin"
+        android:hint="@string/hint_endTime"
+        android:layout_toEndOf="@id/t_startTime"
+        android:layout_toRightOf="@id/t_startTime"
+        android:layout_below="@id/tr_place_spinnerDays"
+        android:importantForAutofill="no"/>
+
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_addSession"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_addSession"
+        android:layout_below="@id/t_endTime"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/form_margin"
+     />
+
+</RelativeLayout>
