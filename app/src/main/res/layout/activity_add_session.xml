@@ -1,77 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--TODO Create Add Session Form Layout (2 Edit Texts(Name,Place),Combo Box Days , Time Picker (Start Time , End Time)) -->
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.time_table.addSession">
-<EditText
-    android:id="@+id/et_name"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:inputType="text"
-    android:hint="@string/hint_name"
-    android:layout_alignParentTop="true"
-    android:layout_margin="@dimen/form_margin"
-    android:importantForAutofill="no" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+
     <TableRow
-        android:id="@+id/tr_place_spinnerDays"
+        android:id="@+id/tr_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:weightSum="2"
-        android:layout_below="@id/et_name">
-    <EditText
-        android:id="@+id/et_place"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:hint="@string/hint_place"
-        android:layout_margin="@dimen/form_margin"
-        android:importantForAutofill="no"
-        />
-    <androidx.appcompat.widget.AppCompatSpinner
-        android:id="@+id/spinnerDays"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/form_margin"/>
+        android:layout_alignParentTop="true"
+        android:weightSum="2">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/form_margin"
+            android:layout_weight="0.4"
+            android:text="@string/label_name"
+            android:textSize="@dimen/label_size" />
+
+        <EditText
+            android:id="@+id/et_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/form_margin"
+            android:layout_weight="1.2"
+            android:hint="@string/hint_name"
+            android:importantForAutofill="no"
+            android:inputType="text" />
     </TableRow>
-    <EditText
-        android:id="@+id/t_startTime"
-        android:layout_width="wrap_content"
+
+    <TableRow
+        android:id="@+id/tr_place"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="6"
-        android:inputType="time"
-        android:hint="@string/hint_startTime"
-        android:layout_below="@id/tr_place_spinnerDays"
-        android:layout_margin="@dimen/form_margin"
-        android:importantForAutofill="no"/>
+        android:layout_below="@id/tr_name"
+        android:weightSum="2">
 
-    <EditText
-        android:id="@+id/t_endTime"
-        android:layout_width="wrap_content"
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/form_margin"
+            android:layout_weight="0.4"
+            android:text="@string/label_place"
+            android:textSize="@dimen/label_size" />
+
+        <EditText
+            android:id="@+id/et_place"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/form_margin"
+            android:layout_weight="1.2"
+            android:hint="@string/hint_place"
+            android:importantForAutofill="no"
+            android:inputType="text" />
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tr_day"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="6"
-        android:inputType="time"
-        android:layout_margin="@dimen/form_margin"
-        android:hint="@string/hint_endTime"
-        android:layout_toEndOf="@id/t_startTime"
-        android:layout_toRightOf="@id/t_startTime"
-        android:layout_below="@id/tr_place_spinnerDays"
-        android:importantForAutofill="no"/>
+        android:layout_below="@id/tr_place"
+        android:weightSum="2">
 
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/form_margin"
+            android:layout_weight="0.4"
+            android:text="@string/label_day"
+            android:textSize="@dimen/label_size" />
 
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/spinnerDays"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/form_margin"
+            android:layout_weight="1.2" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tr_startTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tr_day"
+        android:weightSum="2">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/form_margin"
+            android:layout_weight="0.6"
+            android:text="@string/label_startTime"
+            android:textSize="@dimen/label_size" />
+
+        <EditText
+            android:id="@+id/t_startTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/form_margin"
+            android:layout_weight="0.8"
+            android:ems="6"
+            android:hint="@string/hint_startTime"
+            android:importantForAutofill="no"
+            android:inputType="time" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tr_endTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tr_startTime"
+        android:weightSum="2">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/form_margin"
+            android:layout_weight="0.6"
+            android:text="@string/label_endTime"
+            android:textSize="@dimen/label_size" />
+
+        <EditText
+            android:id="@+id/t_endTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/form_margin"
+            android:layout_weight="0.8"
+            android:ems="6"
+            android:hint="@string/hint_endTime"
+            android:importantForAutofill="no"
+            android:inputType="time" />
+    </TableRow>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_addSession"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/btn_addSession"
-        android:layout_below="@id/t_endTime"
+        android:layout_below="@id/tr_endTime"
         android:layout_centerHorizontal="true"
         android:layout_margin="@dimen/form_margin"
-     />
+        android:text="@string/btn_addSession" />
 
 </RelativeLayout>
+</ScrollView>
