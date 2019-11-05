@@ -34,11 +34,8 @@
     <string name="hint_endTime">End Time</string>
 
     <!-- labels -->
-    <string name="label_name">Name* </string>
-    <string name="label_place">Place </string>
-    <string name="label_day">Day* </string>
-    <string name="label_startTime">Start Time* </string>
-    <string name="label_endTime">End Time* </string>
+    <string name="label_startTime">Starts</string>
+    <string name="label_endTime">Ends</string>
     <!-- Buttons Values -->
     <string name="btn_addSession">Add Session</string>
 </resources>

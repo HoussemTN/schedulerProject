@@ -15,9 +15,8 @@ import com.brains404.scheduler.MainActivity;
 import com.brains404.scheduler.R;
 
 
-public class addSession extends AppCompatActivity  implements
-        AdapterView.OnItemSelectedListener {
-    String[] days = { "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY","SATURDAY","SUNDAY"};
+public class addSession extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,15 +25,6 @@ public class addSession extends AppCompatActivity  implements
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeButtonEnabled(true);
         }
-        //Getting the instance of Spinner and applying OnItemSelectedListener on it
-        Spinner spin = (Spinner) findViewById(R.id.spinnerDays);
-        spin.setOnItemSelectedListener(this);
-
-        //Creating the ArrayAdapter instance having the country list
-        ArrayAdapter<String> aa = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,days);
-        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        //Setting the ArrayAdapter data on the Spinner
-        spin.setAdapter(aa);
 
     }
     // Back Button To App Bar(from addSession Activity => MainActivity)
@@ -53,13 +43,5 @@ public class addSession extends AppCompatActivity  implements
     }
 
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        Toast.makeText(getApplicationContext(),days[position] , Toast.LENGTH_LONG).show();
-    }
 
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
 }
