@@ -22,7 +22,7 @@
             android:layout_marginStart="@dimen/form_margin"
             android:layout_marginEnd="@dimen/label_margin_right"
             android:textSize="@dimen/label_size"/>
-    <EditText
+   <!-- <EditText
         android:id="@+id/t_startTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -30,7 +30,13 @@
         android:inputType="time"
         android:hint="@string/hint_startTime"
         android:layout_margin="@dimen/form_margin"
-        android:importantForAutofill="no"/>
+        android:importantForAutofill="no"/>-->
+        <Button
+            android:id="@+id/btn_startTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/form_margin"
+            android:text="xx:yy"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -44,7 +50,7 @@
             android:textSize="@dimen/label_size"
 
             />
-    <EditText
+   <!-- <EditText
         android:id="@+id/t_endTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -52,8 +58,13 @@
         android:inputType="time"
         android:layout_margin="@dimen/form_margin"
         android:hint="@string/hint_endTime"
-
-        android:importantForAutofill="no"/>
+        android:importantForAutofill="no"/>-->
+        <Button
+            android:id="@+id/btn_endTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/form_margin"
+            android:text="xx:yy"/>
     </TableRow>
     <EditText
         android:id="@+id/et_name"
@@ -63,8 +74,11 @@
         android:hint="@string/hint_name"
         android:layout_below="@id/tr_time"
         android:layout_margin="@dimen/form_margin"
-        android:importantForAutofill="no" />
-
+        android:importantForAutofill="no"
+        android:drawableLeft="@drawable/ic_name"
+        android:drawableStart="@drawable/ic_name"
+        android:drawablePadding="5dp"
+        />
 
     <EditText
         android:id="@+id/et_place"
@@ -74,8 +88,22 @@
         android:hint="@string/hint_place"
         android:layout_below="@id/et_name"
         android:layout_margin="@dimen/form_margin"
-        android:importantForAutofill="no" />
-
+        android:importantForAutofill="no"
+        android:drawableLeft="@drawable/ic_place"
+        android:drawableStart="@drawable/ic_place"
+        android:drawablePadding="5dp"/>
+    <TimePicker
+        android:id="@+id/tp_start_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        />
+    <TimePicker
+        android:id="@+id/tp_end_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        />
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_addSession"
         android:layout_width="wrap_content"
