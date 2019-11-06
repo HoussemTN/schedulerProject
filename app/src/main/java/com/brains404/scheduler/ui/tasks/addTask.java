@@ -16,7 +16,7 @@ import com.brains404.scheduler.R;
 
 public class addTask extends AppCompatActivity implements
         AdapterView.OnItemSelectedListener {
-        String[] days = { "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY","SATURDAY","SUNDAY"};
+        String[] days = { "Math", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY","SATURDAY","SUNDAY"};
         String[] weeks= { "next Week","2 Weeks","3 Weeks"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {

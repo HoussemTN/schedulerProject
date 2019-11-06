@@ -16,6 +16,11 @@
         android:label="@string/menu_task"
         tools:layout="@layout/task_tabs" />
     <fragment
+        android:id="@+id/nav_statistics"
+        android:name="com.brains404.scheduler.ui.settings.SettingsActivity$SettingsFragment"
+        android:label="@string/menu_statistics"
+        tools:layout="@layout/settings_activity" />
+    <fragment
         android:id="@+id/nav_settings"
         android:name="com.brains404.scheduler.ui.settings.SettingsActivity$SettingsFragment"
         android:label="@string/menu_settings"

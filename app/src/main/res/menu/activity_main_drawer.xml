@@ -12,6 +12,10 @@
             android:id="@+id/nav_tasks"
             android:icon="@drawable/ic_task"
             android:title="@string/menu_task" />
+        <item
+            android:id="@+id/nav_statistics"
+            android:icon="@drawable/ic_statistics"
+            android:title="@string/menu_statistics" />
         <!-- //TODO Add Navigation Drawer Item Here-->
     </group>
     <item android:title="@string/menu_more">

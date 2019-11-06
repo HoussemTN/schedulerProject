@@ -61,8 +61,8 @@
         android:layout_below="@id/tr_session"
         android:layout_margin="@dimen/form_margin"
         android:importantForAutofill="no"
-        android:drawableLeft="@drawable/ic_place"
-        android:drawableStart="@drawable/ic_place"
+        android:drawableLeft="@drawable/ic_description"
+        android:drawableStart="@drawable/ic_description"
         android:drawablePadding="5dp"/>
 
     <androidx.appcompat.widget.AppCompatButton
