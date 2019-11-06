@@ -22,15 +22,7 @@
             android:layout_marginStart="@dimen/form_margin"
             android:layout_marginEnd="@dimen/label_margin_right"
             android:textSize="@dimen/label_size"/>
-   <!-- <EditText
-        android:id="@+id/t_startTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="5"
-        android:inputType="time"
-        android:hint="@string/hint_startTime"
-        android:layout_margin="@dimen/form_margin"
-        android:importantForAutofill="no"/>-->
+
         <Button
             android:id="@+id/btn_startTime"
             android:layout_width="wrap_content"
@@ -50,15 +42,7 @@
             android:textSize="@dimen/label_size"
 
             />
-   <!-- <EditText
-        android:id="@+id/t_endTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="6"
-        android:inputType="time"
-        android:layout_margin="@dimen/form_margin"
-        android:hint="@string/hint_endTime"
-        android:importantForAutofill="no"/>-->
+
         <Button
             android:id="@+id/btn_endTime"
             android:layout_width="wrap_content"
@@ -71,7 +55,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
-        android:hint="@string/hint_name"
+        android:hint="@string/hint_title"
         android:layout_below="@id/tr_time"
         android:layout_margin="@dimen/form_margin"
         android:importantForAutofill="no"

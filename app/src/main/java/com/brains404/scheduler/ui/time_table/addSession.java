@@ -1,7 +1,6 @@
 package com.brains404.scheduler.ui.time_table;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
@@ -10,10 +9,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TimePicker;
-
 import com.brains404.scheduler.MainActivity;
 import com.brains404.scheduler.R;
-
 import java.util.Calendar;
 
 
@@ -98,11 +95,11 @@ public class addSession extends AppCompatActivity {
             case START_TIME_DIALOG_ID:
                 //set time picker as current time
                 return new TimePickerDialog(this,
-                        timeStartPickerListener, startHour, startMinute,false);
+                        timeStartPickerListener, startHour, startMinute,true);
             case END_TIME_DIALOG_ID:
                 //set time picker as current time
                 return new TimePickerDialog(this,
-                        timeEndPickerListener, endHour, endMinute,false);
+                        timeEndPickerListener, endHour, endMinute,true);
 
         }
         return null;
@@ -138,13 +135,8 @@ public class addSession extends AppCompatActivity {
                     //set current time into timepicker
                     timeEndPicker.setCurrentHour(endHour);
                     timeEndPicker.setCurrentMinute(endMinute);
-
-
-
-
                 }
             };
-
 
     private static String pad(int c) {
         if (c >= 10)

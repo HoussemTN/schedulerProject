@@ -27,10 +27,13 @@ public class TimeTableTabs extends Fragment {
 
 
             ArrayList<Session> sessionsList=new ArrayList<Session>() ;
-            Session session = new Session(1,day+" TimeTable subject","Tunisia","23:00","00:00","Monday");
-            sessionsList.add(session);
-            sessionsList.add(session);
-            sessionsList.add(session);
+        Session session3 = new Session(1,"Math Session","Tunisia","11:00","12:00","Monday");
+        Session session = new Session(3,"English Session","Tunisia","09:00","10:00","Monday");
+        Session session2 = new Session(2,"Arabic Session","Tunisia","10:00","11:00","Monday");
+        sessionsList.add(session);
+        sessionsList.add(session2);
+        sessionsList.add(session3);
+
             ListView lv = (ListView)root.findViewById(R.id.lv_sessions);
 
         SessionListViewAdapter customListViewAdapter;
