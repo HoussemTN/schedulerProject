@@ -20,10 +20,10 @@
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/result_tabs"
-                android:background="@color/colorPrimary"
-                app:tabTextColor="@color/grey"
-                app:tabSelectedTextColor="@color/white"
-                app:tabIndicatorColor="@color/white"
+                android:background="@color/backgroundColor"
+                app:tabTextColor="@color/textColorSecondary"
+                app:tabSelectedTextColor="@color/tintColorPrimary"
+                app:tabIndicatorColor="@color/tintColorPrimary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:tabMode="scrollable" />

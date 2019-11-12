@@ -1,5 +1,6 @@
 package com.brains404.scheduler;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -28,6 +29,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences preferences = getSharedPreferences("PrefsTheme", MODE_PRIVATE);
+        boolean useDarkTheme = preferences.getBoolean("darkTheme", false);
+        if(useDarkTheme) {
+            setTheme(R.style.DarkAppTheme_NoActionBar);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);

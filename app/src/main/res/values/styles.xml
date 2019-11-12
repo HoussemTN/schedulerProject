@@ -1,13 +1,19 @@
 <resources>
 
-    <!-- Base application theme. -->
+    <!-- Light application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="backgroundColor">@color/backgroundColor</item>
+        <item name="backgroundColorSecondary">@color/backgroundColorSecondary</item>
+        <item name="textColor">@color/textColorPrimary</item>
+        <item name="tintColor">@color/tintColorPrimary</item>
+        <item name="buttonColor">@color/buttonColorPrimary</item>
+        <item name="selectedTabTextColor" >@color/selectedTabTextColor</item>
+        <item  name="notSelectedTabTextColor">@color/notSelectedTabTextColor</item>
+        <item name="tabIndicatorColor" >@color/tabIndicatorColor</item>
     </style>
-
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
@@ -16,5 +22,32 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <!-- App Bar Action Theme of Settings -->
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <!-- Dark application theme. -->
+    <style name="DarkAppTheme" parent="AppTheme">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimaryNight</item>
+        <item name="colorAccent">@color/colorAccentNight</item>
+        <item name="backgroundColor">@color/backgroundColorNight</item>
+        <item name="backgroundColorSecondary">@color/backgroundColorSecondaryNight</item>
+        <item name="textColor">@color/textColorPrimaryNight</item>
+        <item name="tintColor">@color/tintColorPrimaryNight</item>
+        <item name="buttonColor">@color/buttonColorPrimaryNight</item>
+        <item name="selectedTabTextColor" >@color/selectedTabTextColorNight</item>
+        <item  name="notSelectedTabTextColor">@color/notSelectedTabTextColorNight</item>
+        <item name="tabIndicatorColor" >@color/tabIndicatorColorNight</item>
+
+    </style>
+v  <style name="DarkAppTheme.NoActionBar">
+    <item name="windowActionBar">false</item>
+    <item name="windowNoTitle">true</item>
+</style>
+
+    <style name="DarkAppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <!-- App Bar Action Theme of Settings -->
+    <style name="DarkAppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+
+
 
 </resources>

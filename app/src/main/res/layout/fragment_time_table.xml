@@ -4,7 +4,8 @@
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="?attr/backgroundColor">
 
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -20,10 +21,10 @@
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/result_tabs"
-                android:background="@color/colorPrimary"
-                app:tabTextColor="@color/grey"
-                app:tabSelectedTextColor="@color/white"
-                app:tabIndicatorColor="@color/white"
+                android:background="?attr/backgroundColorSecondary"
+                app:tabTextColor="?attr/notSelectedTabTextColor"
+                app:tabSelectedTextColor="?attr/selectedTabTextColor"
+                app:tabIndicatorColor="?attr/tabIndicatorColor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:tabMode="scrollable" />
@@ -40,6 +41,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="bottom|end"
             android:layout_margin="@dimen/fab_margin"
+            android:background="?attr/backgroundColor"
             android:src="@drawable/ic_add"
             />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

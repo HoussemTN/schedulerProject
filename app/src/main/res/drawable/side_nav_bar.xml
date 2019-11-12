@@ -2,9 +2,9 @@
     <gradient
         android:centerX="100%"
         android:centerY="100%"
-        android:centerColor="@color/colorPrimary"
-        android:startColor="@color/colorAccent"
-        android:endColor="@color/colorPrimary"
+        android:centerColor="@color/backgroundColor"
+        android:startColor="@color/textColorPrimary"
+        android:endColor="@color/backgroundColor"
         android:type="linear"
         />
 

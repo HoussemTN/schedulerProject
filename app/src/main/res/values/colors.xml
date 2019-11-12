@@ -1,10 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#145896</color>
-    <color name="colorPrimaryDark">#145896</color>
-    <color name="colorAccent">#145896</color>
-    <color name="grey">#C0C0C0</color>
-    <color name="lightGrey">#D3D3D3</color>
-    <color name="black">#000000</color>
-    <color name="white">#FFFFFF</color>
+    <color name="colorPrimary">#B5160283</color>
+    <color name="colorAccent">#072692</color>
+    <color name="backgroundColor">#D8D7D7</color>
+    <color name="backgroundColorSecondary">#04284B</color>
+    <color name="textColorPrimary">#050505</color>
+    <color name="textColorSecondary">#525151</color>
+    <color name="buttonColorPrimary">#0038FF</color>
+    <color name="buttonColorSecondary">#000000</color>
+    <color name="tintColorPrimary">#B3B0B0</color>
+    <color name="selectedTabTextColor" >#FFAE00</color>
+    <color  name="notSelectedTabTextColor">#8A8484</color>
+    <color name="tabIndicatorColor" >#FFFFFF</color>
+    <!--Night Mode -->
+    <color name="colorPrimaryNight">#0F263C</color>
+    <color name="colorAccentNight">#010F2E</color>
+    <color name="backgroundColorNight">#2D2E3A</color>
+    <color name="backgroundColorSecondaryNight">#424244</color>
+    <color name="textColorPrimaryNight">#B1B0B0</color>
+    <color name="textColorSecondaryNight">#9B9696</color>
+    <color name="buttonColorPrimaryNight">#1A1A1A</color>
+    <color name="buttonColorSecondaryNight">#1D1717</color>
+    <color name="tintColorPrimaryNight">#B4383E50</color>
+    <color name="selectedTabTextColorNight" >#ACA9A9</color>
+    <color  name="notSelectedTabTextColorNight">#646262</color>
+    <color name="tabIndicatorColorNight" >#ACA9A9</color>
 </resources>

@@ -14,9 +14,9 @@ import com.brains404.scheduler.R;
 
 import java.util.ArrayList;
 
-public class TimeTableTabs extends Fragment {
+public class TimeTableTabsFragement extends Fragment {
     private String day;
-    public TimeTableTabs(String day) {
+    public TimeTableTabsFragement(String day) {
     this.day=day;
     }
 

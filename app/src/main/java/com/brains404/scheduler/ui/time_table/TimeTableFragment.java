@@ -13,7 +13,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import com.brains404.scheduler.MainActivity;
 import com.brains404.scheduler.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
@@ -59,13 +58,13 @@ public class TimeTableFragment extends Fragment {
     private void setupViewPager(ViewPager viewPager) {
 
         Adapter adapter = new Adapter(getChildFragmentManager());
-        adapter.addFragment(new TimeTableTabs("Monday"), getString(R.string.tab_title_monday));
-        adapter.addFragment(new TimeTableTabs("Tuesday"), getString(R.string.tab_title_tuesday));
-        adapter.addFragment(new TimeTableTabs("Wednesday"), getString(R.string.tab_title_wednesday));
-        adapter.addFragment(new TimeTableTabs("Thursday"), getString(R.string.tab_title_thursday));
-        adapter.addFragment(new TimeTableTabs("Friday"), getString(R.string.tab_title_friday));
-        adapter.addFragment(new TimeTableTabs("Saturday"), getString(R.string.tab_title_saturday));
-        adapter.addFragment(new TimeTableTabs("Sunday"), getString(R.string.tab_title_sunday));
+        adapter.addFragment(new TimeTableTabsFragement("Monday"), getString(R.string.tab_title_monday));
+        adapter.addFragment(new TimeTableTabsFragement("Tuesday"), getString(R.string.tab_title_tuesday));
+        adapter.addFragment(new TimeTableTabsFragement("Wednesday"), getString(R.string.tab_title_wednesday));
+        adapter.addFragment(new TimeTableTabsFragement("Thursday"), getString(R.string.tab_title_thursday));
+        adapter.addFragment(new TimeTableTabsFragement("Friday"), getString(R.string.tab_title_friday));
+        adapter.addFragment(new TimeTableTabsFragement("Saturday"), getString(R.string.tab_title_saturday));
+        adapter.addFragment(new TimeTableTabsFragement("Sunday"), getString(R.string.tab_title_sunday));
         viewPager.setAdapter(adapter);
 
     }
