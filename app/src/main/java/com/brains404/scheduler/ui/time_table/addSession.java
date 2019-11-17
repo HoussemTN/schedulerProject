@@ -1,7 +1,6 @@
 package com.brains404.scheduler.ui.time_table;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;

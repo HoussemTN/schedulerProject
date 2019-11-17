@@ -1,7 +1,5 @@
 package com.brains404.scheduler.Entities;
 
-
-
 public class Session {
     private int idSession ;
     private String name ;

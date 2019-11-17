@@ -27,7 +27,6 @@ public class TaskFragment extends Fragment {
         setRetainInstance(true);
     }
 
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
