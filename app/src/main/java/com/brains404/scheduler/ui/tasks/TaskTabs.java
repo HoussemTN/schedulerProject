@@ -25,7 +25,7 @@ public class TaskTabs extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.time_table_tabs, container, false);
+        View root = inflater.inflate(R.layout.task_tabs, container, false);
 
 
         ArrayList<Session> sessionsList=new ArrayList<>() ;

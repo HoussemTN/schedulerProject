@@ -34,8 +34,8 @@ public class SessionListViewAdapter extends ArrayAdapter<Session> {
         View view = inflater.inflate(R.layout.session_item,null);
         TextView startTime=view.findViewById(R.id.startTime);
         TextView endTime=view.findViewById(R.id.endTime) ;
-        TextView sessionName=view.findViewById(R.id.name) ;
-        sessionName.setText(session.getName());
+        TextView sessionTitle =view.findViewById(R.id.title) ;
+        sessionTitle.setText(session.getTitle());
         startTime.setText(session.getStartTime());
         endTime.setText(session.getEndTime());
         return view ;

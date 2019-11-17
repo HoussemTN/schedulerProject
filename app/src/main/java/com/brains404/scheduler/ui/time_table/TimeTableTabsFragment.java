@@ -4,18 +4,21 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import com.brains404.scheduler.Entities.Session;
 import com.brains404.scheduler.R;
-
 import java.util.ArrayList;
-import java.util.Objects;
+
 
 public class TimeTableTabsFragment extends Fragment {
       String day ;
 
+    RecyclerView recyclerView;
+    RecyclerView.LayoutManager layoutManager;
+    RecyclerView.Adapter adapter;
      TimeTableTabsFragment(String day) {
          this.day=day;
      }
@@ -34,11 +37,11 @@ public class TimeTableTabsFragment extends Fragment {
         sessionsList.add(session2);
         sessionsList.add(session3);
 
-            ListView lv = root.findViewById(R.id.lv_tasks);
-
-        SessionListViewAdapter customListViewAdapter;
-        customListViewAdapter = new SessionListViewAdapter(Objects.requireNonNull(getActivity()),R.layout.session_item,sessionsList);
-        lv.setAdapter(customListViewAdapter );
+        recyclerView = root.findViewById(R.id.rv_sessions);
+        layoutManager = new LinearLayoutManager(getActivity());
+        recyclerView.setLayoutManager(layoutManager);
+        adapter = new TimeTableRecyclerAdapter(sessionsList);
+        recyclerView.setAdapter(adapter);
             return root;
     }
 

@@ -2,7 +2,7 @@ package com.brains404.scheduler.Entities;
 
 public class Session {
     private int idSession ;
-    private String name ;
+    private String title ;
     private String place ;
     private String startTime;
     private String endTime;
@@ -15,7 +15,7 @@ public class Session {
 
     public Session(int idSession, String name, String place, String startTime, String endTime, String day) {
         this.idSession = idSession;
-        this.name = name;
+        this.title = name;
         this.place = place;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -30,12 +30,12 @@ public class Session {
         this.idSession = idSession;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getPlace() {
@@ -74,7 +74,7 @@ public class Session {
     public String toString() {
         return "Session{" +
                 "idSession=" + idSession +
-                ", name='" + name + '\'' +
+                ", title='" + title + '\'' +
                 ", place='" + place + '\'' +
                 ", startTime='" + startTime + '\'' +
                 ", endTime='" + endTime + '\'' +
