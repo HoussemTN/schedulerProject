@@ -7,7 +7,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-       android:layout_margin="10dp">
+        android:layout_margin="10dp">
 
         <TextView
             android:id="@+id/startTime"
@@ -31,9 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-
-        android:text="@string/default_session_value"
-
+        android:text="@string/default_task_value"
         android:textSize="20sp"
         android:textColor="?attr/textColor"
         />

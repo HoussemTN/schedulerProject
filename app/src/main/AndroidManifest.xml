@@ -8,21 +8,26 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
+        android:configChanges="orientation|screenSize|keyboardHidden"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
             android:name=".ui.settings.SettingsActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/title_activity_settings"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".ui.tasks.addTask"
+            android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/activity_addTask_title" />
         <activity
             android:name=".ui.time_table.addSession"
+            android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/activity_addSession_title" />
         <activity
             android:name=".MainActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>

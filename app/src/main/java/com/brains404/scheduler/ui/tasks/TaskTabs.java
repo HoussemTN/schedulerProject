@@ -14,10 +14,11 @@ import com.brains404.scheduler.R;
 import com.brains404.scheduler.ui.time_table.SessionListViewAdapter;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class TaskTabs extends Fragment {
     private String day;
-    public TaskTabs(String day) {
+   TaskTabs(String day) {
         this.day=day;
     }
 
@@ -27,17 +28,17 @@ public class TaskTabs extends Fragment {
         View root = inflater.inflate(R.layout.time_table_tabs, container, false);
 
 
-        ArrayList<Session> sessionsList=new ArrayList<Session>() ;
+        ArrayList<Session> sessionsList=new ArrayList<>() ;
         Session session3 = new Session(1,"Math Problem","Tunisia","23:05","23:30","Monday");
         Session session = new Session(3,"English Homework","Tunisia","19:00","19:30","Monday");
         Session session2 = new Session(2,"Arabic Exercise","Tunisia","22:45","23:00","Monday");
         sessionsList.add(session);
         sessionsList.add(session2);
         sessionsList.add(session3);
-        ListView lv = (ListView)root.findViewById(R.id.lv_sessions);
+        ListView lv = root.findViewById(R.id.lv_tasks);
         SessionListViewAdapter customListViewAdapter;
         //TODO Create new task_item layout (instead of session_item)
-        customListViewAdapter = new SessionListViewAdapter(getActivity(),R.layout.session_item,sessionsList);
+        customListViewAdapter = new SessionListViewAdapter(Objects.requireNonNull(getActivity()),R.layout.task_item,sessionsList);
         lv.setAdapter(customListViewAdapter );
 
         return root;

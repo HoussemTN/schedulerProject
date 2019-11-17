@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Start Tabb Bar -->
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="?attr/backgroundColor">
 
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="?attr/backgroundColor"
         android:id="@+id/main_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -48,5 +45,4 @@
     <!-- End Tabb Bar -->
 
 
-</RelativeLayout>
 

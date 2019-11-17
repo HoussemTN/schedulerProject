@@ -16,13 +16,12 @@ import com.brains404.scheduler.R;
 import java.util.List;
 
 public class SessionListViewAdapter extends ArrayAdapter<Session> {
-    Context context ;
+    private Context context ;
     int resource ;
-    List<Session> sessionsList ;
+    private List<Session> sessionsList ;
     public SessionListViewAdapter(@NonNull Context context, int resource, @NonNull List<Session> sessionsList) {
         super(context, resource, sessionsList);
         this.context=context ;
-        this.resource=resource;
         this.sessionsList=sessionsList;
     }
 

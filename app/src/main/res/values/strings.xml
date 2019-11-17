@@ -13,7 +13,11 @@
     <string name="menu_settings">Settings</string>
     <string name="menu_feedback">Feedback</string>
 
-
+    <!-- Default Values (Not shown)-->
+    <string name="default_start_time">08:00</string>
+    <string name="default_end_time">09:00</string>
+    <string name="default_task_value">Default Task</string>
+    <string name="default_session_value">Default Session</string>
     <!-- Fragments Tab Bar Titles-->
     <string name="tab_title_monday">Monday</string>
     <string name="tab_title_tuesday">Tuesday</string>
@@ -49,13 +53,9 @@
     <string name="theme_settings_header">Theme</string>
 
     <!-- Notification Preferences -->
-    <string name="signature_title">Your signature[DELETED]</string>
-    <string name="notification_title">Notifications</string>
 
-    <!-- Theme Preferences -->
-    <string name="dark_mode_title">Dark Mode</string>
-    <string name="attachment_title">Download incoming attachments [DELETED]</string>
-    <string name="attachment_summary_on">Automatically download attachments for incoming emails [DELETED]
-    </string>
-    <string name="attachment_summary_off">Only download attachments when manually requested [DELETED]</string>
+    <string name="notification_title">Notifications</string>
+  <!-- Settings-->
+    <string name="settings_dark_mode_switch_label">Dark Mode</string>
+
 </resources>

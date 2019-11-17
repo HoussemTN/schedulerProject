@@ -1,22 +1,20 @@
 package com.brains404.scheduler.ui.tasks;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import com.brains404.scheduler.R;
-import com.brains404.scheduler.ui.time_table.addSession;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,10 +32,10 @@ public class TaskFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_tasks,container, false);
-        ViewPager viewPager = (ViewPager) view.findViewById(R.id.viewpager);
+        ViewPager viewPager =  view.findViewById(R.id.viewpager);
         setupViewPager(viewPager);
         // Set Tabs inside Toolbar
-        TabLayout tabs = (TabLayout) view.findViewById(R.id.result_tabs);
+        TabLayout tabs =  view.findViewById(R.id.result_tabs);
         tabs.setupWithViewPager(viewPager);
         // Float Action Button For Time Table
         FloatingActionButton fab = view.findViewById(R.id.fab);
@@ -49,7 +47,9 @@ public class TaskFragment extends Fragment {
                 Intent addSessionActivity = new Intent(getActivity(), addTask.class);
                 startActivity(addSessionActivity);
                 //disable transition animation
-                ((Activity) getActivity()).overridePendingTransition(0, 0);
+                //( getActivity()).overridePendingTransition(0, 0);
+
+
             }
         });
         return view;
@@ -73,12 +73,14 @@ public class TaskFragment extends Fragment {
         private final List<Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mFragmentTitleList = new ArrayList<>();
 
-        public Adapter(FragmentManager manager) {
+         Adapter(FragmentManager manager) {
             super(manager);
         }
 
+
+        @NotNull
         @Override
-        public Fragment getItem(int position) {
+           public Fragment getItem(int position) {
             return mFragmentList.get(position);
         }
 
@@ -87,7 +89,7 @@ public class TaskFragment extends Fragment {
             return mFragmentList.size();
         }
 
-        public void addFragment(Fragment fragment, String title) {
+        void addFragment(Fragment fragment, String title) {
             mFragmentList.add(fragment);
             mFragmentTitleList.add(title);
         }

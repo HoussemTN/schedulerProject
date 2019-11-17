@@ -1,6 +1,5 @@
 package com.brains404.scheduler.ui.time_table;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -26,18 +26,18 @@ public class TimeTableFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
-
     }
 
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
+
+    public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_time_table, container, false);
-        ViewPager viewPager = (ViewPager) view.findViewById(R.id.viewpager);
+        ViewPager viewPager =view.findViewById(R.id.viewpager);
         setupViewPager(viewPager);
         // Set Tabs inside Toolbar
-        TabLayout tabs = (TabLayout) view.findViewById(R.id.result_tabs);
+        TabLayout tabs =  view.findViewById(R.id.result_tabs);
         tabs.setupWithViewPager(viewPager);
         // Float Action Button For Time Table
        FloatingActionButton fab = view.findViewById(R.id.fab);
@@ -47,7 +47,7 @@ public class TimeTableFragment extends Fragment {
                 Intent addSessionActivity = new Intent(getActivity(), addSession.class);
                 startActivity(addSessionActivity);
                 //disable transition animation
-                ((Activity) getActivity()).overridePendingTransition(0, 0);
+                /*( getActivity()).overridePendingTransition(0, 0);*/
 
 
             }
@@ -58,13 +58,13 @@ public class TimeTableFragment extends Fragment {
     private void setupViewPager(ViewPager viewPager) {
 
         Adapter adapter = new Adapter(getChildFragmentManager());
-        adapter.addFragment(new TimeTableTabsFragement("Monday"), getString(R.string.tab_title_monday));
-        adapter.addFragment(new TimeTableTabsFragement("Tuesday"), getString(R.string.tab_title_tuesday));
-        adapter.addFragment(new TimeTableTabsFragement("Wednesday"), getString(R.string.tab_title_wednesday));
-        adapter.addFragment(new TimeTableTabsFragement("Thursday"), getString(R.string.tab_title_thursday));
-        adapter.addFragment(new TimeTableTabsFragement("Friday"), getString(R.string.tab_title_friday));
-        adapter.addFragment(new TimeTableTabsFragement("Saturday"), getString(R.string.tab_title_saturday));
-        adapter.addFragment(new TimeTableTabsFragement("Sunday"), getString(R.string.tab_title_sunday));
+        adapter.addFragment(new TimeTableTabsFragment("MONDAY"), getString(R.string.tab_title_monday));
+        adapter.addFragment(new TimeTableTabsFragment("TUESDAY"), getString(R.string.tab_title_tuesday));
+        adapter.addFragment(new TimeTableTabsFragment("WEDNESDAY"), getString(R.string.tab_title_wednesday));
+        adapter.addFragment(new TimeTableTabsFragment("THURSDAY"), getString(R.string.tab_title_thursday));
+        adapter.addFragment(new TimeTableTabsFragment("FRIDAY"), getString(R.string.tab_title_friday));
+        adapter.addFragment(new TimeTableTabsFragment("SATURDAY"), getString(R.string.tab_title_saturday));
+        adapter.addFragment(new TimeTableTabsFragment("SUNDAY"), getString(R.string.tab_title_sunday));
         viewPager.setAdapter(adapter);
 
     }
@@ -95,7 +95,9 @@ public class TimeTableFragment extends Fragment {
         @Override
         public CharSequence getPageTitle(int position) {
             return mFragmentTitleList.get(position);
+
         }
+
     }
 
 }

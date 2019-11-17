@@ -1,6 +1,7 @@
 package com.brains404.scheduler.ui.time_table;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
@@ -14,6 +15,7 @@ import com.brains404.scheduler.R;
 import java.util.Calendar;
 
 
+@SuppressWarnings("deprecation")
 public class addSession extends AppCompatActivity {
 
     private TimePicker timeStartPicker;
@@ -44,8 +46,8 @@ public class addSession extends AppCompatActivity {
     //mapping
     public void setCurrentTimeOnView() {
 
-        timeStartPicker = (TimePicker) findViewById(R.id.tp_start_time);
-        timeEndPicker = (TimePicker) findViewById(R.id.tp_end_time);
+        timeStartPicker =  findViewById(R.id.tp_start_time);
+        timeEndPicker =  findViewById(R.id.tp_end_time);
 
         final Calendar c = Calendar.getInstance();
         // initialization of time pickers currentTime
@@ -62,15 +64,15 @@ public class addSession extends AppCompatActivity {
 
     public void addListenerOnButton() {
        // mapping buttons
-        btnChangeStartTime = (Button) findViewById(R.id.btn_startTime);
-        btnChangeEndTime = (Button) findViewById(R.id.btn_endTime);
+        btnChangeStartTime =  findViewById(R.id.btn_startTime);
+        btnChangeEndTime =  findViewById(R.id.btn_endTime);
        // startTime Button event
         btnChangeStartTime.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
 
-                showDialog(START_TIME_DIALOG_ID);
+                showDialog(START_TIME_DIALOG_ID,null);
 
             }
 
@@ -81,7 +83,7 @@ public class addSession extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                showDialog(END_TIME_DIALOG_ID);
+                showDialog(END_TIME_DIALOG_ID,null);
 
             }
 
@@ -90,7 +92,7 @@ public class addSession extends AppCompatActivity {
     }
 
     @Override
-    protected Dialog onCreateDialog(int id) {
+    protected Dialog onCreateDialog(int id,Bundle bundle) {
         switch (id) {
             case START_TIME_DIALOG_ID:
                 //set time picker as current time
@@ -138,26 +140,25 @@ public class addSession extends AppCompatActivity {
                 }
             };
 
+
     private static String pad(int c) {
         if (c >= 10)
             return String.valueOf(c);
         else
-            return "0" + String.valueOf(c);
+            return "0" + c;
     }
 
     // Back Button To App Bar(from addSession Activity => MainActivity)
     // TODO Back from addSession => TimeTable Fragment
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                Intent intent = new Intent(this, MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        if (item.getItemId() == android.R.id.home) {
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 
 
