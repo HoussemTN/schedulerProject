@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.time_table.addSession">
+    tools:context=".ui.time_table.addSession"
+    android:id="@+id/rl_container">
     <TableRow
         android:id="@+id/tr_time"
         android:layout_height="wrap_content"
@@ -52,7 +53,7 @@
             android:text="@string/default_end_time"/>
     </TableRow>
     <EditText
-        android:id="@+id/et_name"
+        android:id="@+id/et_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
@@ -71,7 +72,7 @@
         android:layout_height="wrap_content"
         android:inputType="text"
         android:hint="@string/hint_place"
-        android:layout_below="@id/et_name"
+        android:layout_below="@id/et_title"
         android:layout_margin="@dimen/form_margin"
         android:importantForAutofill="no"
         android:drawableLeft="@drawable/ic_place"

@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TimeTableFragment extends Fragment {
-
+    int position;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,6 +38,21 @@ public class TimeTableFragment extends Fragment {
         setupViewPager(viewPager);
         // Set Tabs inside Toolbar
         TabLayout tabs =  view.findViewById(R.id.result_tabs);
+        // get current day (selected tab)
+        tabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+               position= tab.getPosition();
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+            }
+        });
         tabs.setupWithViewPager(viewPager);
         // Float Action Button For Time Table
        FloatingActionButton fab = view.findViewById(R.id.fab);
@@ -45,6 +60,8 @@ public class TimeTableFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent addSessionActivity = new Intent(getActivity(), addSession.class);
+                //pass the current selected tab which represent the day position
+                addSessionActivity.putExtra("CURRENT_DAY_ID",String.valueOf(position));
                 startActivity(addSessionActivity);
                 //disable transition animation
                 /*( getActivity()).overridePendingTransition(0, 0);*/

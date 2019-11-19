@@ -30,9 +30,9 @@ public class TimeTableTabsFragment extends Fragment {
 
 
             ArrayList<Session> sessionsList=new ArrayList<>() ;
-        Session session3 = new Session(1,"Math Session","Tunisia","11:00","12:00","Monday");
-        Session session = new Session(3,"English Session","Tunisia","09:00","10:00","Monday");
-        Session session2 = new Session(2,"Arabic Session","Tunisia","10:00","11:00","Monday");
+        Session session3 = new Session(1,"Math Session","Tunisia","11:00","12:00",1);
+        Session session = new Session(3,"English Session","Tunisia","09:00","10:00",1);
+        Session session2 = new Session(2,"Arabic Session","Tunisia","10:00","11:00",1);
         sessionsList.add(session);
         sessionsList.add(session2);
         sessionsList.add(session3);

@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.brains404.scheduler.Entities.Session;
 import com.brains404.scheduler.R;
 import com.google.android.material.snackbar.Snackbar;
@@ -22,8 +21,7 @@ public class TimeTableRecyclerAdapter extends RecyclerView.Adapter<TimeTableRecy
         TextView endTime;
         TextView title;
 
-
-        ViewHolder(@NonNull View itemView) {
+        ViewHolder(@NonNull final View itemView) {
             super(itemView);
             startTime=itemView.findViewById(R.id.startTime);
             endTime=itemView.findViewById(R.id.endTime);
@@ -34,15 +32,16 @@ public class TimeTableRecyclerAdapter extends RecyclerView.Adapter<TimeTableRecy
                     int position = getAdapterPosition();
 
                     Snackbar snackbar = Snackbar
-                            .make(v.getRootView(), sessionData.get(position).getTitle(), Snackbar.LENGTH_LONG);
+                            .make(itemView, sessionData.get(position).getTitle(), Snackbar.LENGTH_LONG);
                     snackbar.show();
                 }
             });
         }
     }
 
-    // Provide a suitable constructor (depends on the kind of dataset)
+    // Provide a suitable constructor (depends on the kind of ArrayList)
     TimeTableRecyclerAdapter(ArrayList<Session> sessionData) {
+
         this.sessionData = sessionData;
     }
 

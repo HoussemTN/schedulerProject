@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.brains404.scheduler.Entities.Session;
+import com.brains404.scheduler.Entities.Task;
 import com.brains404.scheduler.R;
 import com.brains404.scheduler.ui.time_table.SessionListViewAdapter;
 
@@ -29,9 +30,9 @@ public class TaskTabs extends Fragment {
 
 
         ArrayList<Session> sessionsList=new ArrayList<>() ;
-        Session session3 = new Session(1,"Math Problem","Tunisia","23:05","23:30","Monday");
-        Session session = new Session(3,"English Homework","Tunisia","19:00","19:30","Monday");
-        Session session2 = new Session(2,"Arabic Exercise","Tunisia","22:45","23:00","Monday");
+        Session session3 = new Session(1,"Math Problem","Tunisia","23:05","23:30",1);
+        Session session = new Session(3,"English Homework","Tunisia","19:00","19:30",2);
+        Session session2 = new Session(2,"Arabic Exercise","Tunisia","22:45","23:00",3);
         sessionsList.add(session);
         sessionsList.add(session2);
         sessionsList.add(session3);

@@ -3,15 +3,28 @@ package com.brains404.scheduler.ui.time_table;
 import androidx.appcompat.app.AppCompatActivity;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.TimePicker;
+
+import com.brains404.scheduler.Entities.Session;
 import com.brains404.scheduler.MainActivity;
 import com.brains404.scheduler.R;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.gson.Gson;
+
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Map;
 
 
 @SuppressWarnings("deprecation")
@@ -21,16 +34,31 @@ public class addSession extends AppCompatActivity {
     private TimePicker timeEndPicker;
     private Button btnChangeStartTime;
     private Button btnChangeEndTime;
+    private Button btnAddSession ;
+    private EditText et_title;
+    private EditText et_place;
+    private int idDay;
+    private int idSession ;
     private int endHour;
     private int endMinute;
     private int startHour;
     private int startMinute;
+    private String title ;
+    private String place ;
+    private String startTime ;
+    private String endTime ;
+
     static final int START_TIME_DIALOG_ID = 1;
     static final int END_TIME_DIALOG_ID = 2;
+    SharedPreferences timeTablePrefs;
+    String json;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_session);
+        et_title = findViewById(R.id.et_title);
+        et_place = findViewById(R.id.et_place);
+
         // Back Home Button
         if(getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -39,6 +67,47 @@ public class addSession extends AppCompatActivity {
         // Pick Time Method Call
         setCurrentTimeOnView();
         addListenerOnButton();
+        timeTablePrefs = this.getSharedPreferences("timeTablePrefs", Context.MODE_PRIVATE);
+        idSession=(int)new Date().getTime();
+        idSession=Math.abs(idSession);
+        String currentDayId= getIntent().getStringExtra("CURRENT_DAY_ID");
+        idDay=Integer.valueOf(currentDayId);
+
+
+        btnAddSession= findViewById(R.id.btn_addSession);
+        btnAddSession.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // retrieve EditTexts Values
+                title=et_title.getText().toString();
+                place=et_place.getText().toString();
+                //get Start/End Time from buttons
+                startTime=btnChangeStartTime.getText().toString();
+                endTime=btnChangeEndTime.getText().toString();
+                // title and place required
+                if(!title.isEmpty() && !place.isEmpty()){
+                    Session newSession= new Session(idSession,title,place,startTime,endTime,idDay);
+                    SharedPreferences.Editor prefsEditor = timeTablePrefs.edit();
+                    Gson gson = new Gson();
+                    json= gson.toJson(newSession);
+                    prefsEditor.putString(idSession+"", json);
+                    prefsEditor.apply();
+                    Snackbar snackbar=Snackbar.make(findViewById(R.id.rl_container),"Session Added Successfully",Snackbar.LENGTH_LONG);
+                    snackbar.show();
+                    // TODO delete this part
+                    /* TESTING*/
+                     Map<String, ?> allEntries = timeTablePrefs.getAll();
+                    for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
+                        Log.d("map values", entry.getKey() + ": " + entry.getValue().toString());
+                    }
+                    /*END TESTING*/
+                }else{
+                    //TODO add controls and error messages
+                    Snackbar snackbar=Snackbar.make(findViewById(R.id.rl_container),"Title/Place required",Snackbar.LENGTH_LONG);
+                    snackbar.show();
+                }
+            }
+        });
 
 
     }
@@ -129,11 +198,11 @@ public class addSession extends AppCompatActivity {
                     endHour = selectedHour;
                     endMinute = selectedMinute;
 
-                    //set current time into textview
+                    //set current time into TextView
                     btnChangeEndTime.setText(new StringBuilder().append(pad(endHour))
                             .append(":").append(pad(endMinute)));
 
-                    //set current time into timepicker
+                    //set current time into TimePicker
                     timeEndPicker.setCurrentHour(endHour);
                     timeEndPicker.setCurrentMinute(endMinute);
                 }
@@ -148,7 +217,7 @@ public class addSession extends AppCompatActivity {
     }
 
     // Back Button To App Bar(from addSession Activity => MainActivity)
-    // TODO Back from addSession => TimeTable Fragment
+    // TODO Back from addSession => TimeTable Fragment(same idDay)
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {

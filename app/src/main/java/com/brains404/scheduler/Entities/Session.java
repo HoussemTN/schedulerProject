@@ -6,21 +6,22 @@ public class Session {
     private String place ;
     private String startTime;
     private String endTime;
-    private String day;
+    private int idDay ;
 
+    public Session(int idSession, String title, String place, String startTime, String endTime, int idDay) {
+        this.idSession = idSession;
+        this.title = title;
+        this.place = place;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.idDay = idDay;
+    }
 
     public Session(int idSession) {
         this.idSession = idSession;
     }
 
-    public Session(int idSession, String name, String place, String startTime, String endTime, String day) {
-        this.idSession = idSession;
-        this.title = name;
-        this.place = place;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.day = day;
-    }
+
 
     public int getIdSession() {
         return idSession;
@@ -62,12 +63,12 @@ public class Session {
         this.endTime = endTime;
     }
 
-    public String getDay() {
-        return day;
+    public int getIdDay() {
+        return idDay;
     }
 
-    public void setDay(String day) {
-        this.day = day;
+    public void setIdDay(int idDay) {
+        this.idDay = idDay;
     }
 
     @Override
@@ -78,7 +79,7 @@ public class Session {
                 ", place='" + place + '\'' +
                 ", startTime='" + startTime + '\'' +
                 ", endTime='" + endTime + '\'' +
-                ", day='" + day + '\'' +
+                ", idDay=" + idDay +
                 '}';
     }
 }
