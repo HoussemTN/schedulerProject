@@ -4,7 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:id="@+id/ll_sessions_container">
+
+
+
+    <TextView
+        android:layout_marginTop="@dimen/nav_header_height"
+        android:layout_gravity="center"
+        android:id="@+id/tv_empty_sessions_rv_message"
+        android:layout_width="wrap_content"
+        android:drawableTop="@drawable/ic_event_available"
+        android:textSize="@dimen/label_size"
+        android:visibility="gone"
+        android:paddingStart="@dimen/form_margin"
+        android:paddingEnd="@dimen/form_margin"
+        android:layout_height="match_parent"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_sessions"
