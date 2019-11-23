@@ -25,13 +25,13 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        SharedPreferences preferences = getSharedPreferences("PrefsTheme", MODE_PRIVATE);
+        super.onCreate(savedInstanceState);
+       SharedPreferences preferences = getSharedPreferences("PrefsTheme", MODE_PRIVATE);
         boolean useDarkTheme = preferences.getBoolean("darkTheme", false);
         if(useDarkTheme) {
             setTheme(R.style.DarkAppTheme_NoActionBar);
         }
-        super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
 
 
