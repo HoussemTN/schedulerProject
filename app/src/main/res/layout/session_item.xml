@@ -28,17 +28,29 @@
             android:textStyle="bold"/>
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-
+        android:paddingTop="@dimen/session_title_padding_top"
         android:text="@string/default_session_value"
-
-        android:textSize="20sp"
-        android:textColor="?attr/textColor"
-        />
+        android:textSize="@dimen/session_title_size"
+        android:textColor="?attr/textColor" />
+        <TextView
+            android:id="@+id/place"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="?attr/textColorSecondary"
+            android:text="@string/default_session_value"
+            android:textSize="@dimen/session_place_size"
+             />
+    </LinearLayout>
 
 
 </LinearLayout>

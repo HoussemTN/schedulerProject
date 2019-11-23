@@ -11,4 +11,8 @@
     <dimen name="label_margin_right">0dp</dimen>
     <dimen name="label_size">16sp</dimen>
     <dimen name="drawable_padding">5dp</dimen>
+    <!--RecyclerView  Dimensions -->
+    <dimen name="session_place_size">12sp</dimen>
+    <dimen name="session_title_size">20sp</dimen>
+    <dimen name="session_title_padding_top">4dp</dimen>
 </resources>

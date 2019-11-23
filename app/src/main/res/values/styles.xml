@@ -8,6 +8,7 @@
         <item name="backgroundColor">@color/backgroundColor</item>
         <item name="backgroundColorSecondary">@color/backgroundColorSecondary</item>
         <item name="textColor">@color/textColorPrimary</item>
+        <item name="textColorSecondary">@color/textColorSecondary</item>
         <item name="tintColor">@color/tintColorPrimary</item>
         <item name="buttonColor">@color/buttonColorPrimary</item>
         <item name="selectedTabTextColor" >@color/selectedTabTextColor</item>
@@ -30,6 +31,7 @@
         <item name="backgroundColor">@color/backgroundColorNight</item>
         <item name="backgroundColorSecondary">@color/backgroundColorSecondaryNight</item>
         <item name="textColor">@color/textColorPrimaryNight</item>
+        <item name="textColorSecondary">@color/textColorSecondaryNight</item>
         <item name="tintColor">@color/tintColorPrimaryNight</item>
         <item name="buttonColor">@color/buttonColorPrimaryNight</item>
         <item name="selectedTabTextColor" >@color/selectedTabTextColorNight</item>

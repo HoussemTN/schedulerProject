@@ -47,6 +47,7 @@ public class addSession extends AppCompatActivity {
      final int START_TIME_DIALOG_ID = 1;
      final int END_TIME_DIALOG_ID = 2;
      final String CURRENT_DAY_ID="CURRENT_DAY_ID";
+
     SharedPreferences timeTablePrefs;
     String json;
     @Override
@@ -65,11 +66,6 @@ public class addSession extends AppCompatActivity {
         setCurrentTimeOnView();
         addListenerOnButton();
         timeTablePrefs = this.getSharedPreferences("timeTablePrefs", Context.MODE_PRIVATE);
-
-        String currentDayId= getIntent().getStringExtra(CURRENT_DAY_ID);
-        assert currentDayId != null;
-        idDay=Integer.valueOf(currentDayId);
-
 
         Button btnAddSession = findViewById(R.id.btn_addSession);
         btnAddSession.setOnClickListener(new View.OnClickListener() {
@@ -240,7 +236,7 @@ public class addSession extends AppCompatActivity {
     public void onBackPressed(){
         // TODO Send idDay back
         Intent intent = new Intent(addSession.this, MainActivity.class);
-        finish();
+        //finish();
         startActivity(intent);
     }
 }

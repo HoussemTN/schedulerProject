@@ -61,7 +61,7 @@ public class TimeTableFragment extends Fragment {
             public void onClick(View view) {
                 Intent addSessionActivity = new Intent(getActivity(), addSession.class);
                 //pass the current selected tab which represent the day position
-                addSessionActivity.putExtra("CURRENT_DAY_ID",String.valueOf(position));
+                addSessionActivity.putExtra("CURRENT_DAY_ID",position);
                 startActivity(addSessionActivity);
                 //disable transition animation
                 /*( getActivity()).overridePendingTransition(0, 0);*/

@@ -20,12 +20,14 @@ public class TimeTableRecyclerAdapter extends RecyclerView.Adapter<TimeTableRecy
         TextView startTime;
         TextView endTime;
         TextView title;
+        TextView place;
 
         ViewHolder(@NonNull final View itemView) {
             super(itemView);
             startTime=itemView.findViewById(R.id.startTime);
             endTime=itemView.findViewById(R.id.endTime);
             title=itemView.findViewById(R.id.title);
+            place=itemView.findViewById(R.id.place);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -63,7 +65,7 @@ public class TimeTableRecyclerAdapter extends RecyclerView.Adapter<TimeTableRecy
         holder.startTime.setText(sessionData.get(position).getStartTime());
         holder.endTime.setText(sessionData.get(position).getEndTime());
         holder.title.setText(sessionData.get(position).getTitle());
-
+        holder.place.setText(sessionData.get(position).getPlace());
     }
 
     @Override

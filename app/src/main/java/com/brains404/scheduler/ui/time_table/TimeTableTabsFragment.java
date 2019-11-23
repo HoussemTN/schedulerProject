@@ -1,6 +1,7 @@
 package com.brains404.scheduler.ui.time_table;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.TestLooperManager;
@@ -24,10 +25,11 @@ import java.util.Set;
 
 
 public class TimeTableTabsFragment extends Fragment {
-    String day ;
+      String day ;
      RecyclerView recyclerView;
      RecyclerView.LayoutManager layoutManager;
      RecyclerView.Adapter adapter;
+     String CURRENT_DAY_ID="CURRENT_DAY_ID";
      TimeTableTabsFragment(String day) {
          this.day=day;
      }
@@ -40,6 +42,11 @@ public class TimeTableTabsFragment extends Fragment {
 
             ArrayList<Session> sessionsList=new ArrayList<>() ;
         SharedPreferences  timeTablePrefs =this.getActivity().getSharedPreferences("timeTablePrefs", Context.MODE_PRIVATE);
+       String currentDayId=getActivity().getIntent().getStringExtra(CURRENT_DAY_ID);
+
+
+         //  int idDay = Integer.valueOf(currentDayId);
+
         Gson gson = new Gson();
         // Get all Keys to loop
         Set<String> keys = timeTablePrefs.getAll().keySet();
@@ -49,7 +56,8 @@ public class TimeTableTabsFragment extends Fragment {
             while(itr.hasNext()){
                 String json = timeTablePrefs.getString(itr.next(), "");
                 Session mySession = gson.fromJson(json, Session.class);
-                sessionsList.add(mySession);
+
+                    sessionsList.add(mySession);
 
             }
             //Empty Recycler View
