@@ -39,7 +39,7 @@
         <item name="tabIndicatorColor" >@color/tabIndicatorColorNight</item>
 
     </style>
-v  <style name="DarkAppTheme.NoActionBar">
+  <style name="DarkAppTheme.NoActionBar">
     <item name="windowActionBar">false</item>
     <item name="windowNoTitle">true</item>
 </style>

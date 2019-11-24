@@ -10,16 +10,17 @@
 
 
     <TextView
-        android:layout_marginTop="@dimen/nav_header_height"
-        android:layout_gravity="center"
         android:id="@+id/tv_empty_sessions_rv_message"
         android:layout_width="wrap_content"
-        android:drawableTop="@drawable/ic_event_available"
+        android:layout_height="match_parent"
         android:textSize="@dimen/label_size"
         android:visibility="gone"
-        android:paddingStart="@dimen/form_margin"
-        android:paddingEnd="@dimen/form_margin"
-        android:layout_height="match_parent"/>
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:drawableLeft="@drawable/ic_event_available"
+        android:drawableStart="@drawable/ic_event_available"
+
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_sessions"

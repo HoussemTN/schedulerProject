@@ -53,6 +53,7 @@ public class addSession extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_add_session);
         et_title = findViewById(R.id.et_title);
         et_place = findViewById(R.id.et_place);

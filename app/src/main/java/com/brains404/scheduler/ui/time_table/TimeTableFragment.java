@@ -75,13 +75,13 @@ public class TimeTableFragment extends Fragment {
     private void setupViewPager(ViewPager viewPager) {
 
         Adapter adapter = new Adapter(getChildFragmentManager());
-        adapter.addFragment(new TimeTableTabsFragment("MONDAY"), getString(R.string.tab_title_monday));
-        adapter.addFragment(new TimeTableTabsFragment("TUESDAY"), getString(R.string.tab_title_tuesday));
-        adapter.addFragment(new TimeTableTabsFragment("WEDNESDAY"), getString(R.string.tab_title_wednesday));
-        adapter.addFragment(new TimeTableTabsFragment("THURSDAY"), getString(R.string.tab_title_thursday));
-        adapter.addFragment(new TimeTableTabsFragment("FRIDAY"), getString(R.string.tab_title_friday));
-        adapter.addFragment(new TimeTableTabsFragment("SATURDAY"), getString(R.string.tab_title_saturday));
-        adapter.addFragment(new TimeTableTabsFragment("SUNDAY"), getString(R.string.tab_title_sunday));
+        adapter.addFragment(new TimeTableTabsFragment(0), getString(R.string.tab_title_monday));
+        adapter.addFragment(new TimeTableTabsFragment(1), getString(R.string.tab_title_tuesday));
+        adapter.addFragment(new TimeTableTabsFragment(2), getString(R.string.tab_title_wednesday));
+        adapter.addFragment(new TimeTableTabsFragment(3), getString(R.string.tab_title_thursday));
+        adapter.addFragment(new TimeTableTabsFragment(4), getString(R.string.tab_title_friday));
+        adapter.addFragment(new TimeTableTabsFragment(5), getString(R.string.tab_title_saturday));
+        adapter.addFragment(new TimeTableTabsFragment(6), getString(R.string.tab_title_sunday));
         viewPager.setAdapter(adapter);
 
     }

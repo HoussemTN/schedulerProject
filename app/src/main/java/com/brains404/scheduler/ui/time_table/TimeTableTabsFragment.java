@@ -25,12 +25,12 @@ import java.util.Set;
 
 
 public class TimeTableTabsFragment extends Fragment {
-      String day ;
+    int day ;
      RecyclerView recyclerView;
      RecyclerView.LayoutManager layoutManager;
      RecyclerView.Adapter adapter;
      String CURRENT_DAY_ID="CURRENT_DAY_ID";
-     TimeTableTabsFragment(String day) {
+     TimeTableTabsFragment(int day) {
          this.day=day;
      }
 
@@ -56,12 +56,20 @@ public class TimeTableTabsFragment extends Fragment {
             while(itr.hasNext()){
                 String json = timeTablePrefs.getString(itr.next(), "");
                 Session mySession = gson.fromJson(json, Session.class);
-
-                    sessionsList.add(mySession);
+                  if(mySession.getIdDay()==day) {
+                      sessionsList.add(mySession);
+                  }
 
             }
-            //Empty Recycler View
-        }else {
+            // Current Day empty
+            if(sessionsList.size()==0){
+                TextView noSessionMessage= root.findViewById(R.id.tv_empty_sessions_rv_message);
+                noSessionMessage.setText(getResources().getString(R.string.empty_session_message));
+                recyclerView.setVisibility(View.GONE);
+                noSessionMessage.setVisibility(View.VISIBLE);
+            }
+            //All Days Empty (No sessions saved in timeTablePrefs)
+        } else {
            TextView noSessionMessage= root.findViewById(R.id.tv_empty_sessions_rv_message);
            noSessionMessage.setText(getResources().getString(R.string.empty_session_message));
            recyclerView.setVisibility(View.GONE);
