@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <TextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/textView2"
+         android:textColor="?attr/textColor"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+           android:text="@string/default_task_value"
+         android:padding="@dimen/padding_spinner_item"/>

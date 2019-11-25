@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Start Tabb Bar -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="?attr/backgroundColor">
 
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -16,18 +16,20 @@
             android:id="@+id/appbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+         >
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/result_tabs"
-                android:background="@color/backgroundColor"
-                app:tabTextColor="@color/textColorSecondary"
-                app:tabSelectedTextColor="@color/tintColorPrimary"
-                app:tabIndicatorColor="@color/tintColorPrimary"
+                android:background="?attr/backgroundColorSecondary"
+                app:tabTextColor="?attr/notSelectedTabTextColor"
+                app:tabSelectedTextColor="?attr/selectedTabTextColor"
+                app:tabIndicatorColor="?attr/tabIndicatorColor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:tabMode="scrollable" />
         </com.google.android.material.appbar.AppBarLayout>
+
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewpager"

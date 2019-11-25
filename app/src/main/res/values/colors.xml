@@ -6,23 +6,29 @@
     <color name="backgroundColorSecondary">#04284B</color>
     <color name="textColorPrimary">#050505</color>
     <color name="textColorSecondary">#525151</color>
-    <color name="buttonColorPrimary">#0038FF</color>
+    <color name="hintTextColor">#696969</color>
+    <color name="buttonColorPrimary">#A9A9AD</color>
     <color name="buttonColorSecondary">#000000</color>
-    <color name="tintColorPrimary">#B3B0B0</color>
+    <color name="tintColorPrimary">#002E83</color>
     <color name="selectedTabTextColor" >#FFAE00</color>
     <color  name="notSelectedTabTextColor">#8A8484</color>
     <color name="tabIndicatorColor" >#FFFFFF</color>
+    <color name="drawerTitleColor" >#072692</color>
     <!--Night Mode -->
-    <color name="colorPrimaryNight">#0F263C</color>
-    <color name="colorAccentNight">#010F2E</color>
-    <color name="backgroundColorNight">#2D2E3A</color>
-    <color name="backgroundColorSecondaryNight">#424244</color>
+    <color name="colorPrimaryNight">#121212</color>
+    <!-- Fab Background Color-->
+    <color name="colorAccentNight">#42138A</color>
+    <color name="backgroundColorNight">#303030</color>
+    <!-- Days Tabs Background color-->
+    <color name="backgroundColorSecondaryNight">#121212</color>
     <color name="textColorPrimaryNight">#B1B0B0</color>
+    <color name="hintTextColorNight">#B1B0B0</color>
     <color name="textColorSecondaryNight">#9B9696</color>
-    <color name="buttonColorPrimaryNight">#1A1A1A</color>
+    <color name="buttonColorPrimaryNight">#2F2F49</color>
     <color name="buttonColorSecondaryNight">#1D1717</color>
-    <color name="tintColorPrimaryNight">#B4383E50</color>
+    <color name="tintColorPrimaryNight">#B44861BE</color>
     <color name="selectedTabTextColorNight" >#ACA9A9</color>
     <color  name="notSelectedTabTextColorNight">#646262</color>
     <color name="tabIndicatorColorNight" >#ACA9A9</color>
+    <color name="drawerTitleColorNight" >#A08603</color>
 </resources>

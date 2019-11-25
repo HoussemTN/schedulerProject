@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:id="@+id/ll_sessions_container">
+    android:id="@+id/ll_sessions_container"
+    android:layout_weight="1">
 
     <TextView
         android:id="@+id/tv_empty_sessions_rv_message"
@@ -17,8 +18,8 @@
         android:gravity="center"
         android:drawableLeft="@drawable/ic_event_available"
         android:drawableStart="@drawable/ic_event_available"
-        android:textColor="?attr/textColor"
-        />
+        android:textColor="?attr/textColor" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_sessions"

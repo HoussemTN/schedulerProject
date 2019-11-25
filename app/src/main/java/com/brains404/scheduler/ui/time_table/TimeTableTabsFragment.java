@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,12 +19,10 @@ import com.brains404.scheduler.Entities.Session;
 import com.brains404.scheduler.R;
 import com.google.gson.Gson;
 
-import java.sql.Time;
+
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -74,22 +73,21 @@ public class TimeTableTabsFragment extends Fragment {
            noSessionMessage.setVisibility(View.VISIBLE);
 
         }
-        // sort available only for Version 24+(N)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
 
             Collections.sort(sessionsList,new Comparator<Session>() {
                 @Override
                 public int compare(Session S1, Session S2) {
                     // get Hours from sessions to compare
-                    int S1_startHour=Integer.valueOf(S1.getStartTime().substring(0,1));
-                    int S2_startHour=Integer.valueOf(S2.getStartTime().substring(0,1));
+                    int S1_startHour=Integer.valueOf(S1.getStartTime().substring(0,2));
+                    int S2_startHour=Integer.valueOf(S2.getStartTime().substring(0,2));
+
                     // get Minutes from sessions to compare
                     int S1_startMinutes=Integer.valueOf(S1.getStartTime().substring(S1.getStartTime().indexOf(":") + 1));
                     int S2_startMinutes=Integer.valueOf(S2.getStartTime().substring(S2.getStartTime().indexOf(":") + 1));
-                    return S1_startHour > S2_startHour ? 1 : (S2_startMinutes < S1_startMinutes ) ? 1 : 0;
+                    // -1 for descending sort
+                    return S1_startHour < S2_startHour ? -1 : (S2_startMinutes < S1_startMinutes ) ? 1 : 0;
                 }
             });
-        }
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         RecyclerView.Adapter adapter = new TimeTableRecyclerAdapter(sessionsList);

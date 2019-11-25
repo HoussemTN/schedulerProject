@@ -67,7 +67,7 @@
             android:layout_margin="@dimen/form_margin"
             android:text="@string/default_end_time"
             android:textColor="?attr/textColor"
-            android:background="?attr/buttonColor"/>
+            android:background="?attr/buttonColor" />
     </TableRow>
     <EditText
         android:id="@+id/et_title"
@@ -80,6 +80,7 @@
         android:importantForAutofill="no"
         android:drawableLeft="@drawable/ic_name"
         android:drawableStart="@drawable/ic_name"
+        android:drawableTint="?attr/tintColor"
         android:drawablePadding="5dp"
         android:textColor="?attr/textColor"
         android:textColorHint="?attr/hintTextColor"
@@ -95,8 +96,8 @@
         android:layout_margin="@dimen/form_margin"
         android:importantForAutofill="no"
         android:drawableLeft="@drawable/ic_place"
-        android:drawableTint="?attr/tintColor"
         android:drawableStart="@drawable/ic_place"
+        android:drawableTint="?attr/tintColor"
         android:drawablePadding="5dp"
         android:textColorHint="?attr/hintTextColor"
         android:textColor="?attr/textColor"/>

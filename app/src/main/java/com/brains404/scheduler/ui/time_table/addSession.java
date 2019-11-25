@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -54,7 +55,12 @@ public class addSession extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        // Change Theme
+        SharedPreferences preferences = getSharedPreferences("PrefsTheme", MODE_PRIVATE);
+        boolean useDarkTheme = preferences.getBoolean("darkTheme", false);
+        if(useDarkTheme) {
+            setTheme(R.style.DarkAppTheme);
+        }
         setContentView(R.layout.activity_add_session);
 
         et_title = findViewById(R.id.et_title);
@@ -225,7 +231,7 @@ public class addSession extends AppCompatActivity {
     }
 
     // Back Button To App Bar(from addSession Activity => MainActivity)
-    // TODO Back from addSession => TimeTable Fragment(same idDay)
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {

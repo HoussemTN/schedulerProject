@@ -18,7 +18,8 @@
             android:title="@string/menu_statistics" />
         <!-- //TODO Add Navigation Drawer Item Here-->
     </group>
-    <item android:title="@string/menu_more">
+    <item android:title="@string/menu_more"
+        android:id="@+id/more_drawer_title">
         <menu>
             <item
                 android:id="@+id/nav_settings"

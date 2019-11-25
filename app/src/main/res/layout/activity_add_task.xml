@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.tasks.addTask">
+    tools:context=".ui.tasks.addTask"
+    android:background="?attr/backgroundColor">
     <EditText
         android:id="@+id/et_title"
         android:layout_width="match_parent"
@@ -18,6 +19,9 @@
         android:drawableLeft="@drawable/ic_name"
         android:drawableStart="@drawable/ic_name"
         android:drawablePadding="5dp"
+        android:drawableTint="?attr/tintColor"
+        android:textColor="?attr/textColor"
+        android:textColorHint="?attr/hintTextColor"
         />
     <TableRow
         android:id="@+id/tr_session"
@@ -31,7 +35,8 @@
             android:text="@string/label_session"
             android:layout_margin="@dimen/form_margin"
             android:layout_weight="1.2"
-            android:textSize="@dimen/label_size"/>
+            android:textSize="@dimen/label_size"
+            android:textColor="?attr/textColor"/>
     <androidx.appcompat.widget.AppCompatSpinner
         android:id="@+id/s_session"
         android:layout_width="wrap_content"
@@ -41,6 +46,8 @@
         android:layout_marginEnd="@dimen/label_margin_right"
         android:layout_marginTop="@dimen/form_margin"
         android:layout_marginBottom="@dimen/form_margin"
+        android:background="?attr/buttonColor"
+
 
 
         />
@@ -50,6 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_margin="@dimen/form_margin"
+            android:background="?attr/buttonColor"
             />
     </TableRow>
     <EditText
@@ -63,7 +71,10 @@
         android:importantForAutofill="no"
         android:drawableLeft="@drawable/ic_description"
         android:drawableStart="@drawable/ic_description"
-        android:drawablePadding="5dp"/>
+        android:drawablePadding="5dp"
+        android:drawableTint="?attr/tintColor"
+        android:textColor="?attr/textColor"
+        android:textColorHint="?attr/hintTextColor"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_addTask"
@@ -73,6 +84,9 @@
         android:layout_below="@id/et_description"
         android:layout_centerHorizontal="true"
         android:layout_margin="@dimen/form_margin"
+       android:background="?attr/buttonColor"
+        android:textColor="?attr/textColor"
+
         />
 
 </RelativeLayout>
