@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--TODO Create Add Session Form Layout (2 Edit Texts(Name,Place),Combo Box Days , Time Picker (Start Time , End Time)) -->
+
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical"
-    android:id="@+id/ScrollView">
+    android:id="@+id/ScrollView"
+    android:background="?attr/backgroundColor">
 <RelativeLayout
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:context=".ui.time_table.addSession"
-    android:id="@+id/rl_container">
+    android:id="@+id/rl_container"
+ >
 
 
 
@@ -32,6 +34,7 @@
             android:layout_marginStart="@dimen/form_margin"
             android:layout_marginEnd="@dimen/label_margin_right"
             android:textSize="@dimen/label_size"
+            android:textColor="?attr/textColor"
             tools:ignore="RtlHardcoded" />
 
         <Button
@@ -39,7 +42,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/form_margin"
-            android:text="@string/default_start_time"/>
+            android:text="@string/default_start_time"
+            android:textColor="?attr/textColor"
+            android:background="?attr/buttonColor"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -51,6 +56,7 @@
             android:layout_marginStart="@dimen/form_margin"
             android:layout_marginEnd="@dimen/label_margin_right"
             android:textSize="@dimen/label_size"
+            android:textColor="?attr/textColor"
 
             />
 
@@ -59,7 +65,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/form_margin"
-            android:text="@string/default_end_time"/>
+            android:text="@string/default_end_time"
+            android:textColor="?attr/textColor"
+            android:background="?attr/buttonColor"/>
     </TableRow>
     <EditText
         android:id="@+id/et_title"
@@ -73,6 +81,8 @@
         android:drawableLeft="@drawable/ic_name"
         android:drawableStart="@drawable/ic_name"
         android:drawablePadding="5dp"
+        android:textColor="?attr/textColor"
+        android:textColorHint="?attr/hintTextColor"
         />
 
     <EditText
@@ -85,19 +95,24 @@
         android:layout_margin="@dimen/form_margin"
         android:importantForAutofill="no"
         android:drawableLeft="@drawable/ic_place"
+        android:drawableTint="?attr/tintColor"
         android:drawableStart="@drawable/ic_place"
-        android:drawablePadding="5dp"/>
+        android:drawablePadding="5dp"
+        android:textColorHint="?attr/hintTextColor"
+        android:textColor="?attr/textColor"/>
     <TimePicker
         android:id="@+id/tp_start_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
+        android:textColor="?attr/textColor"
         />
     <TimePicker
         android:id="@+id/tp_end_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
+        android:textColor="?attr/textColor"
         />
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_addSession"
@@ -107,6 +122,9 @@
         android:layout_below="@id/et_place"
         android:layout_centerHorizontal="true"
         android:layout_margin="@dimen/form_margin"
+        android:padding="@dimen/padding_button"
+        android:textColor="?attr/textColor"
+        android:background="?attr/buttonColor"
         />
 
 </RelativeLayout>
