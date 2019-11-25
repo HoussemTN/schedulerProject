@@ -4,15 +4,19 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.tabs.TabLayout;
+
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.Menu;
 
@@ -27,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
        SharedPreferences preferences = getSharedPreferences("PrefsTheme", MODE_PRIVATE);
+
         boolean useDarkTheme = preferences.getBoolean("darkTheme", false);
         if(useDarkTheme) {
             setTheme(R.style.DarkAppTheme_NoActionBar);
@@ -55,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

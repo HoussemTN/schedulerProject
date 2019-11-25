@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--TODO Create Add Session Form Layout (2 Edit Texts(Name,Place),Combo Box Days , Time Picker (Start Time , End Time)) -->
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:id="@+id/ScrollView">
+<RelativeLayout
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".ui.time_table.addSession"
     android:id="@+id/rl_container">
+
+
+
     <TableRow
         android:id="@+id/tr_time"
         android:layout_height="wrap_content"
@@ -101,3 +110,4 @@
         />
 
 </RelativeLayout>
+</ScrollView>

@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
 import android.widget.TimePicker;
 import com.brains404.scheduler.Entities.Session;
 import com.brains404.scheduler.MainActivity;
@@ -47,7 +48,7 @@ public class addSession extends AppCompatActivity {
      final int START_TIME_DIALOG_ID = 1;
      final int END_TIME_DIALOG_ID = 2;
      final String CURRENT_DAY_ID="CURRENT_DAY_ID";
-
+     final String LAST_VISITED_DAY_ID="LAST_VISITED_DAY_ID";
     SharedPreferences timeTablePrefs;
     String json;
     @Override
@@ -55,6 +56,7 @@ public class addSession extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_add_session);
+
         et_title = findViewById(R.id.et_title);
         et_place = findViewById(R.id.et_place);
 
@@ -67,7 +69,8 @@ public class addSession extends AppCompatActivity {
         setCurrentTimeOnView();
         addListenerOnButton();
         timeTablePrefs = this.getSharedPreferences("timeTablePrefs", Context.MODE_PRIVATE);
-
+        // get idDay from Main Activity (current tabLayout when clicking on fab)
+        idDay=getIntent().getIntExtra(CURRENT_DAY_ID,0);
         Button btnAddSession = findViewById(R.id.btn_addSession);
         btnAddSession.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,6 +84,8 @@ public class addSession extends AppCompatActivity {
                 //get Start/End Time from buttons
                 startTime=btnChangeStartTime.getText().toString();
                 endTime=btnChangeEndTime.getText().toString();
+
+
                 // title and place required
                 if(!title.isEmpty() && !place.isEmpty()){
                     Session newSession= new Session(idSession,title,place,startTime,endTime,idDay);
@@ -224,9 +229,9 @@ public class addSession extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            // TODO Send idDay back
+            //DONE Send idDay back
             Intent intent = new Intent(addSession.this, MainActivity.class);
-
+            intent.putExtra(LAST_VISITED_DAY_ID,idDay);
             startActivity(intent);
             return true;
         }
@@ -235,9 +240,11 @@ public class addSession extends AppCompatActivity {
 
 
     public void onBackPressed(){
-        // TODO Send idDay back
-        Intent intent = new Intent(addSession.this, MainActivity.class);
-        //finish();
+        //DONE Send idDay back
+        Intent intent = new Intent(addSession.this,MainActivity.class);
+        intent.putExtra(LAST_VISITED_DAY_ID,idDay);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
+
     }
 }

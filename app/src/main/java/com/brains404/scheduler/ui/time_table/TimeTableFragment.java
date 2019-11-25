@@ -5,14 +5,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
-
 import com.brains404.scheduler.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
@@ -21,7 +17,9 @@ import java.util.List;
 
 public class TimeTableFragment extends Fragment {
     int position;
-
+    int idDay ;
+    boolean isVisited=false ;
+    final String LAST_VISITED_DAY_ID="LAST_VISITED_DAY_ID";
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,11 +36,13 @@ public class TimeTableFragment extends Fragment {
         setupViewPager(viewPager);
         // Set Tabs inside Toolbar
         TabLayout tabs =  view.findViewById(R.id.result_tabs);
+
         // get current day (selected tab)
         tabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-               position= tab.getPosition();
+                position= tab.getPosition();
+
             }
 
             @Override
@@ -51,8 +51,11 @@ public class TimeTableFragment extends Fragment {
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
+
+
             }
         });
+
         tabs.setupWithViewPager(viewPager);
         // Float Action Button For Time Table
        FloatingActionButton fab = view.findViewById(R.id.fab);
@@ -65,13 +68,28 @@ public class TimeTableFragment extends Fragment {
                 startActivity(addSessionActivity);
                 //disable transition animation
                 /*( getActivity()).overridePendingTransition(0, 0);*/
-
-
             }
         });
+        // to prevent NPE we need to make sure that our bundle exist
+        Intent i =getActivity().getIntent();
+        Bundle extras = i.getExtras();
+        //Log.d("Test", "Hello World");
+        if (extras!= null) {
+            // Bundle exist
+            isVisited = extras.containsKey(LAST_VISITED_DAY_ID);
+            //Log.d("Test", "is"+isVisited);
+
+            if (isVisited) {
+                idDay = extras.getInt(LAST_VISITED_DAY_ID);
+               // Log.d("Test", "is"+idDay);
+                // Restore last visited TabLayout
+                TabLayout.Tab selectedTab = tabs.getTabAt(idDay);
+                selectedTab.select();
+            }
+        }
         return view;
     }
-    // Add Fragments to Tabs
+    // Add Fragments to Tabs with idDay
     private void setupViewPager(ViewPager viewPager) {
 
         Adapter adapter = new Adapter(getChildFragmentManager());
@@ -84,7 +102,9 @@ public class TimeTableFragment extends Fragment {
         adapter.addFragment(new TimeTableTabsFragment(6), getString(R.string.tab_title_sunday));
         viewPager.setAdapter(adapter);
 
+
     }
+
 
     static class Adapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();
