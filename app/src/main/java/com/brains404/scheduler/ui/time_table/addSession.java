@@ -133,9 +133,9 @@ public class addSession extends AppCompatActivity {
 
         final Calendar c = Calendar.getInstance();
         // initialization of time pickers currentTime
-        endHour = c.get(Calendar.HOUR_OF_DAY);
+        endHour = c.get(Calendar.HOUR_OF_DAY)+1;
         endMinute = c.get(Calendar.MINUTE);
-        startHour = c.get(Calendar.HOUR_OF_DAY)+1;
+        startHour = c.get(Calendar.HOUR_OF_DAY);
         startMinute = c.get(Calendar.MINUTE);
         //current Time for startTime and current +1Hour to EndTime
         timeStartPicker.setCurrentHour(startHour);

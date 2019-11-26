@@ -20,4 +20,13 @@
     <dimen name="session_title_padding_top">4dp</dimen>
     <!-- Drawer Dimens-->
     <dimen name="drawer_text_size">16sp</dimen>
+    <!--Settings Dimens -->
+    <dimen name="settings_title_size">20sp</dimen>
+    <dimen name="settings_title_padding_bottom">15sp</dimen>
+    <dimen name="settings_title_padding_top">15sp</dimen>
+    <dimen name="root_layout_padding">25sp</dimen>
+    <dimen name="settings_label_size">16sp</dimen>
+    <dimen name="settings_label_left_padding">15sp</dimen>
+    <dimen name="settings_label_right_padding">1sp</dimen>
+    <dimen name="settings_label_bottom_padding">10sp</dimen>
 </resources>

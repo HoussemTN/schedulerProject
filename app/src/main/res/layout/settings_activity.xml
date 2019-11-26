@@ -1,13 +1,33 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/backgroundColor">
-<!-- TODO Create Layout -->
+    android:background="?attr/backgroundColor"
+    android:padding="@dimen/root_layout_padding"
+    android:orientation="vertical">
+<!-- TODO Finish Layout -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="?attr/textColor"
+        android:textSize="@dimen/settings_title_size"
+        android:textStyle="bold"
+        android:text="@string/settings_general_title"
+        android:paddingBottom="@dimen/settings_title_padding_bottom"/>
     <Switch
-        android:id="@+id/myswitch"
-        android:layout_width="wrap_content"
+        android:id="@+id/darkModeSwitch"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/settings_dark_mode_switch_label"
-        android:textColor="?attr/textColor"/>
+        android:paddingLeft="@dimen/settings_label_left_padding"
+        android:paddingStart="@dimen/settings_label_left_padding"
+        android:paddingRight="@dimen/settings_label_right_padding"
+        android:paddingEnd="@dimen/settings_label_right_padding"
+        android:textSize="@dimen/settings_label_size"
+        android:textColor="?attr/textColor"
+        android:paddingBottom="@dimen/settings_label_bottom_padding"
+       />
+
+
+
 
 </LinearLayout>

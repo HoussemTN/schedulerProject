@@ -17,7 +17,7 @@
     <!--Night Mode -->
     <color name="colorPrimaryNight">#121212</color>
     <!-- Fab Background Color-->
-    <color name="colorAccentNight">#42138A</color>
+    <color name="colorAccentNight">#6300FF</color>
     <color name="backgroundColorNight">#303030</color>
     <!-- Days Tabs Background color-->
     <color name="backgroundColorSecondaryNight">#121212</color>
@@ -26,9 +26,9 @@
     <color name="textColorSecondaryNight">#9B9696</color>
     <color name="buttonColorPrimaryNight">#2F2F49</color>
     <color name="buttonColorSecondaryNight">#1D1717</color>
-    <color name="tintColorPrimaryNight">#B44861BE</color>
+    <color name="tintColorPrimaryNight">#B4688EFA</color>
     <color name="selectedTabTextColorNight" >#ACA9A9</color>
     <color  name="notSelectedTabTextColorNight">#646262</color>
     <color name="tabIndicatorColorNight" >#ACA9A9</color>
-    <color name="drawerTitleColorNight" >#A08603</color>
+    <color name="drawerTitleColorNight" >#C5A401</color>
 </resources>

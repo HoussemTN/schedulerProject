@@ -32,7 +32,7 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings_activity);
 
-        Switch  toggle= findViewById(R.id.myswitch);
+        Switch  toggle= findViewById(R.id.darkModeSwitch);
         toggle.setChecked(isDarkTheme);
         toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
