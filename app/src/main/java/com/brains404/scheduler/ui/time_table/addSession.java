@@ -1,20 +1,26 @@
 package com.brains404.scheduler.ui.time_table;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.AlarmManager;
 import android.app.Dialog;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 
 import android.widget.TimePicker;
+import android.widget.Toast;
+
+import com.brains404.scheduler.AlarmReceiver;
 import com.brains404.scheduler.Entities.Session;
 import com.brains404.scheduler.MainActivity;
 import com.brains404.scheduler.R;
@@ -50,8 +56,10 @@ public class addSession extends AppCompatActivity {
      final int END_TIME_DIALOG_ID = 2;
      final String CURRENT_DAY_ID="CURRENT_DAY_ID";
      final String LAST_VISITED_DAY_ID="LAST_VISITED_DAY_ID";
-    SharedPreferences timeTablePrefs;
-    String json;
+     SharedPreferences timeTablePrefs;
+     String json;
+    AlarmManager alarmManager;
+    PendingIntent alarmIntent ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,12 +114,15 @@ public class addSession extends AppCompatActivity {
                     btnChangeEndTime.setText(getResources().getString(R.string.default_end_time));
                     Snackbar snackbar=Snackbar.make(findViewById(R.id.rl_container),"Session Added Successfully",Snackbar.LENGTH_LONG);
                     snackbar.show();
+                    // Schedule this Session to get notified
+                    scheduleSessionNotification(newSession);
                     // TODO delete this part
                     /* TESTING*/
                      Map<String, ?> allEntries = timeTablePrefs.getAll();
                     for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
                         Log.d("map values", entry.getKey() + ": " + entry.getValue().toString());
                     }
+
                     /*END TESTING*/
                 }else{
                     //TODO add controls and error messages
@@ -244,7 +255,45 @@ public class addSession extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+       public void scheduleSessionNotification(Session session){
+           Intent intent = new Intent(getApplicationContext(), AlarmReceiver.class);
+           alarmIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, intent,PendingIntent.FLAG_CANCEL_CURRENT);
+         alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+           assert alarmManager != null;
+           //TODO schedule Notification time
+           Calendar calendar = Calendar.getInstance();
+           calendar.set(Calendar.DAY_OF_WEEK,idDay);
+           calendar.set(Calendar.HOUR_OF_DAY,startHour);
+           calendar.set(Calendar.MINUTE,startMinute);
+           if (System.currentTimeMillis() <= calendar.getTimeInMillis()) {
 
+               syncAlarm(calendar.getTimeInMillis());
+           }
+
+
+           Intent intentReceiver = new Intent(getApplicationContext(), AlarmReceiver.class);
+           intentReceiver.putExtra("title", session.getTitle());
+           intentReceiver.putExtra("place", session.getPlace());
+           intentReceiver.putExtra("idDay", session.getIdDay());
+           intentReceiver.putExtra("startTime", session.getStartTime());
+           sendBroadcast(intentReceiver);
+           Toast.makeText(this, "Alarm set", Toast.LENGTH_LONG).show();
+
+       }
+       public void syncAlarm(Long Time ){
+           if (Build.VERSION.SDK_INT >= 23) {
+               // Wakes up the device in Doze Mode
+               alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,Time, alarmIntent);
+
+           } else if (Build.VERSION.SDK_INT >= 19) {
+               // Wakes up the device in Idle Mode
+               alarmManager.setExact(AlarmManager.RTC_WAKEUP,Time, alarmIntent);
+
+           } else {
+               // Old APIs
+               alarmManager.set(AlarmManager.RTC_WAKEUP,Time, alarmIntent);
+           }
+       }
     public void onBackPressed(){
         //DONE Send idDay back
         Intent intent = new Intent(addSession.this,MainActivity.class);
