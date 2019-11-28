@@ -56,7 +56,7 @@
     <!-- Notification Preferences -->
 
     <string name="notification_title">Notifications</string>
-  <!-- Settings-->
+    <!-- Settings-->
     <string name="settings_dark_mode_switch_label">Dark Mode</string>
     <string name="settings_general_title">General</string>
 

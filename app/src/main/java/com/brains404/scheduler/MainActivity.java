@@ -1,5 +1,8 @@
 package com.brains404.scheduler;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -16,11 +19,11 @@ import android.text.style.TextAppearanceSpan;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 import org.jetbrains.annotations.NotNull;
 
 
 public class MainActivity extends AppCompatActivity {
-
     private AppBarConfiguration mAppBarConfiguration;
 
     @Override
@@ -46,11 +49,11 @@ public class MainActivity extends AppCompatActivity {
 
         Menu menu = navigationView.getMenu();
 
-        MenuItem tools= menu.findItem(R.id.more_drawer_title);
+        MenuItem tools = menu.findItem(R.id.more_drawer_title);
         SpannableString s = new SpannableString(tools.getTitle());
         // change Title Drawer depends n Current Theme(Light,Dark)
 
-            s.setSpan(new TextAppearanceSpan(this, R.style.TextAppearanceTitleDrawer), 0, s.length(), 0);
+        s.setSpan(new TextAppearanceSpan(this, R.style.TextAppearanceTitleDrawer), 0, s.length(), 0);
 
         tools.setTitle(s);
 
@@ -63,9 +66,29 @@ public class MainActivity extends AppCompatActivity {
                 R.id.nav_tasks)
                 .setDrawerLayout(drawer)
                 .build();
+
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+        // TODO Automate Notifications Time
+/*        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        calendar.set(Calendar.HOUR_OF_DAY, 23);
+        calendar.set(Calendar.MINUTE, 54);*/
+        // With setInexactRepeating(), you have to use one of the AlarmManager interval
+        // constants--in this case, AlarmManager.INTERVAL_DAY.
+        /* AlarmManager alarmMgr = (AlarmManager) getApplicationContext().getSystemService(Context.ALARM_SERVICE);*/
+        Intent intent = new Intent(getApplicationContext(), AlarmReceiver.class);
+        PendingIntent alarmIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, intent, 0);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        assert alarmManager != null;
+        alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + (10 * 1000), alarmIntent);
+        Intent intentReceiver = new Intent("my.action.string");
+        intentReceiver.putExtra("title", "Hello my Custom World !");
+        intentReceiver.putExtra("description", "Hello my Custom description World !");
+        sendBroadcast(intentReceiver);
+        Toast.makeText(this, "Alarm set", Toast.LENGTH_LONG).show();
+
 
     }
 
@@ -96,6 +119,9 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
+
+
+
 
 
 }
