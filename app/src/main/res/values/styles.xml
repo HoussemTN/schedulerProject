@@ -12,6 +12,7 @@
         <item name="textColorSecondary">@color/textColorSecondary</item>
         <item name="tintColor">@color/tintColorPrimary</item>
         <item name="buttonColor">@color/buttonColorPrimary</item>
+        <item name="buttonColorSecondary">@color/buttonColorSecondary</item>
         <item name="selectedTabTextColor" >@color/selectedTabTextColor</item>
         <item  name="notSelectedTabTextColor">@color/notSelectedTabTextColor</item>
         <item name="tabIndicatorColor" >@color/tabIndicatorColor</item>
@@ -40,6 +41,7 @@
         <item name="textColorSecondary">@color/textColorSecondaryNight</item>
         <item name="tintColor">@color/tintColorPrimaryNight</item>
         <item name="buttonColor">@color/buttonColorPrimaryNight</item>
+        <item name="buttonColorSecondary">@color/buttonColorSecondaryNight</item>
         <item name="selectedTabTextColor" >@color/selectedTabTextColorNight</item>
         <item  name="notSelectedTabTextColor">@color/notSelectedTabTextColorNight</item>
         <item name="tabIndicatorColor" >@color/tabIndicatorColorNight</item>

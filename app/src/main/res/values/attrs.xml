@@ -7,6 +7,7 @@
         <attr name="textColorSecondary" format="color"/>
         <attr name="hintTextColor" format="color"/>
         <attr name="buttonColor" format="color"/>
+        <attr name="buttonColorSecondary" format="color"/>
         <attr name="tintColor" format="color"/>
         <attr name="selectedTabTextColor" format="color"/>
         <attr name="notSelectedTabTextColor" format="color"/>

@@ -59,5 +59,11 @@
     <!-- Settings-->
     <string name="settings_dark_mode_switch_label">Dark Mode</string>
     <string name="settings_general_title">General</string>
+    <string name="settings_data_title">Data</string>
+    <string name="settings_clear_task_data_label">Clear Tasks Data</string>
+    <string name="settings_clear_timetable_data_label">Clear TimeTable Data</string>
+    <string name="toast_confirm_clear_data">Long Click To Confirm</string>
 
+    <string name="toast_tasks_cleared">Tasks Data Cleared</string>
+    <string name="toast_timetable_cleared">TimeTable Data Cleared</string>
 </resources>

@@ -1,22 +1,23 @@
 package com.brains404.scheduler.ui.time_table;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 
 import android.app.AlarmManager;
 import android.app.Dialog;
+import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -26,7 +27,6 @@ import com.brains404.scheduler.MainActivity;
 import com.brains404.scheduler.R;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
-
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Map;
@@ -58,8 +58,9 @@ public class addSession extends AppCompatActivity {
      final String LAST_VISITED_DAY_ID="LAST_VISITED_DAY_ID";
      SharedPreferences timeTablePrefs;
      String json;
-    AlarmManager alarmManager;
-    PendingIntent alarmIntent ;
+
+    public static final String CHANNEL_ID = "500" ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,7 +102,7 @@ public class addSession extends AppCompatActivity {
 
 
                 // title and place required
-                if(!title.isEmpty() && !place.isEmpty()){
+                if(!title.isEmpty() && !place.isEmpty()&& !startTime.isEmpty() && !endTime.isEmpty()){
                     Session newSession= new Session(idSession,title,place,startTime,endTime,idDay);
                     SharedPreferences.Editor prefsEditor = timeTablePrefs.edit();
                     Gson gson = new Gson();
@@ -114,8 +115,16 @@ public class addSession extends AppCompatActivity {
                     btnChangeEndTime.setText(getResources().getString(R.string.default_end_time));
                     Snackbar snackbar=Snackbar.make(findViewById(R.id.rl_container),"Session Added Successfully",Snackbar.LENGTH_LONG);
                     snackbar.show();
-                    // Schedule this Session to get notified
-                    scheduleSessionNotification(newSession);
+
+                    //Calculate the delay
+                    Calendar c = Calendar.getInstance();
+                    c.set(Calendar.DAY_OF_WEEK, idDay + 2);
+                    c.set(Calendar.HOUR_OF_DAY, startHour);
+                    c.set(Calendar.MINUTE, startMinute);
+                    int delay = (int) (c.getTimeInMillis()-System.currentTimeMillis());
+                    // Create Notification then schedule it
+                    scheduleNotification(getNotification( newSession), delay ,newSession.getIdSession());
+                    Toast.makeText(getApplicationContext(),"Alarm Set in : "+delay/60000+" m",Toast.LENGTH_SHORT).show();
                     // TODO delete this part
                     /* TESTING*/
                      Map<String, ?> allEntries = timeTablePrefs.getAll();
@@ -255,45 +264,8 @@ public class addSession extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-       public void scheduleSessionNotification(Session session){
-           Intent intent = new Intent(getApplicationContext(), AlarmReceiver.class);
-           alarmIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, intent,PendingIntent.FLAG_CANCEL_CURRENT);
-         alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-           assert alarmManager != null;
-           //TODO schedule Notification time
-           Calendar calendar = Calendar.getInstance();
-           calendar.set(Calendar.DAY_OF_WEEK,idDay);
-           calendar.set(Calendar.HOUR_OF_DAY,startHour);
-           calendar.set(Calendar.MINUTE,startMinute);
-           if (System.currentTimeMillis() <= calendar.getTimeInMillis()) {
-
-               syncAlarm(calendar.getTimeInMillis());
-           }
 
 
-           Intent intentReceiver = new Intent(getApplicationContext(), AlarmReceiver.class);
-           intentReceiver.putExtra("title", session.getTitle());
-           intentReceiver.putExtra("place", session.getPlace());
-           intentReceiver.putExtra("idDay", session.getIdDay());
-           intentReceiver.putExtra("startTime", session.getStartTime());
-           sendBroadcast(intentReceiver);
-           Toast.makeText(this, "Alarm set", Toast.LENGTH_LONG).show();
-
-       }
-       public void syncAlarm(Long Time ){
-           if (Build.VERSION.SDK_INT >= 23) {
-               // Wakes up the device in Doze Mode
-               alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,Time, alarmIntent);
-
-           } else if (Build.VERSION.SDK_INT >= 19) {
-               // Wakes up the device in Idle Mode
-               alarmManager.setExact(AlarmManager.RTC_WAKEUP,Time, alarmIntent);
-
-           } else {
-               // Old APIs
-               alarmManager.set(AlarmManager.RTC_WAKEUP,Time, alarmIntent);
-           }
-       }
     public void onBackPressed(){
         //DONE Send idDay back
         Intent intent = new Intent(addSession.this,MainActivity.class);
@@ -301,5 +273,25 @@ public class addSession extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
 
+    }
+    private Notification getNotification (Session session) {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder( this, "404") ;
+        builder.setContentTitle(session.getTitle()) ;
+        builder.setContentText(session.getPlace()) ;
+        builder.setSmallIcon(R.drawable.ic_event_note ) ;
+        builder.setAutoCancel( true ) ;
+        builder.setChannelId(CHANNEL_ID) ;
+        return builder.build() ;
+    }
+    private void scheduleNotification (Notification notification , int delay,int idNotification) {
+        Intent notificationIntent = new Intent( this, AlarmReceiver. class ) ;
+        // idNotification = idSession
+        notificationIntent.putExtra("notificationId" ,idNotification) ;
+        notificationIntent.putExtra("notification" , notification) ;
+        PendingIntent pendingIntent = PendingIntent. getBroadcast ( this, 0 , notificationIntent , PendingIntent. FLAG_UPDATE_CURRENT ) ;
+        long futureInMillis = SystemClock. elapsedRealtime () + delay ;
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context. ALARM_SERVICE ) ;
+        assert alarmManager != null;
+        alarmManager.set(AlarmManager. ELAPSED_REALTIME_WAKEUP , futureInMillis , pendingIntent) ;
     }
 }

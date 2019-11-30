@@ -1,6 +1,15 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/ScrollView"
+    android:background="?attr/backgroundColor">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:background="?attr/backgroundColor"
     android:padding="@dimen/root_layout_padding"
     android:orientation="vertical">
@@ -27,7 +36,43 @@
         android:paddingBottom="@dimen/settings_label_bottom_padding"
        />
 
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="?attr/textColor"
+        android:textSize="@dimen/settings_title_size"
+        android:textStyle="bold"
+        android:text="@string/settings_data_title"
+        android:paddingBottom="@dimen/settings_title_padding_bottom"/>
+    <Button
+        android:id="@+id/btn_clear_tasks_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/settings_clear_task_data_label"
+        android:paddingLeft="@dimen/settings_label_left_padding"
+        android:paddingStart="@dimen/settings_label_left_padding"
+        android:paddingRight="@dimen/settings_label_right_padding"
+        android:paddingEnd="@dimen/settings_label_right_padding"
+        android:textSize="@dimen/settings_label_size"
+        android:textColor="?attr/textColor"
+        android:background="?attr/buttonColorSecondary"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        />
+    <Button
+        android:id="@+id/btn_clear_timetable_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/settings_clear_timetable_data_label"
+        android:paddingLeft="@dimen/settings_label_left_padding"
+        android:paddingStart="@dimen/settings_label_left_padding"
+        android:paddingRight="@dimen/settings_label_right_padding"
+        android:paddingEnd="@dimen/settings_label_right_padding"
+        android:textSize="@dimen/settings_label_size"
+        android:textColor="?attr/textColor"
+        android:background="?attr/buttonColorSecondary"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        />
 
 
 </LinearLayout>
+</ScrollView>
