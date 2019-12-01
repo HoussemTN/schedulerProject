@@ -86,7 +86,7 @@ public class SettingsActivity extends AppCompatActivity {
                 return true;
             }
         });
-
+        //TODO Activate/Deactivate notification switch
       //Back button
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {

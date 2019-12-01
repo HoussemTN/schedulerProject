@@ -63,7 +63,14 @@
     <string name="settings_clear_task_data_label">Clear Tasks Data</string>
     <string name="settings_clear_timetable_data_label">Clear TimeTable Data</string>
     <string name="toast_confirm_clear_data">Long Click To Confirm</string>
-
     <string name="toast_tasks_cleared">Tasks Data Cleared</string>
     <string name="toast_timetable_cleared">TimeTable Data Cleared</string>
+
+    <!-- Java Resources (Messages) from Toasts and Snack bar-->
+    <string name="session_required_message">Title/Place required</string>
+    <string name="session_added_success_message">Session Added Successfully</string>
+    <string name="alert_set_message">Alert set in : </string>
+    <string name="day_character">d</string>
+    <string name="hour_character">h</string>
+    <string name="minute_character">m</string>
 </resources>

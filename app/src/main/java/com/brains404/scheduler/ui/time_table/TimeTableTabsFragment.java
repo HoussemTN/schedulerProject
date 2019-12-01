@@ -3,10 +3,7 @@ package com.brains404.scheduler.ui.time_table;
 import android.content.Context;
 
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.brains404.scheduler.Entities.Session;
 import com.brains404.scheduler.R;
 import com.google.gson.Gson;
-
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -30,7 +25,7 @@ import java.util.Set;
 public class TimeTableTabsFragment extends Fragment {
      // tab idDay
      private final int day ;
-
+     private final String TIMETABLE_PREF_NAME="timeTablePrefs";
      TimeTableTabsFragment(int day) {
          this.day=day;
      }
@@ -41,7 +36,7 @@ public class TimeTableTabsFragment extends Fragment {
         View root = inflater.inflate(R.layout.time_table_tabs, container, false);
        RecyclerView recyclerView = root.findViewById(R.id.rv_sessions);
             ArrayList<Session> sessionsList=new ArrayList<>() ;
-        SharedPreferences  timeTablePrefs =this.getActivity().getSharedPreferences("timeTablePrefs", Context.MODE_PRIVATE);
+        SharedPreferences  timeTablePrefs =this.getActivity().getSharedPreferences(TIMETABLE_PREF_NAME, Context.MODE_PRIVATE);
 
 
         Gson gson = new Gson();
@@ -73,7 +68,7 @@ public class TimeTableTabsFragment extends Fragment {
            noSessionMessage.setVisibility(View.VISIBLE);
 
         }
-
+            // Sessions Custom Comparator
             Collections.sort(sessionsList,new Comparator<Session>() {
                 @Override
                 public int compare(Session S1, Session S2) {

@@ -2,7 +2,6 @@ package com.brains404.scheduler.ui.time_table;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
-
 import android.app.AlarmManager;
 import android.app.Dialog;
 import android.app.Notification;
@@ -11,8 +10,8 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,7 +19,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
-
 import com.brains404.scheduler.AlarmReceiver;
 import com.brains404.scheduler.Entities.Session;
 import com.brains404.scheduler.MainActivity;
@@ -59,7 +57,11 @@ public class addSession extends AppCompatActivity {
      SharedPreferences timeTablePrefs;
      String json;
 
-    public static final String CHANNEL_ID = "500" ;
+    private int showDelayInHours;
+    private int showDelayInMinutes;
+    private int showDelayInDays ;
+
+    public final String CHANNEL_ID = "500" ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,18 +115,43 @@ public class addSession extends AppCompatActivity {
                     et_place.setText("");
                     btnChangeStartTime.setText(getResources().getString(R.string.default_start_time));
                     btnChangeEndTime.setText(getResources().getString(R.string.default_end_time));
-                    Snackbar snackbar=Snackbar.make(findViewById(R.id.rl_container),"Session Added Successfully",Snackbar.LENGTH_LONG);
+                    Snackbar snackbar=Snackbar.make(findViewById(R.id.rl_container),getResources().getString(R.string.session_added_success_message),Snackbar.LENGTH_LONG);
                     snackbar.show();
 
                     //Calculate the delay
                     Calendar c = Calendar.getInstance();
+                    c.setTimeInMillis(System.currentTimeMillis());
+                    // Sunday == 0
                     c.set(Calendar.DAY_OF_WEEK, idDay + 2);
                     c.set(Calendar.HOUR_OF_DAY, startHour);
                     c.set(Calendar.MINUTE, startMinute);
-                    int delay = (int) (c.getTimeInMillis()-System.currentTimeMillis());
-                    // Create Notification then schedule it
-                    scheduleNotification(getNotification( newSession), delay ,newSession.getIdSession());
-                    Toast.makeText(getApplicationContext(),"Alarm Set in : "+delay/60000+" m",Toast.LENGTH_SHORT).show();
+
+                  long delay = c.getTimeInMillis();
+                  //Validate delay
+                    if(delay<System.currentTimeMillis()){
+                        // Current >> scheduled Time so the session is scheduled for next week (delay+weekPeriod[604800000])
+                        delay=delay+604800000;
+                    }
+                     showDelayInMinutes = (int) (delay-System.currentTimeMillis())/60000;
+                    // example (35m)
+                    String delayMessage = showDelayInMinutes+getResources().getString(R.string.minute_character);
+                  if(showDelayInMinutes>=60){
+                       showDelayInHours =  showDelayInMinutes/60;
+                      showDelayInMinutes= showDelayInMinutes%60;
+                      // example (2h 35m)
+                      delayMessage= showDelayInHours+getResources().getString(R.string.hour_character)+" "+showDelayInMinutes+getResources().getString(R.string.minute_character);
+                  }
+                  // example (1d 2h 35m)
+                  if (showDelayInHours>=24){
+                      showDelayInDays=  showDelayInHours/24;
+                      showDelayInHours= showDelayInHours%24;
+                      delayMessage= showDelayInDays+getResources().getString(R.string.day_character)+" "+showDelayInHours+getResources().getString(R.string.hour_character)+" "+showDelayInMinutes+getResources().getString(R.string.minute_character);
+                  }
+
+                  // Create Notification then schedule it
+                    scheduleNotification(getNotification(newSession), delay, newSession.getIdSession());
+
+                    Toast.makeText(getApplicationContext(),getResources().getString(R.string.alert_set_message)+delayMessage,Toast.LENGTH_SHORT).show();
                     // TODO delete this part
                     /* TESTING*/
                      Map<String, ?> allEntries = timeTablePrefs.getAll();
@@ -134,12 +161,11 @@ public class addSession extends AppCompatActivity {
 
                     /*END TESTING*/
                 }else{
-                    //TODO add controls and error messages
-                    Snackbar snackbar=Snackbar.make(findViewById(R.id.rl_container),"Title/Place required",Snackbar.LENGTH_LONG);
+
+                    Snackbar snackbar=Snackbar.make(findViewById(R.id.rl_container),getResources().getString(R.string.session_required_message),Snackbar.LENGTH_LONG);
                     snackbar.show();
                 }
-                // clear SharedPreferences for test purposes
-               //    timeTablePrefs.edit().clear().apply();
+
             }
         });
 
@@ -251,7 +277,6 @@ public class addSession extends AppCompatActivity {
     }
 
     // Back Button To App Bar(from addSession Activity => MainActivity)
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
@@ -264,8 +289,6 @@ public class addSession extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
-
     public void onBackPressed(){
         //DONE Send idDay back
         Intent intent = new Intent(addSession.this,MainActivity.class);
@@ -274,6 +297,7 @@ public class addSession extends AppCompatActivity {
         startActivity(intent);
 
     }
+    // Notification Builder
     private Notification getNotification (Session session) {
         NotificationCompat.Builder builder = new NotificationCompat.Builder( this, "404") ;
         builder.setContentTitle(session.getTitle()) ;
@@ -283,15 +307,30 @@ public class addSession extends AppCompatActivity {
         builder.setChannelId(CHANNEL_ID) ;
         return builder.build() ;
     }
-    private void scheduleNotification (Notification notification , int delay,int idNotification) {
+    //Notification scheduler
+    private void scheduleNotification (Notification notification , long delay,int idNotification) {
         Intent notificationIntent = new Intent( this, AlarmReceiver. class ) ;
         // idNotification = idSession
         notificationIntent.putExtra("notificationId" ,idNotification) ;
         notificationIntent.putExtra("notification" , notification) ;
         PendingIntent pendingIntent = PendingIntent. getBroadcast ( this, 0 , notificationIntent , PendingIntent. FLAG_UPDATE_CURRENT ) ;
-        long futureInMillis = SystemClock. elapsedRealtime () + delay ;
-        AlarmManager alarmManager = (AlarmManager) getSystemService(Context. ALARM_SERVICE ) ;
+        // Alarm Service
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE) ;
+
         assert alarmManager != null;
-        alarmManager.set(AlarmManager. ELAPSED_REALTIME_WAKEUP , futureInMillis , pendingIntent) ;
+        if (Build.VERSION.SDK_INT >= 23) {
+            // Wakes up the device in Doze Mode
+            alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,delay, pendingIntent);
+
+        } else if (Build.VERSION.SDK_INT >= 19) {
+            // Wakes up the device in Idle Mode
+            alarmManager.setExact(AlarmManager.RTC_WAKEUP,delay, pendingIntent);
+
+        } else {
+            // Old APIs
+            alarmManager.set(AlarmManager.RTC_WAKEUP,delay, pendingIntent);
+        }
+        //alarmManager.set(AlarmManager. ELAPSED_REALTIME_WAKEUP , futureInMillis , pendingIntent) ;
     }
+    //TODO handle Boot Device for AlarmManager
 }

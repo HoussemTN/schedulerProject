@@ -9,12 +9,12 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import com.brains404.scheduler.ui.time_table.addSession;
+
 
 
 public class AlarmReceiver extends BroadcastReceiver {
 
-
+    public final String CHANNEL_ID = "500" ;
     @SuppressLint("UnsafeProtectedBroadcastReceiver")
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -22,8 +22,8 @@ public class AlarmReceiver extends BroadcastReceiver {
         Notification notification = intent.getParcelableExtra( "notification" ) ;
         if (android.os.Build.VERSION. SDK_INT >= android.os.Build.VERSION_CODES. O ) {
             int importance = NotificationManager. IMPORTANCE_HIGH ;
-            //Notification Id should be the same in the add seesionActivity
-            NotificationChannel notificationChannel = new NotificationChannel( addSession.CHANNEL_ID,"schedulerChannel" , importance) ;
+            //Notification Id should be the same in the add
+            NotificationChannel notificationChannel = new NotificationChannel(CHANNEL_ID,"schedulerChannel" , importance) ;
             assert notificationManager != null;
             notificationManager.createNotificationChannel(notificationChannel) ;
         }
