@@ -67,7 +67,7 @@
         android:orientation="vertical"
         android:paddingTop="@dimen/rl_expandable_container_padding"
         android:paddingBottom="@dimen/rl_expandable_container_padding">
-        <!--TODO Add Buttons (edit,delete)-->
+
 
         <Button
 
@@ -83,10 +83,7 @@
             android:textColor="?attr/customWhite"
             android:drawableRight="@drawable/ic_edit"
             android:drawableEnd="@drawable/ic_edit"
-            android:drawableTint="?attr/customWhite"
-
-
-            />
+            android:drawableTint="?attr/customWhite" />
 
       <!--  <Button
             android:drawableRight="@drawable/ic_delete"

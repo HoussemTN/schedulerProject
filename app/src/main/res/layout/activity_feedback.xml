@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/ScrollView"
+    android:background="?attr/backgroundColor">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".ui.time_table.addSession">
+
+
+        <TextView
+            android:gravity="center"
+            android:id="@+id/tv_send_us_feedback"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="?attr/textColor"
+            android:textColorHint="?attr/hintTextColor"
+            android:textSize="@dimen/drawer_text_size"
+            android:layout_margin="@dimen/form_margin"
+            android:text="@string/send_us_feedback" />
+
+        <EditText
+            android:id="@+id/et_subject"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_send_us_feedback"
+            android:inputType="text"
+            android:textColorHint="?attr/hintTextColor"
+            android:hint="@string/hint_title"
+            android:layout_margin="@dimen/form_margin"
+            android:importantForAutofill="no"
+            android:textColor="?attr/textColor"
+            />
+
+
+
+        <EditText
+            android:id="@+id/et_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:lines="4"
+            android:minLines="4"
+            android:maxLines="10"
+            android:gravity="top|start"
+            android:scrollbars="vertical"
+            android:hint="@string/hint_message"
+            android:layout_below="@id/et_subject"
+            android:layout_margin="@dimen/form_margin"
+            android:importantForAutofill="no"
+            android:drawablePadding="5dp"
+            android:textColorHint="?attr/hintTextColor"
+            android:textColor="?attr/textColor"/>
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_send_feedback"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_send"
+       android:layout_below="@id/et_message"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="@dimen/form_margin"
+            android:padding="@dimen/padding_button"
+            android:textColor="?attr/textColor"
+            android:background="?attr/buttonColor"
+            />
+
+    </RelativeLayout>
+</ScrollView>
