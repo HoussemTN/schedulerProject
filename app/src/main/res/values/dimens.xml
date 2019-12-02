@@ -18,6 +18,9 @@
     <dimen name="session_place_size">12sp</dimen>
     <dimen name="session_title_size">20sp</dimen>
     <dimen name="session_title_padding_top">4dp</dimen>
+    <dimen name="rl_expandable_container_padding">4sp</dimen>
+    <!-- Buttons Dimens-->
+    <dimen name="btn_expandable_height">28dp</dimen>
     <!-- Drawer Dimens-->
     <dimen name="drawer_text_size">16sp</dimen>
     <!--Settings Dimens -->

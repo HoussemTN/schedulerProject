@@ -4,11 +4,13 @@ package com.brains404.scheduler.ui.time_table;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
+import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.brains404.scheduler.Entities.Session;
+
 import com.brains404.scheduler.R;
 import com.google.android.material.snackbar.Snackbar;
 import java.util.ArrayList;
@@ -19,12 +21,14 @@ public class TimeTableRecyclerAdapter extends RecyclerView.Adapter<TimeTableRecy
     private ArrayList<Session> sessionData;
    private int previousExpandedPosition = -1;
    private int expandedPosition =-1 ;
+
     class  ViewHolder extends RecyclerView.ViewHolder{
         TextView startTime;
         TextView endTime;
         TextView title;
         TextView place;
-        LinearLayout details ;
+        RelativeLayout details ;
+        Button edit ;
 
         ViewHolder(@NonNull final View itemView) {
             super(itemView);
@@ -32,8 +36,9 @@ public class TimeTableRecyclerAdapter extends RecyclerView.Adapter<TimeTableRecy
             endTime=itemView.findViewById(R.id.endTime);
             title=itemView.findViewById(R.id.title);
             place=itemView.findViewById(R.id.place);
-            details=itemView.findViewById(R.id.ll_expandable_container);
-            //TODO Map Details Buttons and handle Events
+            details=itemView.findViewById(R.id.rl_expandable_container);
+            edit=details.findViewById(R.id.btn_edit_session);
+
         itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -96,7 +101,6 @@ public class TimeTableRecyclerAdapter extends RecyclerView.Adapter<TimeTableRecy
     public int getItemCount() {
         return sessionData.size();
     }
-
 
 
 }

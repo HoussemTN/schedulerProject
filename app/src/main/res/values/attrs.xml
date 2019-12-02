@@ -8,10 +8,15 @@
         <attr name="hintTextColor" format="color"/>
         <attr name="buttonColor" format="color"/>
         <attr name="buttonColorSecondary" format="color"/>
+        <attr name="buttonColorPositive" format="color"/>
+        <attr name="buttonColorNeutral" format="color"/>
+        <attr name="buttonColorNegative" format="color"/>
         <attr name="tintColor" format="color"/>
         <attr name="selectedTabTextColor" format="color"/>
         <attr name="notSelectedTabTextColor" format="color"/>
         <attr name="tabIndicatorColor" format="color"/>
         <attr name="drawerTitleColor" format="color"/>
+        <attr name="customWhite" format="color"/>
+
     </declare-styleable>
 </resources>

@@ -10,12 +10,11 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.brains404.scheduler.Entities.Session;
-import com.brains404.scheduler.Entities.Task;
 import com.brains404.scheduler.R;
 import com.brains404.scheduler.ui.time_table.SessionListViewAdapter;
 
 import java.util.ArrayList;
-import java.util.Objects;
+
 
 public class TaskTabs extends Fragment {
     private String day;
@@ -39,7 +38,7 @@ public class TaskTabs extends Fragment {
         ListView lv = root.findViewById(R.id.lv_tasks);
         SessionListViewAdapter customListViewAdapter;
         //TODO Create new task_item layout (instead of session_item)
-        customListViewAdapter = new SessionListViewAdapter(Objects.requireNonNull(getActivity()),R.layout.task_item,sessionsList);
+        customListViewAdapter = new SessionListViewAdapter(getActivity(),R.layout.task_item,sessionsList);
         lv.setAdapter(customListViewAdapter );
 
         return root;

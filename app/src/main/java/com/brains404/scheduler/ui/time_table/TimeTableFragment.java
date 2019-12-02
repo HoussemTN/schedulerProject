@@ -16,10 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TimeTableFragment extends Fragment {
-    int position;
-    int idDay ;
-    boolean isVisited=false ;
-    final String LAST_VISITED_DAY_ID="LAST_VISITED_DAY_ID";
+    private int position;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,14 +74,16 @@ public class TimeTableFragment extends Fragment {
         //Log.d("Test", "Hello World");
         if (extras!= null) {
             // Bundle exist
-            isVisited = extras.containsKey(LAST_VISITED_DAY_ID);
+            String LAST_VISITED_DAY_ID = "LAST_VISITED_DAY_ID";
+            boolean isVisited = extras.containsKey(LAST_VISITED_DAY_ID);
             //Log.d("Test", "is"+isVisited);
 
             if (isVisited) {
-                idDay = extras.getInt(LAST_VISITED_DAY_ID);
+               int idDay = extras.getInt(LAST_VISITED_DAY_ID);
                // Log.d("Test", "is"+idDay);
                 // Restore last visited TabLayout
                 TabLayout.Tab selectedTab = tabs.getTabAt(idDay);
+                assert selectedTab != null;
                 selectedTab.select();
             }
         }

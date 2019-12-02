@@ -54,8 +54,8 @@
         android:paddingRight="@dimen/settings_label_right_padding"
         android:paddingEnd="@dimen/settings_label_right_padding"
         android:textSize="@dimen/settings_label_size"
-        android:textColor="?attr/textColor"
-        android:background="?attr/buttonColorSecondary"
+        android:textColor="?attr/customWhite"
+        android:background="?attr/buttonColorNegative"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
         />
     <Button
@@ -68,8 +68,8 @@
         android:paddingRight="@dimen/settings_label_right_padding"
         android:paddingEnd="@dimen/settings_label_right_padding"
         android:textSize="@dimen/settings_label_size"
-        android:textColor="?attr/textColor"
-        android:background="?attr/buttonColorSecondary"
+        android:textColor="?attr/customWhite"
+        android:background="?attr/buttonColorNegative"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
         />
 

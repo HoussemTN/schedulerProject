@@ -3,13 +3,13 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/ScrollView"
     android:background="?attr/backgroundColor">
 <RelativeLayout
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:context=".ui.time_table.addSession"
@@ -99,6 +99,18 @@
         android:drawablePadding="5dp"
         android:textColorHint="?attr/hintTextColor"
         android:textColor="?attr/textColor"/>
+
+    <CheckBox
+        android:id="@+id/ch_notify_session"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_place"
+        android:text="@string/checkbox_notify_me"
+        android:layout_margin="@dimen/form_margin"
+        android:textColor="?attr/textColor"
+        app:buttonTint="?attr/tintColor"
+        />
+
     <TimePicker
         android:id="@+id/tp_start_time"
         android:layout_width="wrap_content"
@@ -118,7 +130,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btn_addSession"
-        android:layout_below="@id/et_place"
+        android:layout_below="@id/ch_notify_session"
         android:layout_centerHorizontal="true"
         android:layout_margin="@dimen/form_margin"
         android:padding="@dimen/padding_button"

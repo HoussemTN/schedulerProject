@@ -10,12 +10,15 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -30,6 +33,8 @@ import java.util.Date;
 import java.util.Map;
 
 
+
+
 @SuppressWarnings("deprecation")
 public class addSession extends AppCompatActivity {
 
@@ -39,6 +44,7 @@ public class addSession extends AppCompatActivity {
     private Button btnChangeEndTime;
     private EditText et_title;
     private EditText et_place;
+    private CheckBox checkBox ;
     private int idDay;
     private int idSession ;
     private int endHour;
@@ -73,9 +79,18 @@ public class addSession extends AppCompatActivity {
             setTheme(R.style.DarkAppTheme);
         }
         setContentView(R.layout.activity_add_session);
-
+        //EditTexts [title,place]
         et_title = findViewById(R.id.et_title);
         et_place = findViewById(R.id.et_place);
+
+       //TimePickers Mapping
+        timeStartPicker =  findViewById(R.id.tp_start_time);
+        timeEndPicker =  findViewById(R.id.tp_end_time);
+       // Buttons show timepicker selected Time
+        btnChangeStartTime =  findViewById(R.id.btn_startTime);
+        btnChangeEndTime =  findViewById(R.id.btn_endTime);
+        // Checkbox Notify me
+        checkBox = findViewById(R.id.ch_notify_session);
 
         // Back Home Button
         if(getSupportActionBar() != null) {
@@ -101,7 +116,7 @@ public class addSession extends AppCompatActivity {
                 //get Start/End Time from buttons
                 startTime=btnChangeStartTime.getText().toString();
                 endTime=btnChangeEndTime.getText().toString();
-
+                boolean toNotify = checkBox.isChecked();
 
                 // title and place required
                 if(!title.isEmpty() && !place.isEmpty()&& !startTime.isEmpty() && !endTime.isEmpty()){
@@ -111,57 +126,57 @@ public class addSession extends AppCompatActivity {
                     json= gson.toJson(newSession);
                     prefsEditor.putString(idSession+"", json);
                     prefsEditor.apply();
-                    et_title.setText("");
-                    et_place.setText("");
-                    btnChangeStartTime.setText(getResources().getString(R.string.default_start_time));
-                    btnChangeEndTime.setText(getResources().getString(R.string.default_end_time));
+                    // Show Message Session Added Successfully
                     Snackbar snackbar=Snackbar.make(findViewById(R.id.rl_container),getResources().getString(R.string.session_added_success_message),Snackbar.LENGTH_LONG);
                     snackbar.show();
+                    // Set Alarm if checkbox Notify Me is checked
+                    if(toNotify) {
+                        //Calculate the delay
+                        Calendar c = Calendar.getInstance();
+                        c.setTimeInMillis(System.currentTimeMillis());
+                        // Sunday == 0
+                        c.set(Calendar.DAY_OF_WEEK, idDay + 2);
+                        c.set(Calendar.HOUR_OF_DAY, startHour);
+                        c.set(Calendar.MINUTE, startMinute);
 
-                    //Calculate the delay
-                    Calendar c = Calendar.getInstance();
-                    c.setTimeInMillis(System.currentTimeMillis());
-                    // Sunday == 0
-                    c.set(Calendar.DAY_OF_WEEK, idDay + 2);
-                    c.set(Calendar.HOUR_OF_DAY, startHour);
-                    c.set(Calendar.MINUTE, startMinute);
+                        long delay = c.getTimeInMillis();
+                        //Validate delay
+                        if (delay < System.currentTimeMillis()) {
+                            // Current >> scheduled Time so the session is scheduled for next week (delay+weekPeriod[604800000])
+                            delay = delay + 604800000;
+                        }
+                        showDelayInMinutes = (int) (delay - System.currentTimeMillis()) / 60000;
+                        // example (35m)
+                        String delayMessage = showDelayInMinutes + getResources().getString(R.string.minute_character);
+                        if (showDelayInMinutes >= 60) {
+                            showDelayInHours = showDelayInMinutes / 60;
+                            showDelayInMinutes = showDelayInMinutes % 60;
+                            // example (2h 35m)
+                            delayMessage = showDelayInHours + getResources().getString(R.string.hour_character) + " " + showDelayInMinutes + getResources().getString(R.string.minute_character);
+                        }
+                        // example (1d 2h 35m)
+                        if (showDelayInHours >= 24) {
+                            showDelayInDays = showDelayInHours / 24;
+                            showDelayInHours = showDelayInHours % 24;
+                            delayMessage = showDelayInDays + getResources().getString(R.string.day_character) + " " + showDelayInHours + getResources().getString(R.string.hour_character) + " " + showDelayInMinutes + getResources().getString(R.string.minute_character);
+                        }
 
-                  long delay = c.getTimeInMillis();
-                  //Validate delay
-                    if(delay<System.currentTimeMillis()){
-                        // Current >> scheduled Time so the session is scheduled for next week (delay+weekPeriod[604800000])
-                        delay=delay+604800000;
+                        // Create Notification then schedule it
+                        scheduleNotification(getNotification(newSession), delay, newSession.getIdSession());
+
+                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.alert_set_message) + delayMessage, Toast.LENGTH_SHORT).show();
                     }
-                     showDelayInMinutes = (int) (delay-System.currentTimeMillis())/60000;
-                    // example (35m)
-                    String delayMessage = showDelayInMinutes+getResources().getString(R.string.minute_character);
-                  if(showDelayInMinutes>=60){
-                       showDelayInHours =  showDelayInMinutes/60;
-                      showDelayInMinutes= showDelayInMinutes%60;
-                      // example (2h 35m)
-                      delayMessage= showDelayInHours+getResources().getString(R.string.hour_character)+" "+showDelayInMinutes+getResources().getString(R.string.minute_character);
-                  }
-                  // example (1d 2h 35m)
-                  if (showDelayInHours>=24){
-                      showDelayInDays=  showDelayInHours/24;
-                      showDelayInHours= showDelayInHours%24;
-                      delayMessage= showDelayInDays+getResources().getString(R.string.day_character)+" "+showDelayInHours+getResources().getString(R.string.hour_character)+" "+showDelayInMinutes+getResources().getString(R.string.minute_character);
-                  }
-
-                  // Create Notification then schedule it
-                    scheduleNotification(getNotification(newSession), delay, newSession.getIdSession());
-
-                    Toast.makeText(getApplicationContext(),getResources().getString(R.string.alert_set_message)+delayMessage,Toast.LENGTH_SHORT).show();
+                    // Init Form
+                    initForm();
                     // TODO delete this part
                     /* TESTING*/
                      Map<String, ?> allEntries = timeTablePrefs.getAll();
                     for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
                         Log.d("map values", entry.getKey() + ": " + entry.getValue().toString());
                     }
-
                     /*END TESTING*/
-                }else{
-
+                 // Session Not added yet
+                } else{
                     Snackbar snackbar=Snackbar.make(findViewById(R.id.rl_container),getResources().getString(R.string.session_required_message),Snackbar.LENGTH_LONG);
                     snackbar.show();
                 }
@@ -174,8 +189,6 @@ public class addSession extends AppCompatActivity {
     //mapping
     public void setCurrentTimeOnView() {
 
-        timeStartPicker =  findViewById(R.id.tp_start_time);
-        timeEndPicker =  findViewById(R.id.tp_end_time);
 
         final Calendar c = Calendar.getInstance();
         // initialization of time pickers currentTime
@@ -188,12 +201,16 @@ public class addSession extends AppCompatActivity {
         timeStartPicker.setCurrentMinute(startMinute);
         timeEndPicker.setCurrentHour(startHour);
         timeEndPicker.setCurrentMinute(endMinute);
+        btnChangeStartTime.setText(new StringBuilder().append(pad(startHour))
+                .append(":").append(pad(startMinute)));
+        btnChangeEndTime.setText(new StringBuilder().append(pad(endHour))
+                .append(":").append(pad(endMinute)));
+
     }
 
     public void addListenerOnButton() {
        // mapping buttons
-        btnChangeStartTime =  findViewById(R.id.btn_startTime);
-        btnChangeEndTime =  findViewById(R.id.btn_endTime);
+
        // startTime Button event
         btnChangeStartTime.setOnClickListener(new View.OnClickListener() {
 
@@ -299,11 +316,18 @@ public class addSession extends AppCompatActivity {
     }
     // Notification Builder
     private Notification getNotification (Session session) {
+        Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        Intent intent = new Intent(this, MainActivity.class);
+        PendingIntent notificationIntent = PendingIntent.getActivity(this, 0, intent,0);
         NotificationCompat.Builder builder = new NotificationCompat.Builder( this, "404") ;
         builder.setContentTitle(session.getTitle()) ;
         builder.setContentText(session.getPlace()) ;
         builder.setSmallIcon(R.drawable.ic_event_note ) ;
-        builder.setAutoCancel( true ) ;
+        builder.setContentIntent(notificationIntent);
+        builder.setAutoCancel(true) ;
+        builder.setSound(alarmSound);
+        long[] pattern = {10,10,10,20,20,100,500};
+        builder.setVibrate(pattern);
         builder.setChannelId(CHANNEL_ID) ;
         return builder.build() ;
     }
@@ -313,14 +337,18 @@ public class addSession extends AppCompatActivity {
         // idNotification = idSession
         notificationIntent.putExtra("notificationId" ,idNotification) ;
         notificationIntent.putExtra("notification" , notification) ;
-        PendingIntent pendingIntent = PendingIntent. getBroadcast ( this, 0 , notificationIntent , PendingIntent. FLAG_UPDATE_CURRENT ) ;
+        PendingIntent pendingIntent = PendingIntent. getBroadcast ( this, idNotification , notificationIntent , PendingIntent.FLAG_UPDATE_CURRENT) ;
         // Alarm Service
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE) ;
-
         assert alarmManager != null;
+        // Repeat Alarm every Week
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, delay,
+                AlarmManager.INTERVAL_DAY*7, pendingIntent);
+
         if (Build.VERSION.SDK_INT >= 23) {
             // Wakes up the device in Doze Mode
             alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,delay, pendingIntent);
+
 
         } else if (Build.VERSION.SDK_INT >= 19) {
             // Wakes up the device in Idle Mode
@@ -330,7 +358,20 @@ public class addSession extends AppCompatActivity {
             // Old APIs
             alarmManager.set(AlarmManager.RTC_WAKEUP,delay, pendingIntent);
         }
-        //alarmManager.set(AlarmManager. ELAPSED_REALTIME_WAKEUP , futureInMillis , pendingIntent) ;
+
+    }
+    //Init View Data
+    public void initForm(){
+
+        et_title.setText("");
+        et_place.setText("");
+        //set current time into Button
+        btnChangeStartTime.setText(new StringBuilder().append(pad(startHour))
+                .append(":").append(pad(startMinute)));
+        //set current time +1h into Button
+        btnChangeEndTime.setText(new StringBuilder().append(pad(endHour))
+                .append(":").append(pad(endMinute)));
+
     }
     //TODO handle Boot Device for AlarmManager
 }

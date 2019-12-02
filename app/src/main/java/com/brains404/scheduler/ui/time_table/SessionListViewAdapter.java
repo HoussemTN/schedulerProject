@@ -31,10 +31,10 @@ public class SessionListViewAdapter extends ArrayAdapter<Session> {
 
         final Session session = sessionsList.get(position);
         final LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.session_item,null);
-        TextView startTime=view.findViewById(R.id.startTime);
-        TextView endTime=view.findViewById(R.id.endTime) ;
-        TextView sessionTitle =view.findViewById(R.id.title) ;
+        View view = inflater.inflate(R.layout.task_item,null);
+        TextView startTime=view.findViewById(R.id.startTime_t);
+        TextView endTime=view.findViewById(R.id.endTime_t) ;
+        TextView sessionTitle =view.findViewById(R.id.title_t) ;
         sessionTitle.setText(session.getTitle());
         startTime.setText(session.getStartTime());
         endTime.setText(session.getEndTime());

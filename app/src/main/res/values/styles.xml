@@ -13,10 +13,14 @@
         <item name="tintColor">@color/tintColorPrimary</item>
         <item name="buttonColor">@color/buttonColorPrimary</item>
         <item name="buttonColorSecondary">@color/buttonColorSecondary</item>
+        <item name="buttonColorNegative">@color/buttonColorNegative</item>
+        <item name="buttonColorPositive">@color/buttonColorPositive</item>
+        <item name="buttonColorNeutral">@color/buttonColorNeutral</item>
         <item name="selectedTabTextColor" >@color/selectedTabTextColor</item>
         <item  name="notSelectedTabTextColor">@color/notSelectedTabTextColor</item>
         <item name="tabIndicatorColor" >@color/tabIndicatorColor</item>
         <item name="drawerTitleColor">@color/drawerTitleColor</item>
+        <item name="customWhite" >@color/customWhite</item>
 
     </style>
     <style name="AppTheme.NoActionBar">
@@ -42,11 +46,14 @@
         <item name="tintColor">@color/tintColorPrimaryNight</item>
         <item name="buttonColor">@color/buttonColorPrimaryNight</item>
         <item name="buttonColorSecondary">@color/buttonColorSecondaryNight</item>
+        <item name="buttonColorNegative">@color/buttonColorNegativeNight</item>
+        <item name="buttonColorPositive">@color/buttonColorPositiveNight</item>
+        <item name="buttonColorNeutral">@color/buttonColorNeutralNight</item>
         <item name="selectedTabTextColor" >@color/selectedTabTextColorNight</item>
         <item  name="notSelectedTabTextColor">@color/notSelectedTabTextColorNight</item>
         <item name="tabIndicatorColor" >@color/tabIndicatorColorNight</item>
         <item name="drawerTitleColor">@color/drawerTitleColorNight</item>
-
+        <item name="customWhite" >@color/customWhiteNight</item>
 
     </style>
   <style name="DarkAppTheme.NoActionBar">

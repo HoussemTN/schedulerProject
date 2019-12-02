@@ -28,8 +28,7 @@
     <string name="tab_title_saturday">Saturday</string>
     <string name="tab_title_sunday">Sunday</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank Activity</string>
+
     <!--Activities Titles -->
     <string name="activity_addSession_title">Add Session</string>
     <string name="activity_addTask_title">Add Task</string>
@@ -40,6 +39,7 @@
     <string name="hint_startTime">Start Time</string>
     <string name="hint_endTime">End Time</string>
     <string name="hint_description">Description</string>
+    <string name="checkbox_notify_me">Get Notified every Week !</string>
     <!-- labels -->
     <string name="label_startTime">Starts</string>
     <string name="label_endTime">Ends</string>
@@ -48,13 +48,13 @@
     <string name="btn_addSession">Add Session</string>
     <string name="btn_addTask">Add Task</string>
     <string name="title_activity_settings">Settings</string>
-
+    <string name="btn_edit">Edit</string>
+    <string name="btn_delete">Delete</string>
     <!--  Headers Titles -->
     <string name="general_settings_header">General</string>
     <string name="theme_settings_header">Theme</string>
 
     <!-- Notification Preferences -->
-
     <string name="notification_title">Notifications</string>
     <!-- Settings-->
     <string name="settings_dark_mode_switch_label">Dark Mode</string>
@@ -73,4 +73,5 @@
     <string name="day_character">d</string>
     <string name="hour_character">h</string>
     <string name="minute_character">m</string>
+    <string name="time_divider">:</string>
 </resources>
