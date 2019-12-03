@@ -1,6 +1,7 @@
 package com.brains404.scheduler.ui.time_table;
 
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +39,7 @@ public class TimeTableRecyclerAdapter extends RecyclerView.Adapter<TimeTableRecy
             place=itemView.findViewById(R.id.place);
             details=itemView.findViewById(R.id.rl_expandable_container);
             edit=details.findViewById(R.id.btn_edit_session);
+
 
         itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -81,7 +83,14 @@ public class TimeTableRecyclerAdapter extends RecyclerView.Adapter<TimeTableRecy
         final boolean isExpanded = position== expandedPosition;
         holder.details.setVisibility(isExpanded?View.VISIBLE:View.GONE);
         holder.itemView.setActivated(isExpanded);
-
+    holder.edit.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Intent intent = new Intent(view.getContext(),editSession.class);
+            intent.putExtra("idSession",sessionData.get(position).getIdSession()+"");
+            view.getContext().startActivity(intent);
+        }
+    });
         if (isExpanded)
             previousExpandedPosition = position;
 

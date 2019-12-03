@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="?attr/backgroundColor">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".ui.time_table.editSession"
+        android:id="@+id/rl_container_edit">
+
+
+
+        <TableRow
+            android:id="@+id/tr_time_edit"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:weightSum="4">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_startTime"
+                android:layout_marginTop="@dimen/form_margin"
+                android:layout_marginBottom="@dimen/form_margin"
+                android:layout_marginLeft="@dimen/form_margin"
+                android:layout_marginRight="@dimen/label_margin_right"
+                android:layout_marginStart="@dimen/form_margin"
+                android:layout_marginEnd="@dimen/label_margin_right"
+                android:textSize="@dimen/label_size"
+                android:textColor="?attr/textColor"
+                tools:ignore="RtlHardcoded" />
+
+            <Button
+                android:id="@+id/btn_startTime_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/form_margin"
+                android:text="@string/default_start_time"
+                android:textColor="?attr/textColor"
+                android:background="?attr/buttonColor"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_endTime"
+                android:layout_marginTop="@dimen/form_margin"
+                android:layout_marginBottom="@dimen/form_margin"
+                android:layout_marginRight="@dimen/label_margin_right"
+                android:layout_marginEnd="@dimen/label_margin_right"
+                android:textSize="@dimen/label_size"
+                android:textColor="?attr/textColor"
+
+                />
+
+            <Button
+                android:id="@+id/btn_endTime_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/form_margin"
+                android:text="@string/default_end_time"
+                android:textColor="?attr/textColor"
+                android:background="?attr/buttonColor" />
+        </TableRow>
+        <EditText
+            android:id="@+id/et_title_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:hint="@string/hint_title"
+            android:layout_below="@id/tr_time_edit"
+            android:layout_margin="@dimen/form_margin"
+            android:importantForAutofill="no"
+            android:drawableLeft="@drawable/ic_name"
+            android:drawableStart="@drawable/ic_name"
+            android:drawableTint="?attr/tintColor"
+            android:drawablePadding="5dp"
+            android:textColor="?attr/textColor"
+            android:textColorHint="?attr/hintTextColor"
+            />
+
+        <EditText
+            android:id="@+id/et_place_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:hint="@string/hint_place"
+            android:layout_below="@id/et_title_edit"
+            android:layout_margin="@dimen/form_margin"
+            android:importantForAutofill="no"
+            android:drawableLeft="@drawable/ic_place"
+            android:drawableStart="@drawable/ic_place"
+            android:drawableTint="?attr/tintColor"
+            android:drawablePadding="5dp"
+            android:textColorHint="?attr/hintTextColor"
+            android:textColor="?attr/textColor"/>
+
+        <CheckBox
+            android:id="@+id/ch_notify_session_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/et_place_edit"
+            android:text="@string/checkbox_notify_me"
+            android:layout_margin="@dimen/form_margin"
+            android:textColor="?attr/textColor"
+            app:buttonTint="?attr/tintColor"
+            />
+
+        <TimePicker
+            android:id="@+id/tp_start_time_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:textColor="?attr/textColor"
+            />
+        <TimePicker
+            android:id="@+id/tp_end_time_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:textColor="?attr/textColor"
+            />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_editSession_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_editSession"
+            android:layout_below="@id/ch_notify_session_edit"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="@dimen/form_margin"
+            android:padding="@dimen/padding_button"
+            android:textColor="?attr/textColor"
+            android:background="?attr/buttonColor"
+            />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_editSession_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_delete"
+            android:layout_below="@id/btn_editSession_edit"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="@dimen/form_margin"
+            android:padding="@dimen/padding_button"
+            android:textColor="?attr/customWhite"
+            android:background="?attr/buttonColorNegative"
+            />
+
+    </RelativeLayout>
+</ScrollView>

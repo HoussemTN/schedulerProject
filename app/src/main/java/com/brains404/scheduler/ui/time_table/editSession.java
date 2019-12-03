@@ -2,6 +2,7 @@ package com.brains404.scheduler.ui.time_table;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
+
 import android.app.AlarmManager;
 import android.app.Dialog;
 import android.app.Notification;
@@ -14,7 +15,6 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -29,23 +29,22 @@ import com.brains404.scheduler.R;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.Map;
 
 
 
-
-@SuppressWarnings("deprecation")
-public class addSession extends AppCompatActivity {
-
-    private TimePicker timeStartPicker;
-    private TimePicker timeEndPicker;
-    private Button btnChangeStartTime;
-    private Button btnChangeEndTime;
-    private EditText et_title;
-    private EditText et_place;
-    private CheckBox checkBox ;
-    private int idDay;
+public class editSession extends AppCompatActivity {
+       EditText et_title ;
+       EditText et_place ;
+       TimePicker timeStartPicker ;
+       TimePicker timeEndPicker ;
+       Button btnChangedStartTime;
+       Button btnChangedEndTime;
+       CheckBox checkBox ;
+       Button delete ;
+       Button edit;
+       Session mySession;
+    SharedPreferences timeTablePrefs;
+    String idSessionString;
     private int idSession ;
     private int endHour;
     private int endMinute;
@@ -55,67 +54,98 @@ public class addSession extends AppCompatActivity {
     private String place ;
     private String startTime ;
     private String endTime ;
+    String json;
 
-     final int START_TIME_DIALOG_ID = 1;
-     final int END_TIME_DIALOG_ID = 2;
-     final String CURRENT_DAY_ID="CURRENT_DAY_ID";
-     final String LAST_VISITED_DAY_ID="LAST_VISITED_DAY_ID";
-     SharedPreferences timeTablePrefs;
-     String json;
-
+    final int START_TIME_DIALOG_ID = 1;
+    final int END_TIME_DIALOG_ID = 2;
+    final String LAST_VISITED_DAY_ID="LAST_VISITED_DAY_ID";
+    int idDay;
     private int showDelayInHours;
     private int showDelayInMinutes;
     private int showDelayInDays ;
 
     public final String CHANNEL_ID = "500" ;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         // Change Theme
         SharedPreferences preferences = getSharedPreferences("PrefsTheme", MODE_PRIVATE);
         boolean useDarkTheme = preferences.getBoolean("darkTheme", false);
         if(useDarkTheme) {
             setTheme(R.style.DarkAppTheme);
         }
-        setContentView(R.layout.activity_add_session);
-        //EditTexts [title,place]
-        et_title = findViewById(R.id.et_title);
-        et_place = findViewById(R.id.et_place);
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_edit_session);
 
-       //TimePickers Mapping
-        timeStartPicker =  findViewById(R.id.tp_start_time);
-        timeEndPicker =  findViewById(R.id.tp_end_time);
-       // Buttons show timepicker selected Time
-        btnChangeStartTime =  findViewById(R.id.btn_startTime);
-        btnChangeEndTime =  findViewById(R.id.btn_endTime);
+        et_title = findViewById(R.id.et_title_edit);
+        et_place = findViewById(R.id.et_place_edit);
+
+        //TimePickers Mapping
+        timeStartPicker =  findViewById(R.id.tp_start_time_edit);
+        timeEndPicker =  findViewById(R.id.tp_end_time_edit);
+        // Buttons show timepicker selected Time
+        btnChangedStartTime =  findViewById(R.id.btn_startTime_edit);
+        btnChangedEndTime =  findViewById(R.id.btn_endTime_edit);
         // Checkbox Notify me
-        checkBox = findViewById(R.id.ch_notify_session);
+        checkBox = findViewById(R.id.ch_notify_session_edit);
+        delete=findViewById(R.id.btn_editSession_delete);
+        edit=findViewById(R.id.btn_editSession_edit);
 
         // Back Home Button
         if(getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeButtonEnabled(true);
         }
-        // Pick Time Method Call
+
+       Intent i =getIntent();
+        Bundle extras = i.getExtras();
+        if (extras!=null){
+        idSessionString= getIntent().getStringExtra("idSession");
+        timeTablePrefs=this.getSharedPreferences("timeTablePrefs",MODE_PRIVATE);
+        Gson gson = new Gson();
+        // Get all Key
+            if(timeTablePrefs.contains(idSessionString)) {
+                // Case Session cache not empty
+              json = timeTablePrefs.getString(idSessionString, "");
+                 mySession = gson.fromJson(json, Session.class);
+
+                    et_title.setText(mySession.getTitle());
+                    et_place.setText(mySession.getPlace());
+                    checkBox.setChecked(true);
+                    btnChangedStartTime.setText(mySession.getStartTime());
+                    btnChangedEndTime.setText(mySession.getEndTime());
+
+
+            }
+            delete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    timeTablePrefs.edit().remove(idSessionString).apply();
+                    //TODO cancel notification of this session
+                    //DONE Send idDay back
+                    Intent intent = new Intent(editSession.this, MainActivity.class);
+                    intent.putExtra(LAST_VISITED_DAY_ID,idDay);
+                    startActivity(intent);
+
+                }
+            });
+        }
         setCurrentTimeOnView();
         addListenerOnButton();
-        timeTablePrefs = this.getSharedPreferences("timeTablePrefs", Context.MODE_PRIVATE);
+
         // get idDay from Main Activity (current tabLayout when clicking on fab)
-        idDay=getIntent().getIntExtra(CURRENT_DAY_ID,0);
-        Button btnAddSession = findViewById(R.id.btn_addSession);
-        btnAddSession.setOnClickListener(new View.OnClickListener() {
+        idDay=mySession.getIdDay();
+
+        edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //generate idSession
-                idSession=(int)new Date().getTime();
-                idSession=Math.abs(idSession);
+                idSession=mySession.getIdSession();
                 // retrieve EditTexts Values
                 title=et_title.getText().toString();
                 place=et_place.getText().toString();
                 //get Start/End Time from buttons
-                startTime=btnChangeStartTime.getText().toString();
-                endTime=btnChangeEndTime.getText().toString();
+                startTime=btnChangedStartTime.getText().toString();
+                endTime=btnChangedEndTime.getText().toString();
                 boolean toNotify = checkBox.isChecked();
 
                 // title and place required
@@ -126,8 +156,8 @@ public class addSession extends AppCompatActivity {
                     json= gson.toJson(newSession);
                     prefsEditor.putString(idSession+"", json);
                     prefsEditor.apply();
-                    // Show Message Session Added Successfully
-                    Snackbar snackbar=Snackbar.make(findViewById(R.id.rl_container),getResources().getString(R.string.session_added_success_message),Snackbar.LENGTH_LONG);
+                    //TODO Show Message Session Updated Successfully
+                    Snackbar snackbar=Snackbar.make(findViewById(R.id.rl_container_edit),getResources().getString(R.string.session_updated_success_message),Snackbar.LENGTH_LONG);
                     snackbar.show();
                     // Set Alarm if checkbox Notify Me is checked
                     if(toNotify) {
@@ -165,19 +195,14 @@ public class addSession extends AppCompatActivity {
                         scheduleNotification(getNotification(newSession), delay, newSession.getIdSession());
 
                         Toast.makeText(getApplicationContext(), getResources().getString(R.string.alert_set_message) + delayMessage, Toast.LENGTH_SHORT).show();
+
                     }
-                    // Init Form
-                    initForm();
-                    // TODO delete this part
-                    /* TESTING*/
-                     Map<String, ?> allEntries = timeTablePrefs.getAll();
-                    for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
-                        Log.d("map values", entry.getKey() + ": " + entry.getValue().toString());
-                    }
-                    /*END TESTING*/
-                 // Session Not added yet
+
+
+
+                    // Session Not Updated yet
                 } else{
-                    Snackbar snackbar=Snackbar.make(findViewById(R.id.rl_container),getResources().getString(R.string.session_required_message),Snackbar.LENGTH_LONG);
+                    Snackbar snackbar=Snackbar.make(findViewById(R.id.rl_container_edit),getResources().getString(R.string.session_required_message),Snackbar.LENGTH_LONG);
                     snackbar.show();
                 }
 
@@ -201,18 +226,13 @@ public class addSession extends AppCompatActivity {
         timeStartPicker.setCurrentMinute(startMinute);
         timeEndPicker.setCurrentHour(startHour);
         timeEndPicker.setCurrentMinute(endMinute);
-        btnChangeStartTime.setText(new StringBuilder().append(pad(startHour))
-                .append(":").append(pad(startMinute)));
-        btnChangeEndTime.setText(new StringBuilder().append(pad(endHour))
-                .append(":").append(pad(endMinute)));
 
     }
-
     public void addListenerOnButton() {
-       // mapping buttons
+        // mapping buttons
 
-       // startTime Button event
-        btnChangeStartTime.setOnClickListener(new View.OnClickListener() {
+        // startTime Button event
+        btnChangedStartTime.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -223,7 +243,7 @@ public class addSession extends AppCompatActivity {
 
         });
         //endTime Button event
-        btnChangeEndTime.setOnClickListener(new View.OnClickListener() {
+        btnChangedEndTime.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -237,7 +257,7 @@ public class addSession extends AppCompatActivity {
     }
 
     @Override
-    protected Dialog onCreateDialog(int id,Bundle bundle) {
+    protected Dialog onCreateDialog(int id, Bundle bundle) {
         switch (id) {
             case START_TIME_DIALOG_ID:
                 //set time picker as current time
@@ -259,10 +279,10 @@ public class addSession extends AppCompatActivity {
                     startHour = selectedHour;
                     startMinute = selectedMinute;
                     //set current time into textview
-                    btnChangeStartTime.setText(new StringBuilder().append(pad(startHour))
+                    btnChangedStartTime.setText(new StringBuilder().append(pad(startHour))
                             .append(":").append(pad(startMinute)));
 
-                    //set current time into timepicker
+                    //set current time into time picker
                     timeStartPicker.setCurrentHour(startHour);
                     timeStartPicker.setCurrentMinute(startMinute);
                 }
@@ -276,7 +296,7 @@ public class addSession extends AppCompatActivity {
                     endMinute = selectedMinute;
 
                     //set current time into TextView
-                    btnChangeEndTime.setText(new StringBuilder().append(pad(endHour))
+                    btnChangedEndTime.setText(new StringBuilder().append(pad(endHour))
                             .append(":").append(pad(endMinute)));
 
                     //set current time into TimePicker
@@ -298,7 +318,7 @@ public class addSession extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             //DONE Send idDay back
-            Intent intent = new Intent(addSession.this, MainActivity.class);
+            Intent intent = new Intent(editSession.this, MainActivity.class);
             intent.putExtra(LAST_VISITED_DAY_ID,idDay);
             startActivity(intent);
             return true;
@@ -308,7 +328,7 @@ public class addSession extends AppCompatActivity {
 
     public void onBackPressed(){
         //DONE Send idDay back
-        Intent intent = new Intent(addSession.this,MainActivity.class);
+        Intent intent = new Intent(editSession.this,MainActivity.class);
         intent.putExtra(LAST_VISITED_DAY_ID,idDay);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
@@ -360,18 +380,7 @@ public class addSession extends AppCompatActivity {
         }
 
     }
-    //Init View Data
-    public void initForm(){
 
-        et_title.setText("");
-        et_place.setText("");
-        //set current time into Button
-        btnChangeStartTime.setText(new StringBuilder().append(pad(startHour))
-                .append(":").append(pad(startMinute)));
-        //set current time +1h into Button
-        btnChangeEndTime.setText(new StringBuilder().append(pad(endHour))
-                .append(":").append(pad(endMinute)));
 
-    }
-    //TODO handle Boot Device for AlarmManager
 }
+
