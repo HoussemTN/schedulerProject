@@ -19,11 +19,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.time_table.editSession"
+        <activity android:name=".ui.statistics.statisticsActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:label="@string/menu_statistics"
+            android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".ui.time_table.editSession"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/title_activity_edit_session"
             android:parentActivityName=".MainActivity" />
-
         <activity
             android:name=".ui.feedback.FeedbackActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"

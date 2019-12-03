@@ -17,9 +17,9 @@
         tools:layout="@layout/task_tabs" />
     <activity
         android:id="@+id/nav_statistics"
-        android:name="com.brains404.scheduler.ui.settings.SettingsActivity"
+        android:name="com.brains404.scheduler.ui.statistics.statisticsActivity"
         android:label="@string/menu_statistics"
-        tools:layout="@layout/settings_activity" />
+        tools:layout="@layout/activity_statistics" />
     <activity
         android:id="@+id/nav_settings"
         android:name="com.brains404.scheduler.ui.settings.SettingsActivity"
