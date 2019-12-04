@@ -4,10 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:id="@+id/ll_tasks_container"
+    android:layout_weight="1">
 
-    <ListView
-        android:id="@+id/lv_tasks"
+    <TextView
+        android:id="@+id/tv_empty_tasks_rv_message"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:textSize="@dimen/label_size"
+        android:visibility="gone"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:drawableLeft="@drawable/ic_event_available"
+        android:drawableStart="@drawable/ic_event_available"
+        android:textColor="?attr/textColor" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_tasks"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </LinearLayout>

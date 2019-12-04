@@ -1,29 +1,31 @@
 package com.brains404.scheduler.Entities;
 
 public class Task {
-    int idSession ;
+    int idTask ;
     String title ;
     String description ;
-    int toWeek ;
+    private String startTime;
     int status ;
+    private int idDay ;
 
     public Task() {
     }
 
-    public Task(int idSession, String title, String description, int toWeek, int status) {
-        this.idSession = idSession;
+    public Task(int idTask, String title, String description, String startTime, int status,int idDay) {
+        this.idTask = idTask;
         this.title = title;
         this.description = description;
-        this.toWeek = toWeek;
+        this.startTime = startTime;
         this.status = status;
+        this.idDay = idDay;
     }
 
-    public int getIdSession() {
-        return idSession;
+    public int getIdTask() {
+        return idTask;
     }
 
-    public void setIdSession(int idSession) {
-        this.idSession = idSession;
+    public void setIdTask(int idSession) {
+        this.idTask = idTask;
     }
 
     public String getTitle() {
@@ -42,12 +44,12 @@ public class Task {
         this.description = description;
     }
 
-    public int getToWeek() {
-        return toWeek;
+    public String getStartTime() {
+        return startTime;
     }
 
-    public void setToWeek(int toWeek) {
-        this.toWeek = toWeek;
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
     }
 
     public int getStatus() {
@@ -56,5 +58,12 @@ public class Task {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+    public int getIdDay() {
+        return idDay;
+    }
+
+    public void setIdDay(int idDay) {
+        this.idDay = idDay;
     }
 }
