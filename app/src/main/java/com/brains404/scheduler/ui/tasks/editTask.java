@@ -1,7 +1,5 @@
 package com.brains404.scheduler.ui.tasks;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
 import android.app.AlarmManager;
 import android.app.Dialog;
 import android.app.Notification;
@@ -14,7 +12,6 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -22,103 +19,136 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+
 import com.brains404.scheduler.AlarmReceiver;
 import com.brains404.scheduler.Entities.Task;
 import com.brains404.scheduler.MainActivity;
 import com.brains404.scheduler.R;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
+
 import java.util.Calendar;
-import java.util.Date;
-import java.util.Map;
 
 
-
-
-@SuppressWarnings("deprecation")
-public class addTask extends AppCompatActivity {
-
-    private TimePicker timeStartPicker;
-    private Button btnChangeStartTime;
-    private EditText et_task_title;
-    private EditText et_task_description;
-    private CheckBox checkBox ;
-    private int idDay;
+public class editTask extends AppCompatActivity {
+       EditText et_task_title ;
+       EditText et_task_description ;
+       TimePicker timeStartPicker ;
+       Button btnChangedStartTime;
+       CheckBox checkBox ;
+       Button delete ;
+       Button edit;
+       Task myTask;
+    SharedPreferences taskPrefs;
+    String idTaskString;
     private int idTask ;
     private int startHour;
     private int startMinute;
-    private int defaultStatus=0;
     private String title ;
     private String description ;
     private String startTime ;
-    final int START_TIME_DIALOG_ID = 1;
-    final String CURRENT_TASK_DAY_ID="CURRENT_TASK_DAY_ID";
-    final String LAST_VISITED_TASK_DAY_ID="LAST_VISITED_TASK_DAY_ID";
-    SharedPreferences taskPrefs;
     String json;
 
+    final int START_TIME_DIALOG_ID = 1;
+    final String LAST_VISITED_DAY_ID="LAST_VISITED_DAY_ID";
+    int idDay;
     private int showDelayInHours;
     private int showDelayInMinutes;
     private int showDelayInDays ;
 
     public final String CHANNEL_ID = "500" ;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         // Change Theme
         SharedPreferences preferences = getSharedPreferences("PrefsTheme", MODE_PRIVATE);
         boolean useDarkTheme = preferences.getBoolean("darkTheme", false);
         if(useDarkTheme) {
             setTheme(R.style.DarkAppTheme);
         }
-        setContentView(R.layout.activity_add_task);
-        //EditTexts [title,place]
-        et_task_title = findViewById(R.id.et_task_title);
-        et_task_description = findViewById(R.id.et_task_description);
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_edit_task);
+
+        et_task_title = findViewById(R.id.et_task_title_edit);
+        et_task_description = findViewById(R.id.et_task_description_edit);
 
         //TimePickers Mapping
-        timeStartPicker =  findViewById(R.id.tp_task_start_time);
+        timeStartPicker =  findViewById(R.id.tp_task_start_time_edit);
         // Buttons show timepicker selected Time
-        btnChangeStartTime =  findViewById(R.id.btn_task_startTime);
+        btnChangedStartTime =  findViewById(R.id.btn_task_startTime_edit);
         // Checkbox Notify me
-        checkBox = findViewById(R.id.ch_notify_task);
+        checkBox = findViewById(R.id.ch_notify_task_edit);
+        delete=findViewById(R.id.btn_editTask_delete);
+        edit=findViewById(R.id.btn_editTask_edit);
 
         // Back Home Button
         if(getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeButtonEnabled(true);
         }
-        // Pick Time Method Call
+
+       Intent i =getIntent();
+        Bundle extras = i.getExtras();
+        if (extras!=null){
+        idTaskString= getIntent().getStringExtra("idTask");
+        taskPrefs=this.getSharedPreferences("taskPrefs",MODE_PRIVATE);
+        Gson gson = new Gson();
+        // Get all Key
+            if(taskPrefs.contains(idTaskString)) {
+                // Case Session cache not empty
+              json = taskPrefs.getString(idTaskString, "");
+                 myTask = gson.fromJson(json, Task.class);
+
+                    et_task_title.setText(myTask.getTitle());
+                    et_task_description.setText(myTask.getDescription());
+                    checkBox.setChecked(true);
+                    btnChangedStartTime.setText(myTask.getStartTime());
+
+
+            }
+            delete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    taskPrefs.edit().remove(idTaskString).apply();
+                    //TODO cancel notification of this session
+                    //DONE Send idDay back
+                    Intent intent = new Intent(editTask.this, MainActivity.class);
+                    intent.putExtra(LAST_VISITED_DAY_ID,idDay);
+                    startActivity(intent);
+
+                }
+            });
+        }
         setCurrentTimeOnView();
         addListenerOnButton();
-        taskPrefs = this.getSharedPreferences("taskPrefs", Context.MODE_PRIVATE);
+
         // get idDay from Main Activity (current tabLayout when clicking on fab)
-        idDay=getIntent().getIntExtra(CURRENT_TASK_DAY_ID,0);
-        Button btnAddTask = findViewById(R.id.btn_addTask);
-        btnAddTask.setOnClickListener(new View.OnClickListener() {
+        idDay=myTask.getIdDay();
+
+        edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //generate idSession
-                idTask=(int)new Date().getTime();
-                idTask=Math.abs(idTask);
+                //generate idTask
+                idTask=myTask.getIdTask();
                 // retrieve EditTexts Values
                 title=et_task_title.getText().toString();
                 description=et_task_description.getText().toString();
                 //get Start/End Time from buttons
-                startTime=btnChangeStartTime.getText().toString();
-                  boolean toNotify = checkBox.isChecked();
+                startTime=btnChangedStartTime.getText().toString();
+                 boolean toNotify = checkBox.isChecked();
 
                 // title and place required
                 if(!title.isEmpty() && !description.isEmpty()&& !startTime.isEmpty() ){
-                    Task newTask= new Task(idTask,title,description,startTime,defaultStatus,idDay);
+                    Task newTask= new Task(idTask,title,description,startTime,0,idDay);
                     SharedPreferences.Editor prefsEditor = taskPrefs.edit();
                     Gson gson = new Gson();
                     json= gson.toJson(newTask);
                     prefsEditor.putString(idTask+"", json);
                     prefsEditor.apply();
-                    // Show Message Session Added Successfully
-                    Snackbar snackbar=Snackbar.make(findViewById(R.id.rl_task_container),getResources().getString(R.string.task_added_success_message),Snackbar.LENGTH_LONG);
+                    //TODO Show Message Task Updated Successfully
+                    Snackbar snackbar=Snackbar.make(findViewById(R.id.rl_task_container_edit),getResources().getString(R.string.task_updated_success_message),Snackbar.LENGTH_LONG);
                     snackbar.show();
                     // Set Alarm if checkbox Notify Me is checked
                     if(toNotify) {
@@ -156,19 +186,14 @@ public class addTask extends AppCompatActivity {
                         scheduleNotification(getNotification(newTask), delay, newTask.getIdTask());
 
                         Toast.makeText(getApplicationContext(), getResources().getString(R.string.alert_set_message) + delayMessage, Toast.LENGTH_SHORT).show();
+
                     }
-                    // Init Form
-                    initForm();
-                    // TODO delete this part
-                    /* TESTING*/
-                    Map<String, ?> allEntries = taskPrefs.getAll();
-                    for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
-                        Log.d("map values", entry.getKey() + ": " + entry.getValue().toString());
-                    }
-                    /*END TESTING*/
-                    // Session Not added yet
+
+
+
+                    // Session Not Updated yet
                 } else{
-                    Snackbar snackbar=Snackbar.make(findViewById(R.id.rl_task_container),getResources().getString(R.string.task_required_message),Snackbar.LENGTH_LONG);
+                    Snackbar snackbar=Snackbar.make(findViewById(R.id.rl_task_container_edit),getResources().getString(R.string.task_required_message),Snackbar.LENGTH_LONG);
                     snackbar.show();
                 }
 
@@ -188,16 +213,13 @@ public class addTask extends AppCompatActivity {
         //current Time for startTime and current +1Hour to EndTime
         timeStartPicker.setCurrentHour(startHour);
         timeStartPicker.setCurrentMinute(startMinute);
-        btnChangeStartTime.setText(new StringBuilder().append(pad(startHour))
-                .append(":").append(pad(startMinute)));
 
     }
-
     public void addListenerOnButton() {
         // mapping buttons
 
         // startTime Button event
-        btnChangeStartTime.setOnClickListener(new View.OnClickListener() {
+        btnChangedStartTime.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -209,10 +231,12 @@ public class addTask extends AppCompatActivity {
         });
 
 
+
+
     }
 
     @Override
-    protected Dialog onCreateDialog(int id,Bundle bundle) {
+    protected Dialog onCreateDialog(int id, Bundle bundle) {
         if (id == START_TIME_DIALOG_ID) {//set time picker as current time
             return new TimePickerDialog(this,
                     timeStartPickerListener, startHour, startMinute, true);
@@ -227,15 +251,15 @@ public class addTask extends AppCompatActivity {
                     startHour = selectedHour;
                     startMinute = selectedMinute;
                     //set current time into textview
-                    btnChangeStartTime.setText(new StringBuilder().append(pad(startHour))
+                    btnChangedStartTime.setText(new StringBuilder().append(pad(startHour))
                             .append(":").append(pad(startMinute)));
 
-                    //set current time into timepicker
+                    //set current time into time picker
                     timeStartPicker.setCurrentHour(startHour);
                     timeStartPicker.setCurrentMinute(startMinute);
                 }
             };
-    // onPicking Time draw Time for endTime Button
+
 
 
     private static String pad(int c) {
@@ -250,8 +274,8 @@ public class addTask extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             //DONE Send idDay back
-            Intent intent = new Intent(addTask.this, MainActivity.class);
-            intent.putExtra(LAST_VISITED_TASK_DAY_ID,idDay);
+            Intent intent = new Intent(editTask.this, MainActivity.class);
+            intent.putExtra(LAST_VISITED_DAY_ID,idDay);
             startActivity(intent);
             return true;
         }
@@ -260,8 +284,8 @@ public class addTask extends AppCompatActivity {
 
     public void onBackPressed(){
         //DONE Send idDay back
-        Intent intent = new Intent(addTask.this,MainActivity.class);
-        intent.putExtra(LAST_VISITED_TASK_DAY_ID,idDay);
+        Intent intent = new Intent(editTask.this,MainActivity.class);
+        intent.putExtra(LAST_VISITED_DAY_ID,idDay);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
 
@@ -312,16 +336,7 @@ public class addTask extends AppCompatActivity {
         }
 
     }
-    //Init View Data
-    public void initForm(){
-
-        et_task_title.setText("");
-        et_task_description.setText("");
-        //set current time into Button
-        btnChangeStartTime.setText(new StringBuilder().append(pad(startHour))
-                .append(":").append(pad(startMinute)));
 
 
-    }
-    //TODO handle Boot Device for AlarmManager
 }
+

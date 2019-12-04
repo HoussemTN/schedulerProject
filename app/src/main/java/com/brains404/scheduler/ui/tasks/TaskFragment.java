@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -13,73 +12,111 @@ import androidx.viewpager.widget.ViewPager;
 import com.brains404.scheduler.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class TaskFragment extends Fragment {
-
+    private int position;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setRetainInstance(true);
+        // setRetainInstance(true);
     }
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
+
+
+    public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_tasks,container, false);
-        ViewPager viewPager =  view.findViewById(R.id.viewpager);
+        View view = inflater.inflate(R.layout.fragment_tasks, container, false);
+        ViewPager viewPager =view.findViewById(R.id.viewpager);
         setupViewPager(viewPager);
         // Set Tabs inside Toolbar
         TabLayout tabs =  view.findViewById(R.id.result_tabs);
+
+        // get current day (selected tab)
+        tabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                position= tab.getPosition();
+
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+
+            }
+        });
+
         tabs.setupWithViewPager(viewPager);
         // Float Action Button For Time Table
         FloatingActionButton fab = view.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              /*  Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();*/
-                Intent addSessionActivity = new Intent(getActivity(), addTask.class);
-                startActivity(addSessionActivity);
+                Intent addTaskActivity = new Intent(getActivity(), addTask.class);
+                //pass the current selected tab which represent the day position
+                addTaskActivity.putExtra("CURRENT_TASK_DAY_ID",position);
+                startActivity(addTaskActivity);
                 //disable transition animation
-                //( getActivity()).overridePendingTransition(0, 0);
-
-
+                /*( getActivity()).overridePendingTransition(0, 0);*/
             }
         });
+        // to prevent NPE we need to make sure that our bundle exist
+        Intent i =getActivity().getIntent();
+        Bundle extras = i.getExtras();
+        //Log.d("Test", "Hello World");
+        if (extras!= null) {
+            // Bundle exist
+            String LAST_VISITED_DAY_ID = "LAST_VISITED_DAY_ID";
+            boolean isVisited = extras.containsKey(LAST_VISITED_DAY_ID);
+            //Log.d("Test", "is"+isVisited);
+
+            if (isVisited) {
+                int idDay = extras.getInt(LAST_VISITED_DAY_ID);
+                // Log.d("Test", "is"+idDay);
+                // Restore last visited TabLayout
+                TabLayout.Tab selectedTab = tabs.getTabAt(idDay);
+                assert selectedTab != null;
+                selectedTab.select();
+            }
+        }
         return view;
     }
-    // Add Fragments to Tabs
+    // Add Fragments to Tabs with idDay
     private void setupViewPager(ViewPager viewPager) {
 
         Adapter adapter = new Adapter(getChildFragmentManager());
-        adapter.addFragment(new TaskTabs("Monday"), getString(R.string.tab_title_monday));
-        adapter.addFragment(new TaskTabs("Tuesday"), getString(R.string.tab_title_tuesday));
-        adapter.addFragment(new TaskTabs("Wednesday"), getString(R.string.tab_title_wednesday));
-        adapter.addFragment(new TaskTabs("Thursday"), getString(R.string.tab_title_thursday));
-        adapter.addFragment(new TaskTabs("Friday"), getString(R.string.tab_title_friday));
-        adapter.addFragment(new TaskTabs("Saturday"), getString(R.string.tab_title_saturday));
-        adapter.addFragment(new TaskTabs("Sunday"), getString(R.string.tab_title_sunday));
+        adapter.addFragment(new TaskTabs(0), getString(R.string.tab_title_monday));
+        adapter.addFragment(new TaskTabs(1), getString(R.string.tab_title_tuesday));
+        adapter.addFragment(new TaskTabs(2), getString(R.string.tab_title_wednesday));
+        adapter.addFragment(new TaskTabs(3), getString(R.string.tab_title_thursday));
+        adapter.addFragment(new TaskTabs(4), getString(R.string.tab_title_friday));
+        adapter.addFragment(new TaskTabs(5), getString(R.string.tab_title_saturday));
+        adapter.addFragment(new TaskTabs(6), getString(R.string.tab_title_sunday));
         viewPager.setAdapter(adapter);
 
+
     }
+
 
     static class Adapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mFragmentTitleList = new ArrayList<>();
 
-         Adapter(FragmentManager manager) {
+        public Adapter(FragmentManager manager) {
             super(manager);
         }
 
-
-        @NotNull
         @Override
-           public Fragment getItem(int position) {
+        public Fragment getItem(int position) {
             return mFragmentList.get(position);
         }
 
@@ -88,7 +125,7 @@ public class TaskFragment extends Fragment {
             return mFragmentList.size();
         }
 
-        void addFragment(Fragment fragment, String title) {
+        public void addFragment(Fragment fragment, String title) {
             mFragmentList.add(fragment);
             mFragmentTitleList.add(title);
         }
@@ -96,8 +133,9 @@ public class TaskFragment extends Fragment {
         @Override
         public CharSequence getPageTitle(int position) {
             return mFragmentTitleList.get(position);
+
         }
+
     }
 
 }
-

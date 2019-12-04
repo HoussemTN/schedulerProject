@@ -33,7 +33,7 @@
     <string name="activity_addSession_title">Add Session</string>
     <string name="title_activity_edit_session">Edit Session</string>
     <string name="activity_addTask_title">Add Task</string>
-
+    <string name="title_activity_edit_task">Edit Task</string>
     <!-- Forms -->
     <string name="hint_title">Title</string>
     <string name="hint_place">Place</string>
@@ -78,6 +78,10 @@
     <string name="session_added_success_message">Session Added Successfully</string>
     <string name="session_updated_success_message">Session Updated Successfully</string>
     <string name="feedback_required_message">Title/Message required</string>
+    <string name="task_added_success_message">Task Added Successfully</string>
+    <string name="task_required_message">Title/Description required</string>
+    <string name="empty_task_message">No Tasks Available</string>
+    <string name="task_updated_success_message">Task Updated Successfully</string>
     <string name="feedback_internet_offline_message">You are Offline ! Try to connect to the internet..</string>
     <string name="feedback_message_too_long">Title/Message Too Long.Would you send us an email to: devBrains404@gmail.com </string>
     <string name="feedback_sent_success_message">Thank you for having taken your time to provide us with your valuable feedback</string>
@@ -88,5 +92,7 @@
     <string name="time_divider">:</string>
     <!-- Snack bar Action-->
     <string name="btn_dismiss_action">Dismiss</string>
+
+
 
 </resources>
