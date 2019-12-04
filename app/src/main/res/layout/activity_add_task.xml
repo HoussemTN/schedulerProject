@@ -80,7 +80,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/et_task_description"
-            android:text="@string/checkbox_notify_me"
+            android:text="@string/checkbox_task_notify_me"
             android:layout_margin="@dimen/form_margin"
             android:textColor="?attr/textColor"
             app:buttonTint="?attr/tintColor"

@@ -89,7 +89,7 @@
               android:layout_marginEnd="@dimen/form_margin"
               android:layout_marginRight="@dimen/form_margin"
               android:background="?attr/buttonColorNeutral"
-              android:text="@string/btn_delete"
+              android:text="@string/btn_done"
               android:textColor="?attr/customWhite"
               android:drawableEnd="@drawable/ic_delete"
               android:drawableTint="?attr/customWhite"

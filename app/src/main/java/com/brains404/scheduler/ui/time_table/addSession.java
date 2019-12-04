@@ -86,7 +86,7 @@ public class addSession extends AppCompatActivity {
        //TimePickers Mapping
         timeStartPicker =  findViewById(R.id.tp_start_time);
         timeEndPicker =  findViewById(R.id.tp_end_time);
-       // Buttons show timepicker selected Time
+       // Buttons show time picker selected Time
         btnChangeStartTime =  findViewById(R.id.btn_startTime);
         btnChangeEndTime =  findViewById(R.id.btn_endTime);
         // Checkbox Notify me
@@ -319,7 +319,7 @@ public class addSession extends AppCompatActivity {
         Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         Intent intent = new Intent(this, MainActivity.class);
         PendingIntent notificationIntent = PendingIntent.getActivity(this, session.getIdSession(), intent,0);
-        NotificationCompat.Builder builder = new NotificationCompat.Builder( this, "404") ;
+        NotificationCompat.Builder builder = new NotificationCompat.Builder( this, CHANNEL_ID) ;
         builder.setContentTitle(session.getTitle()) ;
         builder.setContentText(session.getPlace()) ;
         builder.setSmallIcon(R.drawable.ic_event_note ) ;

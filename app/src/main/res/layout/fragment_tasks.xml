@@ -20,7 +20,7 @@
          >
 
             <com.google.android.material.tabs.TabLayout
-                android:id="@+id/result_tabs"
+                android:id="@+id/result_task_tabs"
                 android:background="?attr/backgroundColorSecondary"
                 app:tabTextColor="?attr/notSelectedTabTextColor"
                 app:tabSelectedTextColor="?attr/selectedTabTextColor"
@@ -32,12 +32,12 @@
 
 
         <androidx.viewpager.widget.ViewPager
-            android:id="@+id/viewpager"
+            android:id="@+id/task_viewpager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab"
+            android:id="@+id/task_fab"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="bottom|end"

@@ -81,7 +81,7 @@ public class editSession extends AppCompatActivity {
         //TimePickers Mapping
         timeStartPicker =  findViewById(R.id.tp_start_time_edit);
         timeEndPicker =  findViewById(R.id.tp_end_time_edit);
-        // Buttons show timepicker selected Time
+        // Buttons show time picker selected Time
         btnChangedStartTime =  findViewById(R.id.btn_startTime_edit);
         btnChangedEndTime =  findViewById(R.id.btn_endTime_edit);
         // Checkbox Notify me

@@ -20,6 +20,7 @@ import com.brains404.scheduler.R;
 public class SettingsActivity extends AppCompatActivity {
      Boolean isDarkTheme =false;
     SharedPreferences timeTablePrefs;
+    SharedPreferences taskPrefs;
     Boolean isTaskClearClicked=false;
     Boolean isTimeTableClearClicked=false ;
     @Override
@@ -61,8 +62,8 @@ public class SettingsActivity extends AppCompatActivity {
             public boolean onLongClick(View view) {
                 // TODO clear Tasks Prefs and show Toast Message
                 if (isTaskClearClicked) {
-                    //tasksPrefs.edit().clear().apply();
-                    // Toast.makeText(getApplicationContext(),getResources().getString(R.string.toast_tasks_cleared),Toast.LENGTH_SHORT).show();
+                    taskPrefs.edit().clear().apply();
+                     Toast.makeText(getApplicationContext(),getResources().getString(R.string.toast_tasks_cleared),Toast.LENGTH_SHORT).show();
                     isTaskClearClicked = false;
                 }
                 return true;

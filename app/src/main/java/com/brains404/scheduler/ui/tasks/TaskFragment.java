@@ -18,7 +18,7 @@ import java.util.List;
 
 public class TaskFragment extends Fragment {
     private int position;
-
+  private  final  String LAST_VISITED_TASK_DAY_ID="LAST_VISITED_TASK_DAY_ID";
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,10 +31,10 @@ public class TaskFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_tasks, container, false);
-        ViewPager viewPager =view.findViewById(R.id.viewpager);
+        ViewPager viewPager =view.findViewById(R.id.task_viewpager);
         setupViewPager(viewPager);
         // Set Tabs inside Toolbar
-        TabLayout tabs =  view.findViewById(R.id.result_tabs);
+        TabLayout tabs =  view.findViewById(R.id.result_task_tabs);
 
         // get current day (selected tab)
         tabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -57,13 +57,13 @@ public class TaskFragment extends Fragment {
 
         tabs.setupWithViewPager(viewPager);
         // Float Action Button For Time Table
-        FloatingActionButton fab = view.findViewById(R.id.fab);
+        FloatingActionButton fab = view.findViewById(R.id.task_fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent addTaskActivity = new Intent(getActivity(), addTask.class);
                 //pass the current selected tab which represent the day position
-                addTaskActivity.putExtra("CURRENT_TASK_DAY_ID",position);
+                addTaskActivity.putExtra(LAST_VISITED_TASK_DAY_ID,position);
                 startActivity(addTaskActivity);
                 //disable transition animation
                 /*( getActivity()).overridePendingTransition(0, 0);*/
@@ -75,12 +75,12 @@ public class TaskFragment extends Fragment {
         //Log.d("Test", "Hello World");
         if (extras!= null) {
             // Bundle exist
-            String LAST_VISITED_DAY_ID = "LAST_VISITED_DAY_ID";
-            boolean isVisited = extras.containsKey(LAST_VISITED_DAY_ID);
+
+            boolean isVisited = extras.containsKey(LAST_VISITED_TASK_DAY_ID);
             //Log.d("Test", "is"+isVisited);
 
             if (isVisited) {
-                int idDay = extras.getInt(LAST_VISITED_DAY_ID);
+                int idDay = extras.getInt(LAST_VISITED_TASK_DAY_ID);
                 // Log.d("Test", "is"+idDay);
                 // Restore last visited TabLayout
                 TabLayout.Tab selectedTab = tabs.getTabAt(idDay);

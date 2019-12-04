@@ -1,15 +1,14 @@
 package com.brains404.scheduler.Entities;
 
 public class Task {
-    int idTask ;
-    String title ;
-    String description ;
+    private int idTask ;
+    private String title ;
+    private String description ;
     private String startTime;
-    int status ;
+    private int status ;
     private int idDay ;
 
-    public Task() {
-    }
+
 
     public Task(int idTask, String title, String description, String startTime, int status,int idDay) {
         this.idTask = idTask;

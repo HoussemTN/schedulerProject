@@ -27,9 +27,7 @@ public class Session {
         return idSession;
     }
 
-    public void setIdSession(int idSession) {
-        this.idSession = idSession;
-    }
+
 
     public String getTitle() {
         return title;
@@ -43,43 +41,20 @@ public class Session {
         return place;
     }
 
-    public void setPlace(String place) {
-        this.place = place;
-    }
+
 
     public String getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(String startTime) {
-        this.startTime = startTime;
-    }
 
     public String getEndTime() {
         return endTime;
-    }
-
-    public void setEndTime(String endTime) {
-        this.endTime = endTime;
     }
 
     public int getIdDay() {
         return idDay;
     }
 
-    public void setIdDay(int idDay) {
-        this.idDay = idDay;
-    }
 
-    @Override
-    public String toString() {
-        return "Session{" +
-                "idSession=" + idSession +
-                ", title='" + title + '\'' +
-                ", place='" + place + '\'' +
-                ", startTime='" + startTime + '\'' +
-                ", endTime='" + endTime + '\'' +
-                ", idDay=" + idDay +
-                '}';
-    }
 }

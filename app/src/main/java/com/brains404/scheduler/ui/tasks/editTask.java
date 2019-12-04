@@ -53,7 +53,7 @@ public class editTask extends AppCompatActivity {
     String json;
 
     final int START_TIME_DIALOG_ID = 1;
-    final String LAST_VISITED_DAY_ID="LAST_VISITED_DAY_ID";
+    final String LAST_VISITED_TASK_DAY_ID="LAST_VISITED_TASK_DAY_ID";
     int idDay;
     private int showDelayInHours;
     private int showDelayInMinutes;
@@ -115,7 +115,7 @@ public class editTask extends AppCompatActivity {
                     //TODO cancel notification of this session
                     //DONE Send idDay back
                     Intent intent = new Intent(editTask.this, MainActivity.class);
-                    intent.putExtra(LAST_VISITED_DAY_ID,idDay);
+                    intent.putExtra(LAST_VISITED_TASK_DAY_ID,idDay);
                     startActivity(intent);
 
                 }
@@ -275,7 +275,7 @@ public class editTask extends AppCompatActivity {
         if (item.getItemId() == android.R.id.home) {
             //DONE Send idDay back
             Intent intent = new Intent(editTask.this, MainActivity.class);
-            intent.putExtra(LAST_VISITED_DAY_ID,idDay);
+            intent.putExtra(LAST_VISITED_TASK_DAY_ID,idDay);
             startActivity(intent);
             return true;
         }
@@ -285,7 +285,7 @@ public class editTask extends AppCompatActivity {
     public void onBackPressed(){
         //DONE Send idDay back
         Intent intent = new Intent(editTask.this,MainActivity.class);
-        intent.putExtra(LAST_VISITED_DAY_ID,idDay);
+        intent.putExtra(LAST_VISITED_TASK_DAY_ID,idDay);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
 

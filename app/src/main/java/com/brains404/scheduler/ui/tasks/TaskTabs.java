@@ -49,6 +49,7 @@ public class TaskTabs extends Fragment {
             while(itr.hasNext()){
                 String json = taskPrefs.getString(itr.next(), "");
                 Task myTask = gson.fromJson(json, Task.class);
+                // Select To-Do Tasks Status[0]
                 if(myTask.getIdDay()==day && myTask.getStatus()==0) {
                     tasksList.add(myTask);
                 }
@@ -61,7 +62,7 @@ public class TaskTabs extends Fragment {
                 recyclerView.setVisibility(View.GONE);
                 noTaskMessage.setVisibility(View.VISIBLE);
             }
-            //All Days Empty (No sessions saved in timeTablePrefs)
+            //All Days Empty (No sessions saved in taskPrefs)
         } else {
             TextView noTaskMessage= root.findViewById(R.id.tv_empty_tasks_rv_message);
             noTaskMessage.setText(getResources().getString(R.string.empty_task_message));
@@ -76,7 +77,7 @@ public class TaskTabs extends Fragment {
                 // get Hours from sessions to compare
                 int T1_startHour=Integer.valueOf(T1.getStartTime().substring(0,2));
                 int T2_startHour=Integer.valueOf(T2.getStartTime().substring(0,2));
-                // get Minutes from sessions to compare
+                // get Minutes from tasks to compare
                 int T1_startMinutes=Integer.valueOf(T1.getStartTime().substring(T1.getStartTime().indexOf(":") + 1));
                 int T2_startMinutes=Integer.valueOf(T2.getStartTime().substring(T2.getStartTime().indexOf(":") + 1));
 

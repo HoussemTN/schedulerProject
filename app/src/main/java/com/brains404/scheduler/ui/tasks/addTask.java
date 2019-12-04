@@ -94,7 +94,7 @@ public class addTask extends AppCompatActivity {
         addListenerOnButton();
         taskPrefs = this.getSharedPreferences("taskPrefs", Context.MODE_PRIVATE);
         // get idDay from Main Activity (current tabLayout when clicking on fab)
-        idDay=getIntent().getIntExtra(CURRENT_TASK_DAY_ID,0);
+        idDay=getIntent().getIntExtra(LAST_VISITED_TASK_DAY_ID,0);
         Button btnAddTask = findViewById(R.id.btn_addTask);
         btnAddTask.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -271,10 +271,10 @@ public class addTask extends AppCompatActivity {
         Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         Intent intent = new Intent(this, MainActivity.class);
         PendingIntent notificationIntent = PendingIntent.getActivity(this, task.getIdTask(), intent,0);
-        NotificationCompat.Builder builder = new NotificationCompat.Builder( this, "404") ;
+        NotificationCompat.Builder builder = new NotificationCompat.Builder( this, CHANNEL_ID) ;
         builder.setContentTitle(task.getTitle()) ;
         builder.setContentText(task.getDescription()) ;
-        builder.setSmallIcon(R.drawable.ic_event_note ) ;
+        builder.setSmallIcon(R.drawable.ic_task) ;
         builder.setContentIntent(notificationIntent);
         builder.setAutoCancel(true) ;
         builder.setSound(alarmSound);
@@ -293,9 +293,7 @@ public class addTask extends AppCompatActivity {
         // Alarm Service
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE) ;
         assert alarmManager != null;
-        // Repeat Alarm every Week
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, delay,
-                AlarmManager.INTERVAL_DAY*7, pendingIntent);
+
 
         if (Build.VERSION.SDK_INT >= 23) {
             // Wakes up the device in Doze Mode
