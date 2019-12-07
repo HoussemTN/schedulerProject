@@ -6,13 +6,34 @@
     android:layout_height="match_parent"
     android:background="?attr/backgroundColor"
     tools:context=".ui.statistics.statisticsActivity">
-
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/menu_statistics"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_progress"
+        android:id="@+id/progress_title"
+        android:textSize="@dimen/session_title_size"
+
+        ></TextView>
+    <TextView
+        android:id="@+id/task_stat_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
         android:textColor="?attr/textColor"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="24dp"
+        android:textSize="@dimen/session_title_size"
+        android:layout_below="@id/seekBar"
         tools:layout_editor_absoluteX="133dp"
         tools:layout_editor_absoluteY="314dp" />
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/progress_title"
+
+        />
+
 
 </RelativeLayout>
