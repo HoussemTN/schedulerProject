@@ -118,8 +118,8 @@ public class TaskRecyclerAdapter extends RecyclerView.Adapter<TaskRecyclerAdapte
                 //Update doneTask in Cache
                 prefsEditor.putString(key+"", json);
                 prefsEditor.apply();
-                // remove doneTask from current RecyclerView data
-                taskData.remove(doneTask);
+                holder.done.setVisibility(View.GONE);
+
 
                 /* TESTING*/
                 Map<String, ?> allEntries = taskPrefs.getAll();

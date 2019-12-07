@@ -1,0 +1,106 @@
+<resources>
+    <string name="app_name">Scheduler</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Scheduler(Guest)</string>
+    <string name="nav_header_subtitle">devBrains404@gmail.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="menu_time_table">Time Table</string>
+    <string name="menu_task">Tasks</string>
+    <string name="menu_statistics">Statistics</string>
+    <string name="menu_more">More</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_feedback">Feedback</string>
+
+    <!-- Default Values (Not shown)-->
+    <string name="default_start_time">08:00</string>
+    <string name="default_end_time">09:00</string>
+    <string name="default_task_value">Default Task</string>
+    <string name="default_session_value">Default Session</string>
+    <string name="empty_session_message">No Sessions Available</string>
+    <!-- Fragments Tab Bar Titles-->
+    <string name="tab_title_monday">Monday</string>
+    <string name="tab_title_tuesday">Tuesday</string>
+    <string name="tab_title_wednesday">Wednesday</string>
+    <string name="tab_title_thursday">Thursday</string>
+    <string name="tab_title_friday">Friday</string>
+    <string name="tab_title_saturday">Saturday</string>
+    <string name="tab_title_sunday">Sunday</string>
+
+
+    <!--Activities Titles -->
+    <string name="activity_addSession_title">Add Session</string>
+    <string name="title_activity_edit_session">Edit Session</string>
+    <string name="activity_addTask_title">Add Task</string>
+    <string name="title_activity_edit_task">Edit Task</string>
+    <!-- Forms -->
+    <string name="hint_title">Title</string>
+    <string name="hint_place">Place</string>
+    <string name="hint_day">Day</string>
+    <string name="hint_startTime">Start Time</string>
+    <string name="hint_endTime">End Time</string>
+    <string name="hint_description">Description</string>
+    <string name="hint_message">Message</string>
+    <string name="checkbox_notify_me">Get Notified every Week !</string>
+    <string name="checkbox_task_notify_me">Get Notified !</string>
+    <!-- labels -->
+    <string name="label_startTime">Starts</string>
+    <string name="label_endTime">Ends</string>
+    <string name="label_session">Session</string>
+    <!-- Buttons Values -->
+    <string name="btn_addSession">Add Session</string>
+    <string name="btn_editSession">Edit Session</string>
+    <string name="btn_addTask">Add Task</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="title_activity_feedback">Feedback</string>
+    <string name="btn_edit">Edit</string>
+    <string name="btn_delete">Delete</string>
+    <string name="btn_done">Done</string>
+    <string name="btn_send">Send</string>
+    <string name="google_sign_in">Sign In</string>
+    <string name="google_sign_out">Sign Out</string>
+    <!--  Headers Titles -->
+    <string name="general_settings_header">General</string>
+    <string name="theme_settings_header">Theme</string>
+    <string name="send_us_feedback">Send Us Feedback !</string>
+
+    <!-- Notification Preferences -->
+    <string name="notification_title">Notifications</string>
+    <!-- Settings-->
+    <string name="settings_dark_mode_switch_label">Dark Mode</string>
+    <string name="settings_general_title">General</string>
+    <string name="settings_data_title">Data</string>
+    <string name="settings_clear_task_data_label">Clear Tasks Data</string>
+    <string name="settings_clear_timetable_data_label">Clear TimeTable Data</string>
+    <!--Toast Messages  -->
+    <string name="toast_confirm_clear_data">Long Click To Confirm</string>
+    <string name="toast_tasks_cleared">Tasks Data Cleared</string>
+    <string name="toast_timetable_cleared">TimeTable Data Cleared</string>
+    <string name="alert_set_message">Alert set in : </string>
+    <string name="day_character">d</string>
+    <string name="hour_character">h</string>
+    <string name="minute_character">m</string>
+    <string name="time_divider">:</string>
+    <string name="google_account_connected">Connected ! </string>
+    <string name="google_account_disconnected">Disconnected</string>
+
+    <!-- Java Resources (Messages) Snack bar-->
+    <string name="session_required_message">Title/Place required</string>
+    <string name="session_added_success_message">Session Added Successfully</string>
+    <string name="session_updated_success_message">Session Updated Successfully</string>
+    <string name="feedback_required_message">Title/Message required</string>
+    <string name="task_added_success_message">Task Added Successfully</string>
+    <string name="task_required_message">Title/Description required</string>
+    <string name="empty_task_message">No Tasks Available</string>
+    <string name="task_updated_success_message">Task Updated Successfully</string>
+    <string name="feedback_internet_offline_message">You are Offline ! Try to connect to the internet..</string>
+    <string name="feedback_message_too_long">Title/Message Too Long.Would you send us an email to: devBrains404@gmail.com </string>
+    <string name="feedback_sent_success_message">Thank you for having taken your time to provide us with your valuable feedback</string>
+
+    <!-- Snack bar Action-->
+    <string name="btn_dismiss_action">Dismiss</string>
+    <string name="allow_notifications">Allow Notifications</string>
+
+
+</resources>

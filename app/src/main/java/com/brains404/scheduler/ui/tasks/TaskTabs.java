@@ -99,6 +99,7 @@ public class TaskTabs extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         RecyclerView.Adapter adapter = new TaskRecyclerAdapter(tasksList);
         recyclerView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
         return root;
     }
 
