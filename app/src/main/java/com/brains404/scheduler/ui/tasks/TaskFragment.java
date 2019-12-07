@@ -50,7 +50,7 @@ public class TaskFragment extends Fragment {
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-
+                position= tab.getPosition();
 
             }
         });

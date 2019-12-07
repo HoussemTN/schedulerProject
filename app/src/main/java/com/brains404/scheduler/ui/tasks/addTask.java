@@ -321,5 +321,5 @@ public class addTask extends AppCompatActivity {
 
 
     }
-    //TODO handle Boot Device for AlarmManager
+
 }
