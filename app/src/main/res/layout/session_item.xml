@@ -78,7 +78,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginEnd="@dimen/form_margin"
             android:layout_marginRight="@dimen/form_margin"
-            android:background="?attr/buttonColorPositive"
+            android:background="?attr/buttonColorNeutral"
             android:text="@string/btn_edit"
             android:textColor="?attr/customWhite"
             android:drawableRight="@drawable/ic_edit"

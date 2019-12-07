@@ -7,9 +7,11 @@ import android.app.Dialog;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
@@ -333,6 +335,15 @@ public class addSession extends AppCompatActivity {
     }
     //Notification scheduler
     private void scheduleNotification (Notification notification , long delay,int idNotification) {
+
+        // Enable AlarmReceiver [Default disabled]
+        ComponentName receiver = new ComponentName(getApplicationContext(), AlarmReceiver.class);
+        PackageManager pm = getApplicationContext().getPackageManager();
+
+        pm.setComponentEnabledSetting(receiver,
+                PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+                PackageManager.DONT_KILL_APP);
+        // send [notification + notificationId] within the intent
         Intent notificationIntent = new Intent( this, AlarmReceiver. class ) ;
         // idNotification = idSession
         notificationIntent.putExtra("notificationId" ,idNotification) ;

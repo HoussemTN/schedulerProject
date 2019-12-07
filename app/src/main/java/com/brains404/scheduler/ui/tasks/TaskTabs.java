@@ -50,7 +50,7 @@ public class TaskTabs extends Fragment {
                 String json = taskPrefs.getString(itr.next(), "");
                 Task myTask = gson.fromJson(json, Task.class);
                 // Select To-Do Tasks Status[0]
-                if(myTask.getIdDay()==day && myTask.getStatus()==0) {
+                if((myTask.getIdDay()==day) && (myTask.getStatus()==0)) {
                     tasksList.add(myTask);
                 }
 

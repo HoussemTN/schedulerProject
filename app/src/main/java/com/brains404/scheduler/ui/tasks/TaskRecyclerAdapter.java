@@ -1,7 +1,10 @@
 package com.brains404.scheduler.ui.tasks;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,11 +18,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.brains404.scheduler.Entities.Task;
 import com.brains404.scheduler.R;
 import com.google.android.material.snackbar.Snackbar;
-
+import com.google.gson.Gson;
 import java.util.ArrayList;
+import java.util.Map;
+
+
+import static android.content.Context.MODE_PRIVATE;
 
 
 public class TaskRecyclerAdapter extends RecyclerView.Adapter<TaskRecyclerAdapter.ViewHolder>  {
+
     private ArrayList<Task> taskData;
    private int previousExpandedPosition = -1;
    private int expandedPosition =-1 ;
@@ -72,7 +80,7 @@ public class TaskRecyclerAdapter extends RecyclerView.Adapter<TaskRecyclerAdapte
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
 
         holder.startTime.setText(taskData.get(position).getStartTime());
         holder.title.setText(taskData.get(position).getTitle());
@@ -89,13 +97,41 @@ public class TaskRecyclerAdapter extends RecyclerView.Adapter<TaskRecyclerAdapte
             view.getContext().startActivity(intent);
         }
     });
-  /*  holder.done.setOnClickListener(new View.OnClickListener() {
+    holder.done.setOnClickListener(new View.OnClickListener() {
+
         @Override
         public void onClick(View view) {
-            SharedPreferences.Editor taskPrefs;
-            taskData.get(position).getIdTask();
+            SharedPreferences taskPrefs = view.getContext().getSharedPreferences("taskPrefs", MODE_PRIVATE);
+            SharedPreferences.Editor prefsEditor = taskPrefs.edit();
+            // Get this specific Task key
+            String key = String.valueOf(taskData.get(position).getIdTask());
+            if (taskPrefs.contains(key)) {
+                // Case Session cache not empty
+                String json = taskPrefs.getString(key, "");
+                Gson gson = new Gson();
+                Task doneTask = gson.fromJson(json, Task.class);
+
+                // Change Status =>[1]{Done Task}
+                doneTask.setStatus(1);
+                // convert task object to json
+                json = gson.toJson(doneTask);
+                //Update doneTask in Cache
+                prefsEditor.putString(key+"", json);
+                prefsEditor.apply();
+                // remove doneTask from current RecyclerView data
+                taskData.remove(doneTask);
+
+                /* TESTING*/
+                Map<String, ?> allEntries = taskPrefs.getAll();
+                for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
+                    Log.d("map values", entry.getKey() + ": " + entry.getValue().toString());
+                }
+                /*END TESTING*/
+            }
         }
-    });*/
+    });
+
+
         if (isExpanded)
             previousExpandedPosition = position;
 

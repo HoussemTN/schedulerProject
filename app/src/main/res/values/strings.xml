@@ -2,7 +2,7 @@
     <string name="app_name">Scheduler</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Brains404</string>
+    <string name="nav_header_title">Scheduler(Guest)</string>
     <string name="nav_header_subtitle">devBrains404@gmail.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
@@ -58,6 +58,8 @@
     <string name="btn_delete">Delete</string>
     <string name="btn_done">Done</string>
     <string name="btn_send">Send</string>
+    <string name="google_sign_in">Sign In</string>
+    <string name="google_sign_out">Sign Out</string>
     <!--  Headers Titles -->
     <string name="general_settings_header">General</string>
     <string name="theme_settings_header">Theme</string>
@@ -71,11 +73,19 @@
     <string name="settings_data_title">Data</string>
     <string name="settings_clear_task_data_label">Clear Tasks Data</string>
     <string name="settings_clear_timetable_data_label">Clear TimeTable Data</string>
+    <!--Toast Messages  -->
     <string name="toast_confirm_clear_data">Long Click To Confirm</string>
     <string name="toast_tasks_cleared">Tasks Data Cleared</string>
     <string name="toast_timetable_cleared">TimeTable Data Cleared</string>
+    <string name="alert_set_message">Alert set in : </string>
+    <string name="day_character">d</string>
+    <string name="hour_character">h</string>
+    <string name="minute_character">m</string>
+    <string name="time_divider">:</string>
+    <string name="google_account_connected">Connected ! </string>
+    <string name="google_account_disconnected">Disconnected</string>
 
-    <!-- Java Resources (Messages) from Toasts and Snack bar-->
+    <!-- Java Resources (Messages) Snack bar-->
     <string name="session_required_message">Title/Place required</string>
     <string name="session_added_success_message">Session Added Successfully</string>
     <string name="session_updated_success_message">Session Updated Successfully</string>
@@ -87,14 +97,10 @@
     <string name="feedback_internet_offline_message">You are Offline ! Try to connect to the internet..</string>
     <string name="feedback_message_too_long">Title/Message Too Long.Would you send us an email to: devBrains404@gmail.com </string>
     <string name="feedback_sent_success_message">Thank you for having taken your time to provide us with your valuable feedback</string>
-    <string name="alert_set_message">Alert set in : </string>
-    <string name="day_character">d</string>
-    <string name="hour_character">h</string>
-    <string name="minute_character">m</string>
-    <string name="time_divider">:</string>
+
     <!-- Snack bar Action-->
     <string name="btn_dismiss_action">Dismiss</string>
-
+    <string name="allow_notifications">Allow Notifications</string>
 
 
 </resources>

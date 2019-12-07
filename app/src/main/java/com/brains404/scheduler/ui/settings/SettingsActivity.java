@@ -11,15 +11,14 @@ import android.widget.Switch;
 import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-
-
-
-
 import com.brains404.scheduler.R;
+
+
 
 public class SettingsActivity extends AppCompatActivity {
      Boolean isDarkTheme =false;
     SharedPreferences timeTablePrefs;
+
     SharedPreferences taskPrefs;
     Boolean isTaskClearClicked=false;
     Boolean isTimeTableClearClicked=false ;
@@ -32,23 +31,25 @@ public class SettingsActivity extends AppCompatActivity {
             setTheme(R.style.DarkAppTheme);
             isDarkTheme=true ;
         }
-
-
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings_activity);
-        Switch  toggle= findViewById(R.id.darkModeSwitch);
+        Switch darkModeSwitch = findViewById(R.id.darkModeSwitch);
         Button btnClearTask = findViewById(R.id.btn_clear_tasks_data);
         Button btnClearTimeTable = findViewById(R.id.btn_clear_timetable_data);
+
         timeTablePrefs = getSharedPreferences("timeTablePrefs", Context.MODE_PRIVATE);
-        toggle.setChecked(isDarkTheme);
-        toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        taskPrefs = getSharedPreferences("taskPrefs", MODE_PRIVATE);
+        //init Dark Mode Switch (Activated/Deactivated)
+        darkModeSwitch.setChecked(isDarkTheme);
+        darkModeSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton view, boolean isChecked) {
                 toggleTheme(isChecked);
 
             }
         });
+
+        // simple Click + long Click to confirm Data Deletion
         btnClearTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
