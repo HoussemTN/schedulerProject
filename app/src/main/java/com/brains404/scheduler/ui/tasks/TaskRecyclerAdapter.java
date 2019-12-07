@@ -1,7 +1,6 @@
 package com.brains404.scheduler.ui.tasks;
 
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;

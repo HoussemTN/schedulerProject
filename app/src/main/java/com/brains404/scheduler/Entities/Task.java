@@ -23,9 +23,7 @@ public class Task {
         return idTask;
     }
 
-    public void setIdTask(int idSession) {
-        this.idTask = idTask;
-    }
+
 
     public String getTitle() {
         return title;
@@ -39,17 +37,12 @@ public class Task {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
 
     public String getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(String startTime) {
-        this.startTime = startTime;
-    }
+
 
     public int getStatus() {
         return status;
@@ -62,7 +55,4 @@ public class Task {
         return idDay;
     }
 
-    public void setIdDay(int idDay) {
-        this.idDay = idDay;
-    }
 }

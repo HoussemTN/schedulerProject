@@ -21,7 +21,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Iterator;
 import java.util.Set;
 
 
@@ -45,12 +44,11 @@ public class TaskTabs extends Fragment {
         Set<String> keys = taskPrefs.getAll().keySet();
         // Case Session cache not empty
         if (keys.size() > 0) {
-            Iterator<String> itr = keys.iterator();
-            while(itr.hasNext()){
-                String json = taskPrefs.getString(itr.next(), "");
+            for (String key : keys) {
+                String json = taskPrefs.getString(key, "");
                 Task myTask = gson.fromJson(json, Task.class);
                 // Select To-Do Tasks Status[0]
-                if((myTask.getIdDay()==day) && (myTask.getStatus()==0)) {
+                if ((myTask.getIdDay() == day) && (myTask.getStatus() == 0)) {
                     tasksList.add(myTask);
                 }
 

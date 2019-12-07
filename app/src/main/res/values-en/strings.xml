@@ -101,6 +101,6 @@
     <!-- Snack bar Action-->
     <string name="btn_dismiss_action">Dismiss</string>
     <string name="allow_notifications">Allow Notifications</string>
-
-
+    <!-- Statistics Values-->
+    <string name="task_progress">Task Progress</string>
 </resources>

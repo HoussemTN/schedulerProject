@@ -46,11 +46,10 @@ public class TimeTableTabsFragment extends Fragment {
         Set<String> keys = timeTablePrefs.getAll().keySet();
         // Case Session cache not empty
         if (keys.size() > 0) {
-            Iterator<String> itr = keys.iterator();
-            while(itr.hasNext()){
-                String json = timeTablePrefs.getString(itr.next(), "");
+            for (String key : keys) {
+                String json = timeTablePrefs.getString(key, "");
                 Session mySession = gson.fromJson(json, Session.class);
-                if(mySession.getIdDay()==day) {
+                if (mySession.getIdDay() == day) {
                     sessionsList.add(mySession);
                 }
 

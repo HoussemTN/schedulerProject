@@ -1,13 +1,15 @@
 package com.brains404.scheduler.ui.statistics;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 
+
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+
+import android.view.MotionEvent;
 import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -16,28 +18,39 @@ import com.brains404.scheduler.R;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
-import java.util.Iterator;
+
 import java.util.Set;
 
 public class statisticsActivity extends AppCompatActivity {
+TextView  task_stat ;
 
+
+
+
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // Change Theme
         SharedPreferences preferences = getSharedPreferences("PrefsTheme", MODE_PRIVATE);
         boolean useDarkTheme = preferences.getBoolean("darkTheme", false);
 
-        if(useDarkTheme) {
+        if (useDarkTheme) {
             setTheme(R.style.DarkAppTheme);
         }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics);
-        TextView task_stat=(TextView)findViewById(R.id.task_stat_tv);
-        RecyclerView recyclerView = findViewById(R.id.rv_tasks);
-        ArrayList<Task> tasksList=new ArrayList<>() ;
-        SharedPreferences taskPrefs =getSharedPreferences("taskPrefs", Context.MODE_PRIVATE);
+        task_stat = findViewById(R.id.tv_task_stat);
+        ArrayList<Task> tasksList = new ArrayList<>();
+        SharedPreferences taskPrefs = getSharedPreferences("taskPrefs", Context.MODE_PRIVATE);
 
-        SeekBar seekBar=findViewById(R.id.seekBar);
+        SeekBar seekBar = findViewById(R.id.seekBar);
+        seekBar.setOnTouchListener(new View.OnTouchListener(){
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return true;
+            }
+        });
+
 
         int i=0;
 
@@ -52,19 +65,22 @@ public class statisticsActivity extends AppCompatActivity {
             getSupportActionBar().setHomeButtonEnabled(true);
         }
         if (keys.size() > 0) {
-            Iterator<String> itr = keys.iterator();
-            while(itr.hasNext()){
-                String json = taskPrefs.getString(itr.next(), "");
+            for (String key : keys) {
+                String json = taskPrefs.getString(key, "");
                 Task myTask = gson.fromJson(json, Task.class);
                 // Select To-Do Tasks Status[0]
-                if( (myTask.getStatus()==0)) {
+                if ((myTask.getStatus() == 1)) {
                     tasksList.add(myTask);
                 }
                 i++;
-            }}
+            }
+        }
+       TextView stat_title =findViewById(R.id.progress_title);
+        stat_title.setText(String.format("%s (%d/%d)", getResources().getString(R.string.task_progress), tasksList.size(), i));
         int percentage=tasksList.size()*100/i;
-        task_stat.setText("".concat(String.valueOf(percentage))+"%");
+        task_stat.setText(String.format("%s%%", "".concat(String.valueOf(percentage))));
 
         seekBar.setProgress(percentage);
     }
+
 }

@@ -101,7 +101,8 @@
 
     <string name="btn_dismiss_action">Retour</string>
     <string name="allow_notifications">Autoriser les notifications</string>
-
+    <!-- Statistics Values-->
+    <string name="task_progress">Progrès de vos tâches</string>
 
 
 </resources>
