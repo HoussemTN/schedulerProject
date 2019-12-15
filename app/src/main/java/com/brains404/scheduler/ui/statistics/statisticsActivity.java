@@ -77,7 +77,13 @@ TextView  task_stat ;
         }
        TextView stat_title =findViewById(R.id.progress_title);
         stat_title.setText(String.format("%s (%d/%d)", getResources().getString(R.string.task_progress), tasksList.size(), i));
-        int percentage=tasksList.size()*100/i;
+        int percentage;
+         try {
+             percentage =tasksList.size()*100/i;
+
+         }catch (ArithmeticException e){
+          percentage=0;
+         }
         task_stat.setText(String.format("%s%%", "".concat(String.valueOf(percentage))));
 
         seekBar.setProgress(percentage);
