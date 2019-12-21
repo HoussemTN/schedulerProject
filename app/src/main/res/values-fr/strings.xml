@@ -5,7 +5,7 @@
     <string name="navigation_drawer_close">Fermer le tiroir de navigation</string>
     <string name="nav_header_title">Planificateur (invité)</string>
     <string name="nav_header_subtitle">devBrains404@gmail.com</string>
-    <string name="nav_header_desc">Navigation header</string>
+    <string name="nav_header_desc"> entête de Navigation</string>
     <string name="action_settings">Paramétres</string>
     <string name="menu_time_table">Emploi du Temps</string>
     <string name="menu_task">Les tâches</string>
@@ -18,7 +18,7 @@
     <string name="default_start_time">08:00</string>
     <string name="default_end_time">09:00</string>
     <string name="default_task_value">Tâche par défaut</string>
-    <string name="default_session_value">Default Session</string>
+    <string name="default_session_value">Session Par défaut</string>
     <string name="empty_session_message">Aucune session disponible</string>
 
     <string name="tab_title_monday">Lundi</string>
@@ -32,7 +32,7 @@
 
 
     <string name="activity_addSession_title">Ajouter une session</string>
-    <string name="title_activity_edit_session">Edit Session</string>
+    <string name="title_activity_edit_session">Modifier Session</string>
     <string name="activity_addTask_title">Ajouter une tâche</string>
     <string name="title_activity_edit_task">Modifier la tâche</string>
 
