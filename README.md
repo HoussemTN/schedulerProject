@@ -35,7 +35,7 @@ Scheduler is an android application that allows you to organize your workflow, s
 *  Settings  <br/> <br/>
    <img  alt="settings" src="https://github.com/HoussemTN/schedulerProject/blob/master/screenshots/settings.png?raw=true" heigth="250px"      width="300px"/>
    <br/>    <br/>
-  <a href="https://github.com/HoussemTN/schedulerProject/tree/master/screenshots">more screenshots...</a>
+  <a href="https://github.com/HoussemTN/schedulerProject/tree/master/screenshots">&nbsp;&nbsp;&nbsp;More screenshots...</a>
  ## :octocat: Credits
  Tool(s) that w've used in this project :
  
