@@ -31,7 +31,12 @@ Scheduler is an android application that allows you to organize your workflow, s
    <img  alt="settings" src="https://github.com/HoussemTN/schedulerProject/blob/master/screenshots/settings.png?raw=true" heigth="250px"      width="300px"/>
    <br/>    <br/>
   <a href="https://github.com/HoussemTN/schedulerProject/tree/master/screenshots">more screenshots...</a>
-  
+ ### Credits
+ Tool(s) that w've used in this project :
+ 
+ * Automatic String Resource Translation : https://asrt.gluege.boerde.de/ 
+ 
+ 
  ### Want to contribute
 If you would like to contribute to the project (e.g. by improving the documentation, solving a bug or adding a cool new feature),Just send us your pull request. Please make sure you solved all warnings and errors reported by the static code analyses.
  
