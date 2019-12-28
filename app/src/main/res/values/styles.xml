@@ -16,13 +16,14 @@
         <item name="buttonColorNegative">@color/buttonColorNegative</item>
         <item name="buttonColorPositive">@color/buttonColorPositive</item>
         <item name="buttonColorNeutral">@color/buttonColorNeutral</item>
-        <item name="selectedTabTextColor" >@color/selectedTabTextColor</item>
-        <item  name="notSelectedTabTextColor">@color/notSelectedTabTextColor</item>
-        <item name="tabIndicatorColor" >@color/tabIndicatorColor</item>
+        <item name="selectedTabTextColor">@color/selectedTabTextColor</item>
+        <item name="notSelectedTabTextColor">@color/notSelectedTabTextColor</item>
+        <item name="tabIndicatorColor">@color/tabIndicatorColor</item>
         <item name="drawerTitleColor">@color/drawerTitleColor</item>
-        <item name="customWhite" >@color/customWhite</item>
+        <item name="customWhite">@color/customWhite</item>
 
     </style>
+
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
@@ -49,30 +50,28 @@
         <item name="buttonColorNegative">@color/buttonColorNegativeNight</item>
         <item name="buttonColorPositive">@color/buttonColorPositiveNight</item>
         <item name="buttonColorNeutral">@color/buttonColorNeutralNight</item>
-        <item name="selectedTabTextColor" >@color/selectedTabTextColorNight</item>
-        <item  name="notSelectedTabTextColor">@color/notSelectedTabTextColorNight</item>
-        <item name="tabIndicatorColor" >@color/tabIndicatorColorNight</item>
+        <item name="selectedTabTextColor">@color/selectedTabTextColorNight</item>
+        <item name="notSelectedTabTextColor">@color/notSelectedTabTextColorNight</item>
+        <item name="tabIndicatorColor">@color/tabIndicatorColorNight</item>
         <item name="drawerTitleColor">@color/drawerTitleColorNight</item>
-        <item name="customWhite" >@color/customWhiteNight</item>
+        <item name="customWhite">@color/customWhiteNight</item>
 
     </style>
-  <style name="DarkAppTheme.NoActionBar">
-    <item name="windowActionBar">false</item>
-    <item name="windowNoTitle">true</item>
-</style>
+
+    <style name="DarkAppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
 
     <style name="DarkAppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <!-- App Bar Action Theme of Settings -->
     <style name="DarkAppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 
-
-
     <style name="TextAppearanceTitleDrawer">
         <item name="android:textColor">?attr/drawerTitleColor</item>
         <item name="android:textSize">@dimen/drawer_text_size</item>
     </style>
-
 
 
 </resources>

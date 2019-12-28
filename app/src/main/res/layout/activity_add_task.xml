@@ -1,109 +1,111 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--TODO Create Add Session Form Layout (2 Edit Texts(Name,Place),Combo Box Days , Time Picker (Start Time , End Time)) -->
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?><!--TODO Create Add Session Form Layout (2 Edit Texts(Name,Place),Combo Box Days , Time Picker (Start Time , End Time)) -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/task_ScrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:id="@+id/task_ScrollView"
-    android:background="?attr/backgroundColor">
+    android:background="?attr/backgroundColor"
+    android:orientation="vertical">
+
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:context=".ui.time_table.addSession"
         android:id="@+id/rl_task_container"
-        >
-    <TableRow
-        android:id="@+id/tr_task_time"
-        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:weightSum="4">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/label_startTime"
-            android:layout_marginTop="@dimen/form_margin"
-            android:layout_marginBottom="@dimen/form_margin"
-            android:layout_marginLeft="@dimen/form_margin"
-            android:layout_marginRight="@dimen/label_margin_right"
-            android:layout_marginStart="@dimen/form_margin"
-            android:layout_marginEnd="@dimen/label_margin_right"
-            android:textSize="@dimen/label_size"
-            android:textColor="?attr/textColor"
-            tools:ignore="RtlHardcoded" />
+        android:layout_height="wrap_content"
+        tools:context=".ui.time_table.addSession">
 
-        <Button
-            android:id="@+id/btn_task_startTime"
-            android:layout_width="wrap_content"
+        <TableRow
+            android:id="@+id/tr_task_time"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:weightSum="4">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/form_margin"
+                android:layout_marginLeft="@dimen/form_margin"
+                android:layout_marginTop="@dimen/form_margin"
+                android:layout_marginEnd="@dimen/label_margin_right"
+                android:layout_marginRight="@dimen/label_margin_right"
+                android:layout_marginBottom="@dimen/form_margin"
+                android:text="@string/label_startTime"
+                android:textColor="?attr/textColor"
+                android:textSize="@dimen/label_size"
+                tools:ignore="RtlHardcoded" />
+
+            <Button
+                android:id="@+id/btn_task_startTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/form_margin"
+                android:background="?attr/buttonColor"
+                android:text="@string/default_start_time"
+                android:textColor="?attr/textColor" />
+
+        </TableRow>
+
+        <EditText
+            android:id="@+id/et_task_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tr_task_time"
             android:layout_margin="@dimen/form_margin"
-            android:text="@string/default_start_time"
+            android:drawableStart="@drawable/ic_name"
+            android:drawableLeft="@drawable/ic_name"
+            android:drawablePadding="5dp"
+            android:drawableTint="?attr/tintColor"
+            android:hint="@string/hint_title"
+            android:importantForAutofill="no"
+            android:inputType="text"
             android:textColor="?attr/textColor"
-            android:background="?attr/buttonColor"/>
+            android:textColorHint="?attr/hintTextColor" />
 
-    </TableRow>
-    <EditText
-        android:id="@+id/et_task_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:hint="@string/hint_title"
-        android:layout_margin="@dimen/form_margin"
-        android:importantForAutofill="no"
-        android:drawableLeft="@drawable/ic_name"
-        android:drawableStart="@drawable/ic_name"
-        android:drawablePadding="5dp"
-        android:drawableTint="?attr/tintColor"
-        android:textColor="?attr/textColor"
-        android:textColorHint="?attr/hintTextColor"
-        android:layout_below="@id/tr_task_time"
-        />
-    <EditText
-        android:id="@+id/et_task_description"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:hint="@string/hint_description"
-        android:layout_below="@id/et_task_title"
-        android:layout_margin="@dimen/form_margin"
-        android:importantForAutofill="no"
-        android:drawableLeft="@drawable/ic_description"
-        android:drawableStart="@drawable/ic_description"
-        android:drawablePadding="5dp"
-        android:drawableTint="?attr/tintColor"
-        android:textColor="?attr/textColor"
-        android:textColorHint="?attr/hintTextColor"/>
+        <EditText
+            android:id="@+id/et_task_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/et_task_title"
+            android:layout_margin="@dimen/form_margin"
+            android:drawableStart="@drawable/ic_description"
+            android:drawableLeft="@drawable/ic_description"
+            android:drawablePadding="5dp"
+            android:drawableTint="?attr/tintColor"
+            android:hint="@string/hint_description"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:textColor="?attr/textColor"
+            android:textColorHint="?attr/hintTextColor" />
+
         <CheckBox
             android:id="@+id/ch_notify_task"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/et_task_description"
-            android:text="@string/checkbox_task_notify_me"
             android:layout_margin="@dimen/form_margin"
+            android:text="@string/checkbox_task_notify_me"
             android:textColor="?attr/textColor"
-            app:buttonTint="?attr/tintColor"
+            app:buttonTint="?attr/tintColor" />
+
+        <TimePicker
+            android:id="@+id/tp_task_start_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="?attr/textColor"
+            android:visibility="gone" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_addTask"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ch_notify_task"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="@dimen/form_margin"
+            android:background="?attr/buttonColor"
+            android:text="@string/btn_addTask"
+            android:textColor="?attr/textColor"
+
             />
-    <TimePicker
-        android:id="@+id/tp_task_start_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:textColor="?attr/textColor"
-        />
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_addTask"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_addTask"
-        android:layout_below="@id/ch_notify_task"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="@dimen/form_margin"
-       android:background="?attr/buttonColor"
-        android:textColor="?attr/textColor"
 
-        />
-
-</RelativeLayout>
+    </RelativeLayout>
 </ScrollView>

@@ -6,45 +6,44 @@
     android:layout_height="match_parent"
     android:background="?attr/backgroundColor"
     tools:context=".ui.statistics.statisticsActivity">
-   <RelativeLayout
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:padding="@dimen/form_margin"
-       android:background="?attr/buttonColor"
-       android:layout_margin="@dimen/form_margin">
 
-    <TextView
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/task_progress"
         android:layout_margin="@dimen/form_margin"
-        android:id="@+id/progress_title"
-        android:textColor="?attr/textColor"
-        android:textSize="@dimen/session_title_size"
-      />
-    <TextView
-        android:id="@+id/tv_task_stat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textColor="?attr/textColor"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/form_margin"
-        android:textSize="@dimen/session_title_size"
-        android:layout_below="@id/seekBar"
-        />
+        android:background="?attr/buttonColor"
+        android:padding="@dimen/form_margin">
 
-    <SeekBar
-        android:id="@+id/seekBar"
-        android:layout_width="match_parent"
-        android:layout_margin="@dimen/form_margin"
-        android:layout_height="wrap_content"
-        android:clickable="false"
-        android:progressDrawable="@drawable/progress"
-        android:thumb="@drawable/thumb"
+        <TextView
+            android:id="@+id/progress_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/form_margin"
+            android:text="@string/task_progress"
+            android:textColor="?attr/textColor"
+            android:textSize="@dimen/session_title_size" />
 
-        android:layout_below="@id/progress_title"
-        />
-   </RelativeLayout>
+        <TextView
+            android:id="@+id/tv_task_stat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/seekBar"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/form_margin"
+            android:text=""
+            android:textColor="?attr/textColor"
+            android:textSize="@dimen/session_title_size" />
+
+        <SeekBar
+            android:id="@+id/seekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/progress_title"
+            android:layout_margin="@dimen/form_margin"
+            android:clickable="false"
+            android:progressDrawable="@drawable/progress"
+
+            android:thumb="@drawable/thumb" />
+    </RelativeLayout>
 
 </RelativeLayout>

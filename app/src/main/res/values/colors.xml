@@ -13,10 +13,10 @@
     <color name="buttonColorNegative">#FF0000</color>
     <color name="buttonColorNeutral">#8D6F03</color>
     <color name="tintColorPrimary">#002E83</color>
-    <color name="selectedTabTextColor" >#FFAE00</color>
-    <color  name="notSelectedTabTextColor">#8A8484</color>
-    <color name="tabIndicatorColor" >#FFFFFF</color>
-    <color name="drawerTitleColor" >#072692</color>
+    <color name="selectedTabTextColor">#FFAE00</color>
+    <color name="notSelectedTabTextColor">#8A8484</color>
+    <color name="tabIndicatorColor">#FFFFFF</color>
+    <color name="drawerTitleColor">#072692</color>
     <color name="customWhite">#FFFFFF</color>
 
     <!--Night Mode -->
@@ -35,9 +35,9 @@
     <color name="buttonColorNeutralNight">#8D6F03</color>
     <color name="buttonColorSecondaryNight">#7383B4</color>
     <color name="tintColorPrimaryNight">#B4688EFA</color>
-    <color name="selectedTabTextColorNight" >#ACA9A9</color>
-    <color  name="notSelectedTabTextColorNight">#646262</color>
-    <color name="tabIndicatorColorNight" >#ACA9A9</color>
-    <color name="drawerTitleColorNight" >#C5A401</color>
+    <color name="selectedTabTextColorNight">#ACA9A9</color>
+    <color name="notSelectedTabTextColorNight">#646262</color>
+    <color name="tabIndicatorColorNight">#ACA9A9</color>
+    <color name="drawerTitleColorNight">#C5A401</color>
     <color name="customWhiteNight">#BEBBBB</color>
 </resources>

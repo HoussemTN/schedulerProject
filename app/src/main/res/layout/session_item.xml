@@ -79,27 +79,27 @@
             android:layout_marginEnd="@dimen/form_margin"
             android:layout_marginRight="@dimen/form_margin"
             android:background="?attr/buttonColorNeutral"
-            android:text="@string/btn_edit"
-            android:textColor="?attr/customWhite"
-            android:drawableRight="@drawable/ic_edit"
             android:drawableEnd="@drawable/ic_edit"
-            android:drawableTint="?attr/customWhite" />
-
-      <!--  <Button
-            android:drawableRight="@drawable/ic_delete"
-            android:id="@+id/btn_delete_session"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/btn_expandable_height"
-            android:layout_toStartOf="@id/btn_edit_session"
-            android:layout_toLeftOf="@id/btn_edit_session"
-            android:layout_marginEnd="@dimen/form_margin"
-            android:layout_marginRight="@dimen/form_margin"
-            android:background="?attr/buttonColorNegative"
-            android:text="@string/btn_delete"
-            android:textColor="?attr/customWhite"
-            android:drawableEnd="@drawable/ic_delete"
+            android:drawableRight="@drawable/ic_edit"
             android:drawableTint="?attr/customWhite"
-            />-->
+            android:text="@string/btn_edit"
+            android:textColor="?attr/customWhite" />
+
+        <!--  <Button
+              android:drawableRight="@drawable/ic_delete"
+              android:id="@+id/btn_delete_session"
+              android:layout_width="wrap_content"
+              android:layout_height="@dimen/btn_expandable_height"
+              android:layout_toStartOf="@id/btn_edit_session"
+              android:layout_toLeftOf="@id/btn_edit_session"
+              android:layout_marginEnd="@dimen/form_margin"
+              android:layout_marginRight="@dimen/form_margin"
+              android:background="?attr/buttonColorNegative"
+              android:text="@string/btn_delete"
+              android:textColor="?attr/customWhite"
+              android:drawableEnd="@drawable/ic_delete"
+              android:drawableTint="?attr/customWhite"
+              />-->
     </RelativeLayout>
 
     <View

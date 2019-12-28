@@ -69,7 +69,7 @@ public class TimeTableTabsFragment extends Fragment {
             noSessionMessage.setVisibility(View.VISIBLE);
 
         }
-
+        // Sort Session List
         Collections.sort(sessionsList,new Comparator<Session>() {
             @Override
             public int compare(Session S1, Session S2) {
