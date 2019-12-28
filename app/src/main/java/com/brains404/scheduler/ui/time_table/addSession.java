@@ -318,6 +318,14 @@ public class addSession extends AppCompatActivity {
     }
     // Notification Builder
     private Notification getNotification (Session session) {
+        //start time shown in notification
+        //TODO Test for long periods
+        String[] startTimeSplited = session.getStartTime().split(":");
+        Calendar c = Calendar.getInstance();
+        c.setTimeInMillis(System.currentTimeMillis());
+        c.set(Calendar.HOUR, Integer.parseInt(startTimeSplited[0]));
+        c.set(Calendar.MINUTE, Integer.parseInt(startTimeSplited[1]));
+        long startTimeConverted=c.getTimeInMillis();
         Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         Intent intent = new Intent(this, MainActivity.class);
         PendingIntent notificationIntent = PendingIntent.getActivity(this, session.getIdSession(), intent,0);
@@ -325,6 +333,7 @@ public class addSession extends AppCompatActivity {
         builder.setContentTitle(session.getTitle()) ;
         builder.setContentText(session.getPlace()) ;
         builder.setSmallIcon(R.drawable.ic_event_note ) ;
+        builder.setWhen(startTimeConverted);
         builder.setContentIntent(notificationIntent);
         builder.setAutoCancel(true) ;
         builder.setSound(alarmSound);
