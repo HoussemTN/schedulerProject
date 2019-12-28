@@ -268,6 +268,14 @@ public class addTask extends AppCompatActivity {
     }
     // Notification Builder
     private Notification getNotification (Task task) {
+        //start time shown in notification
+        //TODO Test for long periods
+        String[] startTimeSplited =task.getStartTime().split(":");
+        Calendar c = Calendar.getInstance();
+        c.setTimeInMillis(System.currentTimeMillis());
+        c.set(Calendar.HOUR, Integer.parseInt(startTimeSplited[0]));
+        c.set(Calendar.MINUTE, Integer.parseInt(startTimeSplited[1]));
+        long startTimeConverted=c.getTimeInMillis();
         Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         Intent intent = new Intent(this, MainActivity.class);
         PendingIntent notificationIntent = PendingIntent.getActivity(this, task.getIdTask(), intent,0);
@@ -275,6 +283,7 @@ public class addTask extends AppCompatActivity {
         builder.setContentTitle(task.getTitle()) ;
         builder.setContentText(task.getDescription()) ;
         builder.setSmallIcon(R.drawable.ic_task) ;
+        builder.setWhen(startTimeConverted);
         builder.setContentIntent(notificationIntent);
         builder.setAutoCancel(true) ;
         builder.setSound(alarmSound);

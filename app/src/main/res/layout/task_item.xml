@@ -73,28 +73,27 @@
             android:layout_marginEnd="@dimen/form_margin"
             android:layout_marginRight="@dimen/form_margin"
             android:background="?attr/buttonColorNeutral"
-            android:text="@string/btn_edit"
-            android:textColor="?attr/customWhite"
-            android:drawableRight="@drawable/ic_edit"
             android:drawableEnd="@drawable/ic_edit"
-            android:drawableTint="?attr/customWhite" />
+            android:drawableRight="@drawable/ic_edit"
+            android:drawableTint="?attr/customWhite"
+            android:text="@string/btn_edit"
+            android:textColor="?attr/customWhite" />
 
-            <Button
+        <Button
 
-              android:id="@+id/btn_done_task"
-              android:layout_width="wrap_content"
-              android:layout_height="@dimen/btn_expandable_height"
-              android:layout_toStartOf="@id/btn_edit_task"
-              android:layout_toLeftOf="@id/btn_edit_task"
-              android:layout_marginEnd="@dimen/form_margin"
-              android:layout_marginRight="@dimen/form_margin"
-              android:background="?attr/buttonColorPositive"
-              android:text="@string/btn_done"
-              android:textColor="?attr/customWhite"
-              android:drawableEnd="@drawable/ic_done"
-              android:drawableTint="?attr/customWhite"
-              android:drawableRight="@drawable/ic_done"
-              />
+            android:id="@+id/btn_done_task"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/btn_expandable_height"
+            android:layout_marginEnd="@dimen/form_margin"
+            android:layout_marginRight="@dimen/form_margin"
+            android:layout_toStartOf="@id/btn_edit_task"
+            android:layout_toLeftOf="@id/btn_edit_task"
+            android:background="?attr/buttonColorPositive"
+            android:drawableEnd="@drawable/ic_done"
+            android:drawableRight="@drawable/ic_done"
+            android:drawableTint="?attr/customWhite"
+            android:text="@string/btn_done"
+            android:textColor="?attr/customWhite" />
     </RelativeLayout>
 
     <View
