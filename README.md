@@ -1,8 +1,13 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/60a1063f55664982bc79ef1ef7fa75dd)](https://www.codacy.com/manual/HoussemTN/schedulerProject?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=HoussemTN/schedulerProject&amp;utm_campaign=Badge_Grade)
 
-# Scheduler 
+# Scheduler
+
+<img  align="left" alt="Scheduler" src="https://github.com/HoussemTN/schedulerProject/blob/master/app/src/main/res/drawable/logo.png?raw=true" heigth="100px" width="100px"/>
 Scheduler is an android application that allows you to organize your workflow, schedule tasks and get reminders in order to optimize your productivity.
-##  :stars: Features
+
+<br/><br/>
+
+##  :boom: Features
 
 | Features|Data Storage|Status|
 |-------------|-------------|-------------|
@@ -14,7 +19,7 @@ Scheduler is an android application that allows you to organize your workflow, s
 | Reminders|None|Need enhancement|
 
 
-## Screenshots
+## :camera: Screenshots
 * List of Sessions per Day <br/> <br/>
   <img  alt="List_Sessions" src="https://github.com/HoussemTN/schedulerProject/blob/master/screenshots/list_timetable.png?raw=true"          heigth="250px" width="300px"/>
     <br/>    <br/>
@@ -30,13 +35,13 @@ Scheduler is an android application that allows you to organize your workflow, s
 *  Settings  <br/> <br/>
    <img  alt="settings" src="https://github.com/HoussemTN/schedulerProject/blob/master/screenshots/settings.png?raw=true" heigth="250px"      width="300px"/>
    <br/>    <br/>
-  <a href="https://github.com/HoussemTN/schedulerProject/tree/master/screenshots">more screenshots...</a>
- ### Credits
+  <a href="https://github.com/HoussemTN/schedulerProject/tree/master/screenshots">&nbsp;&nbsp;&nbsp;More screenshots...</a>
+ ## :octocat: Credits
  Tool(s) that w've used in this project :
  
  * Automatic String Resource Translation : https://asrt.gluege.boerde.de/ 
  
  
- ### Want to contribute
+ ## :gift_heart: Want to contribute
 If you would like to contribute to the project (e.g. by improving the documentation, solving a bug or adding a cool new feature),Just send us your pull request. Please make sure you solved all warnings and errors reported by the static code analyses.
  
