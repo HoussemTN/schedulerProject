@@ -273,7 +273,7 @@ public class addTask extends AppCompatActivity {
         String[] startTimeSplited =task.getStartTime().split(":");
         Calendar c = Calendar.getInstance();
         c.setTimeInMillis(System.currentTimeMillis());
-        c.set(Calendar.HOUR, Integer.parseInt(startTimeSplited[0]));
+        c.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTimeSplited[0]));
         c.set(Calendar.MINUTE, Integer.parseInt(startTimeSplited[1]));
         long startTimeConverted=c.getTimeInMillis();
         Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
