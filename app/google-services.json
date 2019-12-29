@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "578528849605",
+    "firebase_url": "https://sheduler-8fe2b.firebaseio.com",
+    "project_id": "sheduler-8fe2b",
+    "storage_bucket": "sheduler-8fe2b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:578528849605:android:aab80a0a6f3907739f4aac",
+        "android_client_info": {
+          "package_name": "com.brains404.scheduler"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "578528849605-42i32ee35ju68iimcnnpbrrfn5os2vlo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAORbzvdP4lRSNrkVYK5-7Iua5mrUgY00"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "578528849605-42i32ee35ju68iimcnnpbrrfn5os2vlo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
