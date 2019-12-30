@@ -15,7 +15,5 @@ jobs:
         java-version: 1.8
     - name: Build with Gradle
       run: ./gradlew build
-    - name: Delete merged branch
-      uses: SvanBoxel/delete-merged-branch@v1.3.3
     - name: todo-actions
       uses: dtinth/todo-actions@v0.2.0
