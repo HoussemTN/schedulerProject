@@ -31,7 +31,8 @@ public class AlarmReceiver extends BroadcastReceiver {
         int id = intent.getIntExtra("notificationId", 0);
         assert notificationManager != null;
         notificationManager.notify(id, notification);
-        //TODO Handle BOOT_COMPLETED Action
+        // TODO AlarmReceiver
+         // Handle BOOT_COMPLETED Action
 
     }
 }

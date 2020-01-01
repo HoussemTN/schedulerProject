@@ -269,7 +269,8 @@ public class addTask extends AppCompatActivity {
     // Notification Builder
     private Notification getNotification (Task task) {
         //start time shown in notification
-        //TODO Test for long periods
+        //TODO Test notification
+        // Test notifications for long term
         String[] startTimeSplited =task.getStartTime().split(":");
         Calendar c = Calendar.getInstance();
         c.setTimeInMillis(System.currentTimeMillis());
