@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.brains404.scheduler">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
@@ -19,10 +20,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.statistics.statisticsActivity"
+        <activity android:name=".ui.notes.addNote"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:label="@string/menu_note"
+            android:parentActivityName=".MainActivity"
+        />
+        <activity
+            android:name=".ui.statistics.statisticsActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/menu_statistics"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".ui.time_table.editSession"
             android:configChanges="orientation|screenSize|keyboardHidden"

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ScrollViewAddNote"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/backgroundColor"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl_container_add_note"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".ui.notes.addNote">
+
+
+        <EditText
+            android:id="@+id/et_title_add_note"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/form_margin"
+            android:layout_marginTop="@dimen/form_margin"
+            android:layout_marginRight="@dimen/form_margin"
+            android:drawableStart="@drawable/ic_name"
+            android:drawableLeft="@drawable/ic_name"
+            android:drawablePadding="5dp"
+            android:drawableTint="?attr/tintColor"
+            android:hint="@string/hint_title"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:textColor="?attr/textColor"
+            android:textColorHint="?attr/hintTextColor" />
+
+        <EditText
+            android:id="@+id/et_content_add_note"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/et_title_add_note"
+            android:layout_marginLeft="@dimen/form_margin"
+            android:layout_marginRight="@dimen/form_margin"
+            android:layout_marginBottom="@dimen/form_margin"
+            android:drawableStart="@drawable/ic_content"
+            android:drawableLeft="@drawable/ic_content"
+            android:drawablePadding="5dp"
+            android:drawableTint="?attr/tintColor"
+            android:hint="@string/hint_content"
+            android:importantForAutofill="no"
+            android:inputType="textMultiLine"
+            android:lines="4"
+            android:maxLines="10"
+            android:minLines="4"
+            android:paddingTop="0sp"
+            android:textColor="?attr/textColor"
+            android:textColorHint="?attr/hintTextColor" />
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_addNote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/et_content_add_note"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="@dimen/form_margin"
+            android:background="?attr/buttonColor"
+            android:padding="@dimen/padding_button"
+            android:text="@string/btn_addNote"
+            android:textColor="?attr/textColor" />
+
+    </RelativeLayout>
+</ScrollView>

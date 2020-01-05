@@ -15,6 +15,11 @@
         android:name="com.brains404.scheduler.ui.tasks.TaskFragment"
         android:label="@string/menu_task"
         tools:layout="@layout/task_tabs" />
+    <fragment
+        android:id="@+id/nav_notes"
+        android:name="com.brains404.scheduler.ui.notes.NoteFragment"
+        android:label="@string/menu_note"
+        tools:layout="@layout/note_tabs"/>
     <activity
         android:id="@+id/nav_statistics"
         android:name="com.brains404.scheduler.ui.statistics.statisticsActivity"

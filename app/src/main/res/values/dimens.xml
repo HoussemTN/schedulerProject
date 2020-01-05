@@ -13,8 +13,7 @@
     <dimen name="drawable_padding">5sp</dimen>
     <dimen name="padding_button">8sp</dimen>
     <dimen name="padding_spinner_item">5sp</dimen>
-
-    <!--RecyclerView  Dimensions -->
+    <!-- RecyclerView  Dimensions -->
     <dimen name="session_place_size">12sp</dimen>
     <dimen name="session_title_size">20sp</dimen>
     <dimen name="session_title_padding_top">4dp</dimen>
@@ -23,7 +22,7 @@
     <dimen name="btn_expandable_height">28dp</dimen>
     <!-- Drawer Dimens-->
     <dimen name="drawer_text_size">16sp</dimen>
-    <!--Settings Dimens -->
+    <!-- Settings Dimens -->
     <dimen name="settings_title_size">20sp</dimen>
     <dimen name="settings_title_padding_bottom">15sp</dimen>
     <dimen name="settings_title_padding_top">15sp</dimen>
@@ -35,5 +34,8 @@
     <!-- Logo Dimens -->
     <dimen name="logo_height">60dp</dimen>
     <dimen name="logo_width">60dp</dimen>
-
+    <!-- Card View Dimens -->
+    <dimen name="padding_card_view_item">5sp</dimen>
+    <dimen name="card_view_title_text_size">16sp</dimen>
+    <dimen name="card_view_margin">10sp</dimen>
 </resources>

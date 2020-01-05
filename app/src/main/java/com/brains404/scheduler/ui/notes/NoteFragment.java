@@ -1,4 +1,4 @@
-package com.brains404.scheduler.ui.tasks;
+package com.brains404.scheduler.ui.notes;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,11 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
+
 import com.brains404.scheduler.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
@@ -18,9 +18,9 @@ import com.google.android.material.tabs.TabLayout;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TaskFragment extends Fragment {
+public class NoteFragment extends Fragment {
     private int position;
-  private  final  String LAST_VISITED_TASK_DAY_ID="LAST_VISITED_TASK_DAY_ID";
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,15 +28,15 @@ public class TaskFragment extends Fragment {
     }
 
 
-
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_tasks, container, false);
-        ViewPager viewPager =view.findViewById(R.id.task_viewpager);
+        View view = inflater.inflate(R.layout.fragment_note, container, false);
+        ViewPager viewPager =view.findViewById(R.id.note_viewpager);
         setupViewPager(viewPager);
         // Set Tabs inside Toolbar
-        TabLayout tabs =  view.findViewById(R.id.result_task_tabs);
+        TabLayout tabs =  view.findViewById(R.id.result_note_tabs);
+
         // get current day (selected tab)
         tabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -51,21 +51,21 @@ public class TaskFragment extends Fragment {
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-                position= tab.getPosition();
+
 
             }
         });
 
         tabs.setupWithViewPager(viewPager);
         // Float Action Button For Time Table
-        FloatingActionButton fab = view.findViewById(R.id.task_fab);
+        FloatingActionButton fab = view.findViewById(R.id.note_fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent addTaskActivity = new Intent(getActivity(), addTask.class);
+                Intent addNoteActivity = new Intent(getActivity(), addNote.class);
                 //pass the current selected tab which represent the day position
-                addTaskActivity.putExtra(LAST_VISITED_TASK_DAY_ID,position);
-                startActivity(addTaskActivity);
+                addNoteActivity.putExtra("CURRENT_NOTE_DAY_ID",position);
+                startActivity(addNoteActivity);
                 //disable transition animation
                 /*( getActivity()).overridePendingTransition(0, 0);*/
             }
@@ -76,15 +76,15 @@ public class TaskFragment extends Fragment {
         //Log.d("Test", "Hello World");
         if (extras!= null) {
             // Bundle exist
-
-            boolean isVisited = extras.containsKey(LAST_VISITED_TASK_DAY_ID);
+            String LAST_VISITED_NOTE_DAY_ID = "LAST_VISITED_NOTE_DAY_ID";
+            boolean isVisited = extras.containsKey(LAST_VISITED_NOTE_DAY_ID);
             //Log.d("Test", "is"+isVisited);
 
             if (isVisited) {
-                int idDay = extras.getInt(LAST_VISITED_TASK_DAY_ID);
+                int idLabel = extras.getInt(LAST_VISITED_NOTE_DAY_ID);
                 // Log.d("Test", "is"+idDay);
                 // Restore last visited TabLayout
-                TabLayout.Tab selectedTab = tabs.getTabAt(idDay);
+                TabLayout.Tab selectedTab = tabs.getTabAt(idLabel);
                 assert selectedTab != null;
                 selectedTab.select();
             }
@@ -95,13 +95,13 @@ public class TaskFragment extends Fragment {
     private void setupViewPager(ViewPager viewPager) {
 
         Adapter adapter = new Adapter(getChildFragmentManager());
-        adapter.addFragment(new TaskTabs(0), getString(R.string.tab_title_monday));
-        adapter.addFragment(new TaskTabs(1), getString(R.string.tab_title_tuesday));
-        adapter.addFragment(new TaskTabs(2), getString(R.string.tab_title_wednesday));
-        adapter.addFragment(new TaskTabs(3), getString(R.string.tab_title_thursday));
-        adapter.addFragment(new TaskTabs(4), getString(R.string.tab_title_friday));
-        adapter.addFragment(new TaskTabs(5), getString(R.string.tab_title_saturday));
-        adapter.addFragment(new TaskTabs(6), getString(R.string.tab_title_sunday));
+        adapter.addFragment(new NoteTabsFragment(0), getString(R.string.tab_title_monday));
+        adapter.addFragment(new NoteTabsFragment(1), getString(R.string.tab_title_tuesday));
+        adapter.addFragment(new NoteTabsFragment(2), getString(R.string.tab_title_wednesday));
+        adapter.addFragment(new NoteTabsFragment(3), getString(R.string.tab_title_thursday));
+        adapter.addFragment(new NoteTabsFragment(4), getString(R.string.tab_title_friday));
+        adapter.addFragment(new NoteTabsFragment(5), getString(R.string.tab_title_saturday));
+        adapter.addFragment(new NoteTabsFragment(6), getString(R.string.tab_title_sunday));
         viewPager.setAdapter(adapter);
 
 
@@ -140,3 +140,4 @@ public class TaskFragment extends Fragment {
     }
 
 }
+

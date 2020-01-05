@@ -71,7 +71,9 @@ public class MainActivity extends AppCompatActivity {
 
         // Access to Navigation View drawer
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
-       navigationView = findViewById(R.id.nav_view);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        navigationView = findViewById(R.id.nav_view);
         View headerLayout = navigationView.getHeaderView(0);
         signInButton = headerLayout.findViewById(R.id.sign_in_button);
          email = headerLayout.findViewById(R.id.tv_user_email);

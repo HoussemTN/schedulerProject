@@ -13,6 +13,10 @@
             android:icon="@drawable/ic_task"
             android:title="@string/menu_task" />
         <item
+            android:id="@+id/nav_notes"
+            android:icon="@drawable/ic_note"
+            android:title="@string/menu_note" />
+        <item
             android:id="@+id/nav_statistics"
             android:icon="@drawable/ic_statistics"
             android:title="@string/menu_statistics" />

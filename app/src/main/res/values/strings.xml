@@ -8,6 +8,7 @@
     <string name="action_settings">Settings</string>
     <string name="menu_time_table">Time Table</string>
     <string name="menu_task">Tasks</string>
+    <string name="menu_note">Notes</string>
     <string name="menu_statistics">Statistics</string>
     <string name="menu_more">More</string>
     <string name="menu_settings">Settings</string>
@@ -19,6 +20,7 @@
     <string name="default_task_value">Default Task</string>
     <string name="default_session_value">Default Session</string>
     <string name="empty_session_message">No Sessions Available</string>
+    <string name="empty_note_message">No Notes Available</string>
     <!-- Fragments Tab Bar Titles-->
     <string name="tab_title_monday">Monday</string>
     <string name="tab_title_tuesday">Tuesday</string>
@@ -34,9 +36,14 @@
     <string name="title_activity_edit_session">Edit Session</string>
     <string name="activity_addTask_title">Add Task</string>
     <string name="title_activity_edit_task">Edit Task</string>
+    <string name="title_activity_add_note">Add Note</string>
+    <string name="title_activity_edit_note">Edit Note</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="title_activity_feedback">Feedback</string>
     <!-- Forms -->
     <string name="hint_title">Title</string>
     <string name="hint_place">Place</string>
+    <string name="hint_content">Content</string>
     <string name="hint_day">Day</string>
     <string name="hint_startTime">Start Time</string>
     <string name="hint_endTime">End Time</string>
@@ -52,8 +59,10 @@
     <string name="btn_addSession">Add Session</string>
     <string name="btn_editSession">Edit Session</string>
     <string name="btn_addTask">Add Task</string>
-    <string name="title_activity_settings">Settings</string>
-    <string name="title_activity_feedback">Feedback</string>
+    <string name="btn_editTask">Edit Task</string>
+    <string name="btn_addNote">Add Note</string>
+    <string name="btn_editNote">Edit Note</string>
+
     <string name="btn_edit">Edit</string>
     <string name="btn_delete">Delete</string>
     <string name="btn_done">Done</string>
@@ -88,6 +97,8 @@
     <!-- Java Resources (Messages) Snack bar-->
     <string name="session_required_message">Title/Place required</string>
     <string name="session_added_success_message">Session Added Successfully</string>
+    <string name="note_added_success_message">Note Added Successfully</string>
+    <string name="note_updated_success_message">Note Updated Successfully</string>
     <string name="session_updated_success_message">Session Updated Successfully</string>
     <string name="feedback_required_message">Title/Message required</string>
     <string name="task_added_success_message">Task Added Successfully</string>
@@ -102,6 +113,9 @@
     <string name="btn_dismiss_action">Dismiss</string>
     <string name="allow_notifications">Allow Notifications</string>
     <string name="task_progress">Task Progress</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

@@ -104,7 +104,7 @@
             android:layout_margin="@dimen/form_margin"
             android:background="?attr/buttonColor"
             android:padding="@dimen/padding_button"
-            android:text="@string/btn_editSession"
+            android:text="@string/btn_editTask"
             android:textColor="?attr/textColor" />
 
         <androidx.appcompat.widget.AppCompatButton

@@ -23,7 +23,7 @@ public class TimeTableRecyclerAdapter extends RecyclerView.Adapter<TimeTableRecy
    private int previousExpandedPosition = -1;
    private int expandedPosition =-1 ;
 
-    class  ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder{
         TextView startTime;
         TextView endTime;
         TextView title;
